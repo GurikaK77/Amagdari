@@ -24,6 +24,9 @@
     --muted:#9a93b5;
     --card-bg:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
     --dev:#4ec9b0;
+    --hero-col:#f0cd8a;
+    --villain-col:#e35d5d;
+    --secondary-col:#9a8fd4;
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -300,28 +303,132 @@
   }
   .card.dev .member-role{color:#4ec9b0;opacity:.95}
 
-  /* პერსონაჟების ბარათები */
+  /* ============================================ */
+  /* ===== პერსონაჟების ბარათები (როლებით) ===== */
+  /* ============================================ */
   .card.char{
     border-style:dashed;
-    border-color:rgba(212,162,76,.22);
-    padding:34px 20px 28px;
+    border-color:rgba(255,255,255,.15);
+    padding:38px 20px 30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
   .card.char:hover{border-style:solid}
+
+  /* როლის badge (ზედა მარჯვენა კუთხეში) */
+  .role-badge{
+    position:absolute;top:14px;left:50%;
+    transform:translateX(-50%);
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.62rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;
+    padding:5px 13px;border-radius:999px;
+    backdrop-filter:blur(6px);
+    white-space:nowrap;
+  }
+  .role-badge svg{width:11px;height:11px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* სიმბოლო */
   .char-symbol{
-    font-size:3.2rem;font-weight:900;line-height:1;
-    margin-bottom:14px;
-    background:linear-gradient(180deg,#f0cd8a,#8a6a2e);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 20px rgba(212,162,76,.35));
+    font-size:3.4rem;font-weight:900;line-height:1;
+    margin:26px 0 16px;
     animation:pulse 3.4s ease-in-out infinite;
   }
   @keyframes pulse{
-    0%,100%{opacity:.5;transform:scale(.94)}
+    0%,100%{opacity:.55;transform:scale(.94)}
     50%{opacity:1;transform:scale(1.06)}
   }
-  .char-name{font-size:1rem;font-weight:600;color:#bdb4d6;letter-spacing:.06em}
-  .char-desc{font-size:.82rem;color:var(--muted);margin-top:8px;font-weight:300}
+
+  .char-name{
+    font-size:1.05rem;font-weight:700;
+    letter-spacing:.06em;
+    color:#e2dbf5;
+  }
+  .char-desc{
+    font-size:.82rem;color:var(--muted);
+    margin-top:8px;font-weight:300;
+    line-height:1.5;
+  }
+
+  /* ----- 1. მთავარი გმირი (ოქრო) ----- */
+  .card.char.hero-char{
+    border-color:rgba(240,205,138,.4);
+    background:linear-gradient(160deg,rgba(212,162,76,.11),rgba(255,255,255,.02));
+  }
+  .card.char.hero-char::before{
+    background:linear-gradient(90deg,transparent,#f0cd8a,transparent);
+  }
+  .card.char.hero-char:hover{
+    border-color:rgba(240,205,138,.85);
+    box-shadow:0 28px 60px -30px rgba(240,205,138,.7);
+  }
+  .card.char.hero-char .role-badge{
+    color:#1a1206;
+    background:linear-gradient(135deg,#d4a24c,#f0cd8a);
+    box-shadow:0 6px 18px -6px rgba(240,205,138,.9);
+  }
+  .card.char.hero-char .role-badge svg{stroke:#1a1206}
+  .card.char.hero-char .char-symbol{
+    background:linear-gradient(180deg,#fff6e0,#d4a24c,#8a6a2e);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 24px rgba(240,205,138,.55));
+  }
+  .card.char.hero-char .char-name{color:#fff2d4}
+
+  /* ----- 2. მტერი (წითელი) ----- */
+  .card.char.villain-char{
+    border-color:rgba(227,93,93,.4);
+    background:linear-gradient(160deg,rgba(227,93,93,.1),rgba(255,255,255,.02));
+  }
+  .card.char.villain-char::before{
+    background:linear-gradient(90deg,transparent,#e35d5d,transparent);
+  }
+  .card.char.villain-char:hover{
+    border-color:rgba(227,93,93,.8);
+    box-shadow:0 28px 60px -30px rgba(227,93,93,.7);
+  }
+  .card.char.villain-char .role-badge{
+    color:#2a0808;
+    background:linear-gradient(135deg,#e35d5d,#ff9c9c);
+    box-shadow:0 6px 18px -6px rgba(227,93,93,.9);
+  }
+  .card.char.villain-char .role-badge svg{stroke:#2a0808}
+  .card.char.villain-char .char-symbol{
+    background:linear-gradient(180deg,#ffb3b3,#e35d5d,#7a1f1f);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 24px rgba(227,93,93,.55));
+  }
+  .card.char.villain-char .char-name{color:#ffd4d4}
+
+  /* ----- 3 & 4. მეორე ხარისხოვანი (იასამნისფერი) ----- */
+  .card.char.side-char{
+    border-color:rgba(154,143,212,.35);
+    background:linear-gradient(160deg,rgba(154,143,212,.09),rgba(255,255,255,.02));
+  }
+  .card.char.side-char::before{
+    background:linear-gradient(90deg,transparent,#9a8fd4,transparent);
+  }
+  .card.char.side-char:hover{
+    border-color:rgba(154,143,212,.75);
+    box-shadow:0 28px 60px -30px rgba(154,143,212,.65);
+  }
+  .card.char.side-char .role-badge{
+    color:#0f0a24;
+    background:linear-gradient(135deg,#9a8fd4,#c9c0f0);
+    box-shadow:0 6px 18px -6px rgba(154,143,212,.85);
+  }
+  .card.char.side-char .role-badge svg{stroke:#0f0a24}
+  .card.char.side-char .char-symbol{
+    background:linear-gradient(180deg,#d8d1ff,#9a8fd4,#4a3f7a);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 22px rgba(154,143,212,.5));
+  }
+  .card.char.side-char .char-name{color:#e0daff}
 
   .note{
     margin-top:44px;text-align:center;
@@ -403,6 +510,7 @@
     .section{padding:70px 0}
     .grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
     .card{padding:32px 12px 24px;border-radius:18px}
+    .card.char{padding:34px 12px 24px}
     .avatar{width:78px;height:78px}
     .avatar .initial{font-size:1.6rem}
     .member-name{font-size:.95rem}
@@ -411,6 +519,11 @@
     .dev-badge svg{width:9px;height:9px}
     .btn{padding:14px 26px;font-size:.92rem}
     .hero-actions{gap:10px}
+    .role-badge{font-size:.55rem;padding:4px 9px;letter-spacing:.12em}
+    .role-badge svg{width:9px;height:9px}
+    .char-symbol{font-size:2.6rem;margin:22px 0 12px}
+    .char-name{font-size:.92rem}
+    .char-desc{font-size:.75rem}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -532,38 +645,61 @@
   <div class="container">
     <div class="section-head reveal">
       <h2 class="section-title">მითოლოგიური <span>პერსონაჟები</span></h2>
-      <p class="section-sub">ჯერ არ ვიცით ზუსტად ვინ იქნებიან — მაგრამ ქართული მითოლოგიიდან იქნებიან</p>
+      <p class="section-sub">სახელები ჯერ არ ვიცით — მაგრამ როლები უკვე განსაზღვრულია</p>
     </div>
 
     <div class="grid">
-      <article class="card char reveal">
-        <div class="char-symbol">?</div>
-        <h3 class="char-name">უცნობია</h3>
-        <p class="char-desc">პერსონაჟი ჯერ არ არის არჩეული</p>
+
+      <!-- ===== 1. მთავარი გმირი ===== -->
+      <article class="card char hero-char reveal">
+        <span class="role-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>
+          მთავარი გმირი
+        </span>
+        <div class="char-symbol">★</div>
+        <h3 class="char-name">სახელი უცნობია</h3>
+        <p class="char-desc">ის, ვის გარშემოც ამბავი ტრიალებს — მისი გზა იქნება ჩვენი ისტორია</p>
       </article>
 
-      <article class="card char reveal">
-        <div class="char-symbol">?</div>
-        <h3 class="char-name">უცნობია</h3>
-        <p class="char-desc">პერსონაჟი ჯერ არ არის არჩეული</p>
+      <!-- ===== 2. მტერი ===== -->
+      <article class="card char villain-char reveal">
+        <span class="role-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2 L20 6 L20 13 C20 18 16 21 12 22 C8 21 4 18 4 13 L4 6 Z"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
+          მტერი
+        </span>
+        <div class="char-symbol">⚔</div>
+        <h3 class="char-name">სახელი უცნობია</h3>
+        <p class="char-desc">ბნელი ძალა, რომელიც გმირის გზაზე დგას — წარმომავლობა ჯერ საიდუმლოა</p>
       </article>
 
-      <article class="card char reveal">
-        <div class="char-symbol">?</div>
-        <h3 class="char-name">უცნობია</h3>
-        <p class="char-desc">პერსონაჟი ჯერ არ არის არჩეული</p>
+      <!-- ===== 3. მეორე ხარისხოვანი ===== -->
+      <article class="card char side-char reveal">
+        <span class="role-badge">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21 C5 16 8 14 12 14 C16 14 19 16 19 21"/></svg>
+          მეორე ხარისხოვანი
+        </span>
+        <div class="char-symbol">◆</div>
+        <h3 class="char-name">სახელი უცნობია</h3>
+        <p class="char-desc">გმირის გვერდით მდგომი — მოკავშირე თუ მეგზური, ჯერ გადაწყვეტილი არ არის</p>
       </article>
 
-      <article class="card char reveal">
-        <div class="char-symbol">?</div>
-        <h3 class="char-name">უცნობია</h3>
-        <p class="char-desc">პერსონაჟი ჯერ არ არის არჩეული</p>
+      <!-- ===== 4. მეორე ხარისხოვანი ===== -->
+      <article class="card char side-char reveal">
+        <span class="role-badge">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21 C5 16 8 14 12 14 C16 14 19 16 19 21"/></svg>
+          მეორე ხარისხოვანი
+        </span>
+        <div class="char-symbol">◇</div>
+        <h3 class="char-name">სახელი უცნობია</h3>
+        <p class="char-desc">ამბის კიდევ ერთი ფიგურა — მისი როლი სცენართან ერთად გაირკვევა</p>
       </article>
+
     </div>
 
     <p class="note reveal">
-      შესაძლოა იყვნენ <b>დევები</b> ან სრულიად სხვა მითოლოგიური არსებები —
-      ჯერ გადაწყვეტილი არ არის. როგორც კი გადავწყვეტთ, აქ გამოჩნდებიან.
+      პერსონაჟები ჯერ <b>სახელების გარეშეა</b> — მაგრამ უკვე ვიცით ვინ იქნებიან როლებით:
+      მთავარი გმირი, მტერი და ორი მეორე ხარისხოვანი პერსონაჟი.
+      შესაძლოა იყვნენ <b>დევები</b>, ალი, კაჯი ან სხვა მითოლოგიური არსებები.
     </p>
   </div>
 </section>
@@ -583,7 +719,7 @@
     </svg>
     ამაგდარი
   </div>
-  <p>ქართული მითოლოგიის ანიმაცია · 2026</p>
+  <p>ქართული მითოლოგიის ანიმაცია · 2025</p>
 </footer>
 
 <!-- MODAL -->
