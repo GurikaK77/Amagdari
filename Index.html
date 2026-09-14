@@ -24,10 +24,11 @@
     --muted:#9a93b5;
     --card-bg:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
     --dev:#4ec9b0;
+    --hero-col:#f0cd8a;
+    --villain-col:#e35d5d;
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
   html{scroll-behavior:smooth}
 
   body{
@@ -66,7 +67,6 @@
     50%{opacity:.85;transform:scale(1.25)}
   }
 
-  /* ---------- კონტეინერი ---------- */
   .container{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
 
   /* ---------- HERO ---------- */
@@ -76,7 +76,6 @@
     text-align:center;
     padding:90px 0 70px;
   }
-
   .hero-emblem{
     display:block;
     width:76px;height:76px;
@@ -87,7 +86,6 @@
     0%,100%{filter:drop-shadow(0 0 12px rgba(212,162,76,.35))}
     50%{filter:drop-shadow(0 0 26px rgba(212,162,76,.75))}
   }
-
   .eyebrow{
     display:inline-block;
     font-size:.72rem;
@@ -101,7 +99,6 @@
     backdrop-filter:blur(6px);
     animation:fadeUp .9s .15s both;
   }
-
   .team-name{
     display:block;
     font-size:clamp(2.75rem,11.5vw,7rem);
@@ -127,7 +124,6 @@
     opacity:.85;
     animation:fadeUp 1s .35s both;
   }
-
   .hero-text{
     max-width:640px;margin:0 auto;
     color:var(--muted);
@@ -136,13 +132,11 @@
     animation:fadeUp 1s .45s both;
   }
   .hero-text strong{color:var(--gold-light);font-weight:600}
-
   .hero-actions{
     display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
     margin-top:38px;
     animation:fadeUp 1s .6s both;
   }
-
   .btn{
     font-family:inherit;font-size:.98rem;font-weight:600;
     padding:15px 34px;border-radius:999px;border:none;cursor:pointer;
@@ -157,7 +151,6 @@
   }
   .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 46px -16px rgba(212,162,76,1)}
   .btn-primary:active{transform:translateY(-1px)}
-
   .btn-ghost{
     background:rgba(255,255,255,.035);
     border:1px solid rgba(232,227,245,.22);
@@ -176,13 +169,11 @@
     animation:blink 2s ease-in-out infinite;
   }
   @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-
   @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
   /* ---------- სექციები ---------- */
   .section{padding:96px 0;scroll-margin-top:20px}
   .section-head{text-align:center;margin-bottom:58px}
-
   .section-title{
     font-size:clamp(1.7rem,4.2vw,2.5rem);
     font-weight:700;letter-spacing:.02em;
@@ -264,7 +255,6 @@
     -webkit-text-fill-color:transparent;
     filter:drop-shadow(0 0 14px rgba(78,201,176,.45));
   }
-
   .dev-badge{
     position:absolute;top:14px;right:14px;
     display:inline-flex;align-items:center;gap:5px;
@@ -282,7 +272,6 @@
     0%,100%{box-shadow:0 6px 18px -6px rgba(78,201,176,.7)}
     50%{box-shadow:0 6px 24px -4px rgba(78,201,176,1)}
   }
-
   .member-name{
     font-size:1.12rem;font-weight:700;letter-spacing:.02em;
     color:#e2dbf5;
@@ -296,7 +285,7 @@
   .card.dev .member-role{color:#4ec9b0;opacity:.95}
 
   /* ============================================ */
-  /* ===== პერსონაჟების ბარათები (როლებით) ===== */
+  /* ===== პერსონაჟების ბარათები ===== */
   /* ============================================ */
   .card.char{
     border-style:dashed;
@@ -308,15 +297,12 @@
   }
   .card.char:hover{border-style:solid}
 
-  /* როლის label wrapper (badge + alias) */
   .role-label{
     position:absolute;top:14px;left:50%;
     transform:translateX(-50%);
     display:flex;flex-direction:column;align-items:center;gap:5px;
     white-space:nowrap;
   }
-
-  /* როლის badge */
   .role-badge{
     display:inline-flex;align-items:center;gap:6px;
     font-family:'JetBrains Mono',monospace;
@@ -326,8 +312,6 @@
     backdrop-filter:blur(6px);
   }
   .role-badge svg{width:11px;height:11px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-
-  /* ===== alias — პროტაგონისტი / ანტაგონისტი ===== */
   .role-alias{
     font-family:'JetBrains Mono',monospace;
     font-size:.56rem;
@@ -337,7 +321,6 @@
     opacity:.75;
   }
 
-  /* სიმბოლო */
   .char-symbol{
     font-size:3.4rem;font-weight:900;line-height:1;
     margin:0 0 16px;
@@ -347,7 +330,6 @@
     0%,100%{opacity:.55;transform:scale(.94)}
     50%{opacity:1;transform:scale(1.06)}
   }
-
   .char-name{
     font-size:1.05rem;font-weight:700;
     letter-spacing:.06em;
@@ -359,7 +341,7 @@
     line-height:1.5;
   }
 
-  /* ----- 1. მთავარი გმირი / პროტაგონისტი (ოქრო) ----- */
+  /* ----- 1. მთავარი გმირი / პროტაგონისტი ----- */
   .card.char.hero-char{
     border-color:rgba(240,205,138,.4);
     background:linear-gradient(160deg,rgba(212,162,76,.11),rgba(255,255,255,.02));
@@ -384,7 +366,7 @@
   }
   .card.char.hero-char .char-name{color:#fff2d4}
 
-  /* ----- 2. მტერი / ანტაგონისტი (წითელი) ----- */
+  /* ----- 2. მტერი / ანტაგონისტი ----- */
   .card.char.villain-char{
     border-color:rgba(227,93,93,.4);
     background:linear-gradient(160deg,rgba(227,93,93,.1),rgba(255,255,255,.02));
@@ -409,7 +391,7 @@
   }
   .card.char.villain-char .char-name{color:#ffd4d4}
 
-  /* ----- 3 & 4. მეორე ხარისხოვანი (იასამნისფერი) ----- */
+  /* ----- 3 & 4. მეორე ხარისხოვანი ----- */
   .card.char.side-char{
     border-color:rgba(154,143,212,.35);
     background:linear-gradient(160deg,rgba(154,143,212,.09),rgba(255,255,255,.02));
@@ -433,6 +415,107 @@
     filter:drop-shadow(0 0 22px rgba(154,143,212,.5));
   }
   .card.char.side-char .char-name{color:#e0daff}
+
+  /* ============================================ */
+  /* ===== პროფილის ღილაკი (მხოლოდ გმირს და მტერს) ===== */
+  /* ============================================ */
+  .profile-btn{
+    font-family:inherit;
+    font-size:.82rem;
+    font-weight:600;
+    letter-spacing:.06em;
+    border-radius:999px;
+    border:1px solid;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:transparent;
+    white-space:nowrap;
+    /* ჩვეულებრივი (mobile-first) — სულ ჩანს */
+    max-height:80px;
+    margin-top:22px;
+    padding:11px 24px;
+    opacity:1;
+    pointer-events:auto;
+    transform:none;
+    overflow:hidden;
+    transition:
+      opacity .35s ease,
+      transform .35s cubic-bezier(.2,.8,.2,1),
+      max-height .4s cubic-bezier(.2,.8,.2,1),
+      margin-top .4s cubic-bezier(.2,.8,.2,1),
+      padding .4s cubic-bezier(.2,.8,.2,1),
+      background .3s ease,
+      color .3s ease,
+      border-color .3s ease,
+      box-shadow .3s ease;
+  }
+  .profile-btn svg{
+    width:14px;height:14px;
+    fill:none;stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;
+    flex:none;
+    transition:transform .3s;
+  }
+  .profile-btn:hover svg{transform:translateX(3px)}
+
+  /* hero-char ვარიანტი */
+  .hero-char .profile-btn{
+    color:#f0cd8a;
+    border-color:rgba(240,205,138,.5);
+    background:rgba(240,205,138,.08);
+  }
+  .hero-char .profile-btn:hover,
+  .hero-char .profile-btn:focus-visible{
+    background:linear-gradient(135deg,#d4a24c,#f0cd8a);
+    color:#1a1206;
+    border-color:transparent;
+    box-shadow:0 14px 30px -12px rgba(240,205,138,.95);
+  }
+
+  /* villain-char ვარიანტი */
+  .villain-char .profile-btn{
+    color:#ffb3b3;
+    border-color:rgba(227,93,93,.55);
+    background:rgba(227,93,93,.08);
+  }
+  .villain-char .profile-btn:hover,
+  .villain-char .profile-btn:focus-visible{
+    background:linear-gradient(135deg,#e35d5d,#ff9c9c);
+    color:#2a0808;
+    border-color:transparent;
+    box-shadow:0 14px 30px -12px rgba(227,93,93,.95);
+  }
+
+  /* ===== Desktop-ზე: ღილაკი იმალება, ჩნდება hover-ზე ===== */
+  @media (hover: hover) and (pointer: fine){
+    .card.char .profile-btn{
+      max-height:0;
+      margin-top:0;
+      padding:0 24px;
+      opacity:0;
+      transform:translateY(8px);
+      pointer-events:none;
+      border-color:transparent;
+    }
+    .card.char:hover .profile-btn,
+    .card.char:focus-within .profile-btn{
+      max-height:80px;
+      margin-top:22px;
+      padding:11px 24px;
+      opacity:1;
+      transform:none;
+      pointer-events:auto;
+      border-color:rgba(240,205,138,.5);
+    }
+    .card.char.villain-char:hover .profile-btn,
+    .card.char.villain-char:focus-within .profile-btn{
+      border-color:rgba(227,93,93,.55);
+    }
+  }
 
   .note{
     margin-top:44px;text-align:center;
@@ -462,7 +545,7 @@
   }
   footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
 
-  /* ---------- MODAL ---------- */
+  /* ---------- MODAL (საერთო) ---------- */
   .modal{
     position:fixed;inset:0;z-index:200;
     display:grid;place-items:center;padding:22px;
@@ -472,7 +555,7 @@
   .modal.open{opacity:1;visibility:visible}
   .modal-backdrop{
     position:absolute;inset:0;
-    background:rgba(5,4,10,.76);
+    background:rgba(5,4,10,.78);
     backdrop-filter:blur(9px);
   }
   .modal-box{
@@ -485,7 +568,9 @@
     text-align:center;
     box-shadow:0 44px 90px -34px #000, 0 0 60px -30px rgba(212,162,76,.5);
     transform:translateY(24px) scale(.95);
-    transition:transform .45s cubic-bezier(.2,.8,.2,1);
+    transition:transform .45s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .4s;
+    max-height:92svh;
+    overflow-y:auto;
   }
   .modal.open .modal-box{transform:none}
   .modal-icon{
@@ -499,6 +584,101 @@
   }
   .modal-box p{color:var(--muted);font-size:.94rem;font-weight:300;margin-bottom:28px}
   .modal-box .btn{width:100%;justify-content:center}
+
+  /* ---------- CHAR PROFILE MODAL ---------- */
+  .char-modal-box{
+    padding:46px 28px 34px;
+  }
+  .char-modal-alias{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.6rem;font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    padding:5px 14px;border-radius:999px;
+    margin-bottom:14px;
+  }
+  .char-modal-box h2{
+    font-size:1.5rem;
+    margin-bottom:22px;
+  }
+  .char-modal-status{
+    display:inline-block;
+    font-size:.78rem;
+    color:var(--muted);
+    border:1px dashed rgba(255,255,255,.15);
+    border-radius:10px;
+    padding:6px 14px;
+    margin-bottom:20px !important;
+    font-style:italic;
+  }
+  .char-modal-placeholder{
+    position:relative;
+    border:1px dashed rgba(212,162,76,.28);
+    border-radius:16px;
+    padding:26px 20px 22px;
+    margin-bottom:26px;
+    background:rgba(212,162,76,.03);
+    text-align:center;
+  }
+  .char-modal-placeholder .placeholder-icon{
+    display:block;
+    font-size:1.9rem;
+    margin-bottom:10px;
+    opacity:.75;
+    filter:drop-shadow(0 0 12px rgba(212,162,76,.5));
+  }
+  .char-modal-placeholder p{
+    color:var(--gold-light) !important;
+    font-size:1rem !important;
+    font-weight:600 !important;
+    margin:0 0 8px !important;
+    letter-spacing:.02em;
+  }
+  .char-modal-placeholder .placeholder-hint{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.66rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    opacity:.75;
+  }
+
+  /* hero-mode / villain-mode ფერები */
+  .modal.hero-mode .modal-box{
+    border-color:rgba(240,205,138,.45);
+    box-shadow:0 44px 90px -34px #000, 0 0 70px -30px rgba(240,205,138,.55);
+  }
+  .modal.hero-mode .modal-icon{
+    filter:drop-shadow(0 0 22px rgba(240,205,138,.85));
+  }
+  .modal.hero-mode .char-modal-alias{
+    color:#1a1206;
+    background:linear-gradient(135deg,#d4a24c,#f0cd8a);
+    box-shadow:0 6px 18px -6px rgba(240,205,138,.85);
+  }
+  .modal.hero-mode h2{color:#fff2d4}
+  .modal.hero-mode .char-modal-placeholder{
+    border-color:rgba(240,205,138,.4);
+    background:rgba(212,162,76,.05);
+  }
+
+  .modal.villain-mode .modal-box{
+    border-color:rgba(227,93,93,.45);
+    box-shadow:0 44px 90px -34px #000, 0 0 70px -30px rgba(227,93,93,.55);
+  }
+  .modal.villain-mode .modal-icon{
+    filter:drop-shadow(0 0 22px rgba(227,93,93,.85));
+  }
+  .modal.villain-mode .char-modal-alias{
+    color:#2a0808;
+    background:linear-gradient(135deg,#e35d5d,#ff9c9c);
+    box-shadow:0 6px 18px -6px rgba(227,93,93,.85);
+  }
+  .modal.villain-mode h2{color:#ffd4d4}
+  .modal.villain-mode .char-modal-placeholder{
+    border-color:rgba(227,93,93,.35);
+    background:rgba(227,93,93,.05);
+  }
 
   /* ---------- REVEAL ---------- */
   .reveal{
@@ -519,7 +699,7 @@
     .section{padding:70px 0}
     .grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
     .card{padding:32px 12px 24px;border-radius:18px}
-    .card.char{padding:72px 12px 24px}
+    .card.char{padding:74px 12px 24px}
     .avatar{width:78px;height:78px}
     .avatar .initial{font-size:1.6rem}
     .member-name{font-size:.95rem}
@@ -535,6 +715,17 @@
     .char-symbol{font-size:2.6rem;margin-bottom:12px}
     .char-name{font-size:.92rem}
     .char-desc{font-size:.75rem}
+    .profile-btn{
+      font-size:.74rem;
+      padding:9px 18px;
+      margin-top:16px;
+      gap:6px;
+    }
+    .profile-btn svg{width:12px;height:12px}
+    .char-modal-box{padding:38px 22px 28px}
+    .char-modal-box h2{font-size:1.25rem}
+    .char-modal-placeholder{padding:22px 16px 18px}
+    .char-modal-placeholder p{font-size:.92rem !important}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -606,47 +797,33 @@
     </div>
 
     <div class="grid">
-
-      <!-- 1. გურიკა — დეველოპერი -->
       <article class="card dev reveal">
         <span class="dev-badge">
           <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           Dev
         </span>
-        <div class="avatar">
-          <span class="initial">G</span>
-        </div>
+        <div class="avatar"><span class="initial">G</span></div>
         <h3 class="member-name">Gurika Kartvelishvili</h3>
         <p class="member-role">დეველოპერი</p>
       </article>
 
-      <!-- 2. ბარბარე -->
       <article class="card reveal">
-        <div class="avatar">
-          <span class="initial">B</span>
-        </div>
+        <div class="avatar"><span class="initial">B</span></div>
         <h3 class="member-name">Barbare Karchaidze</h3>
         <p class="member-role">გუნდის წევრი</p>
       </article>
 
-      <!-- 3. ანასტასია -->
       <article class="card reveal">
-        <div class="avatar">
-          <span class="initial">A</span>
-        </div>
+        <div class="avatar"><span class="initial">A</span></div>
         <h3 class="member-name">Anastasia</h3>
         <p class="member-role">გუნდის წევრი</p>
       </article>
 
-      <!-- 4. ნელიკო -->
       <article class="card reveal">
-        <div class="avatar">
-          <span class="initial">N</span>
-        </div>
+        <div class="avatar"><span class="initial">N</span></div>
         <h3 class="member-name">Neliko Tchurtchelauri</h3>
         <p class="member-role">გუნდის წევრი</p>
       </article>
-
     </div>
   </div>
 </section>
@@ -673,6 +850,15 @@
         <div class="char-symbol">★</div>
         <h3 class="char-name">სახელი უცნობია</h3>
         <p class="char-desc">ის, ვის გარშემოც ამბავი ტრიალებს — მისი გზა იქნება ჩვენი ისტორია</p>
+
+        <button class="profile-btn"
+                data-char="hero"
+                data-icon="★"
+                data-name="მთავარი გმირი"
+                data-alias="პროტაგონისტი">
+          პროფილის ნახვა
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
       </article>
 
       <!-- ===== 2. მტერი / ანტაგონისტი ===== -->
@@ -687,6 +873,15 @@
         <div class="char-symbol">⚔</div>
         <h3 class="char-name">სახელი უცნობია</h3>
         <p class="char-desc">ბნელი ძალა, რომელიც გმირის გზაზე დგას — წარმომავლობა ჯერ საიდუმლოა</p>
+
+        <button class="profile-btn"
+                data-char="villain"
+                data-icon="⚔"
+                data-name="მტერი"
+                data-alias="ანტაგონისტი">
+          პროფილის ნახვა
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
       </article>
 
       <!-- ===== 3. მეორე ხარისხოვანი ===== -->
@@ -744,7 +939,7 @@
   <p>ქართული მითოლოგიის ანიმაცია · 2026</p>
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL: ანიმაცია ჯერ არ დაწყებულა -->
 <div class="modal" id="modal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -755,6 +950,25 @@
       მზადდება. მალე გაჩვენებთ პირველ კადრებს.
     </p>
     <button class="btn btn-primary" data-close>კარგი, დაველოდები</button>
+  </div>
+</div>
+
+<!-- MODAL: პერსონაჟის პროფილი -->
+<div class="modal" id="charModal" aria-hidden="true">
+  <div class="modal-backdrop" data-char-close></div>
+  <div class="modal-box char-modal-box" role="dialog" aria-modal="true" aria-labelledby="charModalTitle">
+    <span class="modal-icon" id="charModalIcon">★</span>
+    <span class="char-modal-alias" id="charModalAlias">პროტაგონისტი</span>
+    <h2 id="charModalTitle">მთავარი გმირი</h2>
+    <p class="char-modal-status">სახელი ჯერ უცნობია</p>
+
+    <div class="char-modal-placeholder">
+      <span class="placeholder-icon">📜</span>
+      <p>მახასიათებლები აქ დაიწერება</p>
+      <span class="placeholder-hint">— ძალები · იერი · წარმომავლობა · როლი —</span>
+    </div>
+
+    <button class="btn btn-primary" data-char-close>დახურვა</button>
   </div>
 </div>
 
@@ -804,7 +1018,7 @@
     items.forEach(el => io.observe(el));
   })();
 
-  /* ---------- Modal ---------- */
+  /* ---------- Modal: ანიმაცია ---------- */
   (function () {
     const modal = document.getElementById('modal');
     const openBtn = document.getElementById('watchBtn');
@@ -832,6 +1046,55 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  })();
+
+  /* ---------- Modal: პერსონაჟის პროფილი ---------- */
+  (function () {
+    const charModal = document.getElementById('charModal');
+    const titleEl = document.getElementById('charModalTitle');
+    const aliasEl = document.getElementById('charModalAlias');
+    const iconEl = document.getElementById('charModalIcon');
+    const closeEls = charModal.querySelectorAll('[data-char-close]');
+    let lastFocused = null;
+
+    function openCharModal(btn) {
+      const name = btn.dataset.name || '';
+      const alias = btn.dataset.alias || '';
+      const icon = btn.dataset.icon || '★';
+      const variant = btn.dataset.char || 'hero';
+
+      titleEl.textContent = name;
+      aliasEl.textContent = alias;
+      aliasEl.style.display = alias ? '' : 'none';
+      iconEl.textContent = icon;
+
+      charModal.classList.remove('hero-mode', 'villain-mode');
+      charModal.classList.add(variant + '-mode');
+
+      lastFocused = document.activeElement;
+      charModal.classList.add('open');
+      charModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = charModal.querySelector('[data-char-close]:last-child');
+      if (closeBtn) setTimeout(() => closeBtn.focus(), 120);
+    }
+
+    function closeCharModal() {
+      charModal.classList.remove('open');
+      charModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.profile-btn').forEach(btn => {
+      btn.addEventListener('click', () => openCharModal(btn));
+    });
+
+    closeEls.forEach(el => el.addEventListener('click', closeCharModal));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && charModal.classList.contains('open')) closeCharModal();
     });
   })();
 </script>
