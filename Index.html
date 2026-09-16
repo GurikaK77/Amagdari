@@ -1,13 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="ka">
 <head>
 <meta charset="UTF-8" />
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
-     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=b1cab2b0-3465-4b1a-973f-b4ce602e01db
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
-<meta name="hosting-provider" content="Netlify">
-<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=b1cab2b0-3465-4b1a-973f-b4ce602e01db">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ამაგდარი · ქართული მითოლოგიის ანიმაცია</title>
 <meta name="description" content="ამაგდარი — გუნდი, რომელიც ქართულ მითოლოგიას ანიმაციით აცოცხლებს." />
@@ -427,22 +421,17 @@
   }
   .card.char.side-char .char-name{color:#e0daff}
 
-  /* ---------- პროფილის ღილაკი ---------- */
+  /* ---------- პროფილის ღილაკი (სულ ჩანს) ---------- */
   .profile-btn{
     font-family:inherit;font-size:.82rem;font-weight:600;
     letter-spacing:.06em;border-radius:999px;border:1px solid;
     cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
     gap:8px;background:transparent;white-space:nowrap;
-    max-height:80px;margin-top:22px;padding:11px 24px;
-    opacity:1;pointer-events:auto;transform:none;overflow:hidden;
-    transition:
-      opacity .35s ease,
-      transform .35s cubic-bezier(.2,.8,.2,1),
-      max-height .4s cubic-bezier(.2,.8,.2,1),
-      margin-top .4s cubic-bezier(.2,.8,.2,1),
-      padding .4s cubic-bezier(.2,.8,.2,1),
-      background .3s ease,color .3s ease,
-      border-color .3s ease,box-shadow .3s ease;
+    margin-top:22px;
+    padding:11px 24px;
+    transition:background .3s ease, color .3s ease,
+               border-color .3s ease, box-shadow .3s ease,
+               transform .3s cubic-bezier(.2,.8,.2,1);
   }
   .profile-btn svg{
     width:14px;height:14px;fill:none;stroke:currentColor;
@@ -460,6 +449,7 @@
     background:linear-gradient(135deg,#d4a24c,#f0cd8a);
     color:#1a1206;border-color:transparent;
     box-shadow:0 14px 30px -12px rgba(240,205,138,.95);
+    transform:translateY(-2px);
   }
   .villain-char .profile-btn{
     color:#ffb3b3;border-color:rgba(227,93,93,.55);
@@ -470,24 +460,7 @@
     background:linear-gradient(135deg,#e35d5d,#ff9c9c);
     color:#2a0808;border-color:transparent;
     box-shadow:0 14px 30px -12px rgba(227,93,93,.95);
-  }
-
-  @media (hover: hover) and (pointer: fine){
-    .card.char .profile-btn{
-      max-height:0;margin-top:0;padding:0 24px;
-      opacity:0;transform:translateY(8px);
-      pointer-events:none;border-color:transparent;
-    }
-    .card.char:hover .profile-btn,
-    .card.char:focus-within .profile-btn{
-      max-height:80px;margin-top:22px;padding:11px 24px;
-      opacity:1;transform:none;pointer-events:auto;
-      border-color:rgba(240,205,138,.5);
-    }
-    .card.char.villain-char:hover .profile-btn,
-    .card.char.villain-char:focus-within .profile-btn{
-      border-color:rgba(227,93,93,.55);
-    }
+    transform:translateY(-2px);
   }
 
   .note{
@@ -967,7 +940,7 @@
           <span class="story-number">I აქტი</span>
           <h3 class="story-title">დევების განდევნა</h3>
           <p class="story-text">
-            <strong>იახსარი</strong> მოგზაურობს ქართულ მიწაზე და დევებს დევნის.
+            <strong>იახსარი</strong> მოგზაურობს ქართულ მიწაზე და დევებს ებრძვის.
             სოფლები გაწმენდილია, ხალხი თავისუფლდება — მაგრამ ერთი დევი ჯერ კიდევ
             რჩება, რომელიც მოსახლეობას ანადგურებს.
           </p>
@@ -1476,4 +1449,3 @@
 
 </body>
 </html>
-<script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="b1cab2b0-3465-4b1a-973f-b4ce602e01db" data-app-host="app.netlify.com"></script>
