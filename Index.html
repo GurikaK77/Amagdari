@@ -2,7 +2,7 @@
 <html lang="ka">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ამაგდარი · ქართული მითოლოგიის ანიმაცია</title>
 <meta name="description" content="ამაგდარი — გუნდი, რომელიც ქართულ მითოლოგიას ანიმაციით აცოცხლებს." />
 
@@ -22,6 +22,10 @@
     --muted:#9a93b5;
     --card-bg:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
     --dev:#4ec9b0;
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -35,6 +39,10 @@
     min-height:100vh;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
+    /* iPhone safe area */
+    padding-top: var(--sat);
+    padding-left: var(--sal);
+    padding-right: var(--sar);
   }
 
   /* ---------- ფონი ---------- */
@@ -57,7 +65,8 @@
   .hero{
     min-height:100svh;
     display:flex;align-items:center;justify-content:center;
-    text-align:center;padding:90px 0 70px;
+    text-align:center;
+    padding: calc(70px + var(--sat)) 0 calc(70px + var(--sab));
   }
   .hero-emblem{
     display:block;width:76px;height:76px;margin:0 auto 22px;
@@ -479,7 +488,7 @@
   }
 
   footer{
-    text-align:center;padding:60px 22px 70px;
+    text-align:center;padding:60px 22px calc(70px + var(--sab));
     border-top:1px solid rgba(255,255,255,.06);
     color:#5f5878;font-size:.84rem;
   }
@@ -493,7 +502,8 @@
   /* ---------- MODAL ---------- */
   .modal{
     position:fixed;inset:0;z-index:200;
-    display:grid;place-items:center;padding:22px;
+    display:grid;place-items:center;
+    padding: calc(22px + var(--sat)) calc(22px + var(--sar)) calc(22px + var(--sab)) calc(22px + var(--sal));
     opacity:0;visibility:hidden;
     transition:opacity .35s ease, visibility .35s;
   }
@@ -801,7 +811,7 @@
   }
 
   @media (max-width:560px){
-    .hero{padding:70px 0 55px}
+    .hero{padding: calc(60px + var(--sat)) 0 calc(60px + var(--sab))}
     .hero-emblem{width:62px;height:62px;margin-bottom:18px}
     .team-name{
       font-size:clamp(2.6rem,13vw,3.6rem);
@@ -830,7 +840,7 @@
     .profile-btn{font-size:.74rem;padding:9px 18px;margin-top:16px;gap:6px}
     .profile-btn svg{width:12px;height:12px}
 
-    .char-modal-box{max-height:94svh;border-radius:22px}
+    .char-modal-box{max-height:88svh;border-radius:22px}
     .char-modal-header{padding:28px 20px 20px}
     .char-modal-icon{font-size:2.2rem}
     .char-modal-name{font-size:1.55rem}
