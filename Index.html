@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ამაგდარი · ქართული მითოლოგიის ანიმაცია</title>
 <meta name="description" content="ამაგდარი — გუნდი, რომელიც ქართულ მითოლოგიას ანიმაციით აცოცხლებს." />
+<meta name="theme-color" content="#1b1436" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f0cd8a'/%3E%3Cstop offset='.5' stop-color='%23d4a24c'/%3E%3Cstop offset='1' stop-color='%23a97a2e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230d0a17'/%3E%3Cpath d='M32 7 L49 32 L32 57 L15 32 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6.5' fill='%230d0a17'/%3E%3C/svg%3E" />
-<meta name="theme-color" content="#08070d" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,25 +31,26 @@
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;background:#1b1436}
 
   body{
     font-family:'Noto Sans Georgian',system-ui,-apple-system,sans-serif;
-    background:var(--bg);
+    background:transparent;
     color:var(--text);
     line-height:1.65;
     min-height:100vh;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    /* iPhone safe area */
-    padding-top: var(--sat);
-    padding-left: var(--sal);
-    padding-right: var(--sar);
   }
 
-  /* ---------- ფონი ---------- */
+  /* ---------- ფონი (ვრცელდება safe area-ზე ზემოთ და ქვემოთ) ---------- */
   .bg{
-    position:fixed;inset:0;z-index:-1;overflow:hidden;
+    position:fixed;
+    top: calc(-1 * max(var(--sat), 60px));
+    left: calc(-1 * max(var(--sal), 40px));
+    right: calc(-1 * max(var(--sar), 40px));
+    bottom: calc(-1 * max(var(--sab), 60px));
+    z-index:-1;overflow:hidden;
     background:radial-gradient(circle at 50% -10%, #1b1436 0%, #0a0812 55%, #06050a 100%);
   }
   .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;animation:float 20s ease-in-out infinite}
@@ -66,7 +69,7 @@
     min-height:100svh;
     display:flex;align-items:center;justify-content:center;
     text-align:center;
-    padding: calc(70px + var(--sat)) 0 calc(70px + var(--sab));
+    padding: calc(60px + var(--sat)) 0 calc(70px + var(--sab));
   }
   .hero-emblem{
     display:block;width:76px;height:76px;margin:0 auto 22px;
@@ -488,7 +491,7 @@
   }
 
   footer{
-    text-align:center;padding:60px 22px calc(70px + var(--sab));
+    text-align:center;padding:60px 22px calc(60px + var(--sab));
     border-top:1px solid rgba(255,255,255,.06);
     color:#5f5878;font-size:.84rem;
   }
@@ -537,7 +540,7 @@
   /* ---------- CHARACTER PROFILE MODAL ---------- */
   .char-modal-box{
     max-width:680px;padding:0;text-align:left;overflow:hidden;
-    max-height:92svh;display:flex;flex-direction:column;
+    max-height:85svh;display:flex;flex-direction:column;
     background:linear-gradient(170deg,#15112a,#0a0812);
   }
   .modal.hero-mode .char-modal-box{
@@ -615,6 +618,7 @@
 
   .char-modal-body{
     padding:26px 28px 30px;overflow-y:auto;flex:1;min-height:0;
+    -webkit-overflow-scrolling:touch;
     scrollbar-width:thin;
     scrollbar-color:rgba(212,162,76,.3) transparent;
   }
@@ -811,7 +815,7 @@
   }
 
   @media (max-width:560px){
-    .hero{padding: calc(60px + var(--sat)) 0 calc(60px + var(--sab))}
+    .hero{padding: calc(50px + var(--sat)) 0 calc(60px + var(--sab))}
     .hero-emblem{width:62px;height:62px;margin-bottom:18px}
     .team-name{
       font-size:clamp(2.6rem,13vw,3.6rem);
@@ -840,7 +844,7 @@
     .profile-btn{font-size:.74rem;padding:9px 18px;margin-top:16px;gap:6px}
     .profile-btn svg{width:12px;height:12px}
 
-    .char-modal-box{max-height:88svh;border-radius:22px}
+    .char-modal-box{max-height:82svh;border-radius:22px}
     .char-modal-header{padding:28px 20px 20px}
     .char-modal-icon{font-size:2.2rem}
     .char-modal-name{font-size:1.55rem}
@@ -950,7 +954,7 @@
           <span class="story-number">I აქტი</span>
           <h3 class="story-title">დევების განდევნა</h3>
           <p class="story-text">
-            <strong>იახსარი</strong> მოგზაურობს ქართულ მიწაზე და დევებს ებრძვის.
+            <strong>იახსარი</strong> მოგზაურობს ქართულ მიწაზე და დევებს ადევნებს.
             სოფლები გაწმენდილია, ხალხი თავისუფლდება — მაგრამ ერთი დევი ჯერ კიდევ
             რჩება, რომელიც მოსახლეობას ანადგურებს.
           </p>
@@ -1043,7 +1047,6 @@
 
     <div class="grid">
 
-      <!-- 1. მთავარი გმირი / პროტაგონისტი -->
       <article class="card char hero-char reveal">
         <div class="role-label">
           <span class="role-badge">
@@ -1062,7 +1065,6 @@
         </button>
       </article>
 
-      <!-- 2. მტერი / ანტაგონისტი -->
       <article class="card char villain-char reveal">
         <div class="role-label">
           <span class="role-badge">
@@ -1081,7 +1083,6 @@
         </button>
       </article>
 
-      <!-- 3. მეორე ხარისხოვანი -->
       <article class="card char side-char reveal">
         <div class="role-label">
           <span class="role-badge">
@@ -1094,7 +1095,6 @@
         <p class="char-desc">გმირის გვერდით მდგომი — მოკავშირე თუ მეგზური, ჯერ გადაწყვეტილი არ არის</p>
       </article>
 
-      <!-- 4. მეორე ხარისხოვანი -->
       <article class="card char side-char reveal">
         <div class="role-label">
           <span class="role-badge">
@@ -1126,7 +1126,7 @@
     </svg>
     ამაგდარი
   </div>
-  <p>ქართული მითოლოგიის ანიმაცია · 2026</p>
+  <p>ქართული მითოლოგიის ანიმაცია · 2025</p>
 </footer>
 
 <!-- MODAL: ანიმაცია -->
@@ -1161,9 +1161,6 @@
 </div>
 
 <script>
-  /* ============================================
-     პერსონაჟების პროფილის მონაცემები
-     ============================================ */
   const CHAR_PROFILES = {
     hero: {
       icon: '★',
@@ -1309,7 +1306,6 @@
     }
   };
 
-  /* ---------- ვარსკვლავები ---------- */
   (function () {
     const wrap = document.getElementById('stars');
     const count = window.innerWidth < 700 ? 45 : 95;
@@ -1329,7 +1325,6 @@
     wrap.appendChild(frag);
   })();
 
-  /* ---------- Reveal on scroll ---------- */
   (function () {
     const items = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)) {
@@ -1350,7 +1345,6 @@
     items.forEach(el => io.observe(el));
   })();
 
-  /* ---------- Modal: ანიმაცია ---------- */
   (function () {
     const modal = document.getElementById('modal');
     const openBtn = document.getElementById('watchBtn');
@@ -1378,7 +1372,6 @@
     });
   })();
 
-  /* ---------- Modal: პერსონაჟის პროფილი ---------- */
   (function () {
     const charModal = document.getElementById('charModal');
     const iconEl    = document.getElementById('charModalIcon');
