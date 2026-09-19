@@ -43,7 +43,6 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ---------- ფონი (ვრცელდება safe area-ზე ზემოთ და ქვემოთ) ---------- */
   .bg{
     position:fixed;
     top: calc(-1 * max(var(--sat), 60px));
@@ -64,7 +63,6 @@
 
   .container{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
 
-  /* ---------- HERO ---------- */
   .hero{
     min-height:100svh;
     display:flex;align-items:center;justify-content:center;
@@ -141,16 +139,12 @@
   @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
-  /* ---------- სექციები ---------- */
   .section{padding:96px 0;scroll-margin-top:20px}
   .section-head{text-align:center;margin-bottom:58px}
   .section-title{font-size:clamp(1.7rem,4.2vw,2.5rem);font-weight:700;letter-spacing:.02em;line-height:1.3;padding-bottom:.1em}
   .section-title span{color:var(--gold)}
   .section-sub{color:var(--muted);margin-top:12px;font-size:.98rem;font-weight:300}
 
-  /* ============================================ */
-  /* ===== ამბავი — timeline ===== */
-  /* ============================================ */
   .story-section{
     position:relative;
     padding:110px 0 120px;
@@ -259,7 +253,6 @@
   }
   .story-footer-text strong{color:var(--gold-light);font-weight:600;font-style:normal}
 
-  /* ---------- ბარათები ---------- */
   .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
   .card{
     position:relative;background:var(--card-bg);
@@ -340,7 +333,6 @@
   .member-role{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75;margin-top:8px}
   .card.dev .member-role{color:#4ec9b0;opacity:.95}
 
-  /* ---------- პერსონაჟების ბარათები ---------- */
   .card.char{
     border-style:dashed;border-color:rgba(255,255,255,.15);
     padding:78px 20px 30px;
@@ -433,7 +425,6 @@
   }
   .card.char.side-char .char-name{color:#e0daff}
 
-  /* ---------- პროფილის ღილაკი (სულ ჩანს) ---------- */
   .profile-btn{
     font-family:inherit;font-size:.82rem;font-weight:600;
     letter-spacing:.06em;border-radius:999px;border:1px solid;
@@ -502,7 +493,6 @@
   }
   footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
 
-  /* ---------- MODAL ---------- */
   .modal{
     position:fixed;inset:0;z-index:200;
     display:grid;place-items:center;
@@ -537,7 +527,6 @@
   .modal-box p{color:var(--muted);font-size:.94rem;font-weight:300;margin-bottom:28px}
   .modal-box .btn{width:100%;justify-content:center}
 
-  /* ---------- CHARACTER PROFILE MODAL ---------- */
   .char-modal-box{
     max-width:680px;padding:0;text-align:left;overflow:hidden;
     max-height:85svh;display:flex;flex-direction:column;
@@ -787,14 +776,12 @@
   .modal.villain-mode .profile-goal{border-color:rgba(227,93,93,.18)}
   .modal.villain-mode .profile-goal .goal-mark{filter:drop-shadow(0 0 10px rgba(227,93,93,.4))}
 
-  /* ---------- REVEAL ---------- */
   .reveal{
     opacity:0;transform:translateY(30px);
     transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
   }
   .reveal.visible{opacity:1;transform:none}
 
-  /* ---------- MOBILE ---------- */
   @media (max-width:720px){
     .story-timeline::before{left:14px;transform:none}
     .story-step{
@@ -881,7 +868,6 @@
 </head>
 <body>
 
-<!-- ფონი -->
 <div class="bg">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -889,7 +875,6 @@
   <div class="stars" id="stars"></div>
 </div>
 
-<!-- HERO -->
 <header class="hero">
   <div class="container">
 
@@ -934,7 +919,6 @@
   </div>
 </header>
 
-<!-- ამბავი -->
 <section class="story-section" id="story">
   <div class="story-wrap">
     <div class="section-head reveal">
@@ -951,36 +935,66 @@
 
       <div class="story-step reveal">
         <div class="story-card">
-          <span class="story-number">I აქტი</span>
-          <h3 class="story-title">დევების განდევნა</h3>
+          <span class="story-number">ექსპოზიცია</span>
+          <h3 class="story-title">წყნარი სოფელი როშკა</h3>
           <p class="story-text">
-            <strong>იახსარი</strong> დევებს ებრძვის.
-            სოფლები გაწმენდილია, ხალხი თავისუფლდება, მაგრამ ერთი დევი ჯერ კიდევ
-            რჩება, რომელიც მოსახლეობას ანადგურებს.
+            ხევსურეთის მთებში არის წყნარი სოფელი <strong>როშკა</strong>, რომელიც
+            მშვიდობიანად ცხოვრობს. მისი მოსახლეობა მშვიდად მისდევს ყოველდღიურ საქმეს.
           </p>
         </div>
       </div>
 
       <div class="story-step villain-step reveal">
         <div class="story-card">
-          <span class="story-number">II აქტი</span>
-          <h3 class="story-title">გორო გაქცევას იწყებს</h3>
+          <span class="story-number">ინციდენტი</span>
+          <h3 class="story-title">დევის თავდასხმა</h3>
           <p class="story-text">
-            გმირი დევს დაეწევა. <strong>გორო</strong>, ორრქიანი და გოლიათური დევი შუბით,
-            ხვდება, რომ ღია ბრძოლაში ვერ სძლევს და ტბისკენ გარბის, იქ დასამალად.
-            ის წყალში ჩადის და ღვთის შვილს იქ ემალება.
+            სოფელს თავს დაესხმება უკანასკნელი დევი, <strong>გორო</strong>, რომელიც
+            იტაცებს საქონელს და აშინებს მოსახლეობას.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-step reveal">
+        <div class="story-card">
+          <span class="story-number">გადაწყვეტილება</span>
+          <h3 class="story-title">იახსარი იცავს ხალხს</h3>
+          <p class="story-text">
+            <strong>იახსარი</strong> გადაწყვეტს მოსახლეობის დაცვას და დევის
+            წინააღმდეგ ბრძოლას.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-step reveal">
+        <div class="story-card">
+          <span class="story-number">დაბრკოლება</span>
+          <h3 class="story-title">გორო ტბაში იმალება</h3>
+          <p class="story-text">
+            გორო გაიქცა სოფლიდან. <strong>იახსარი</strong> მას დაედევნა.
+            გორო იახსარს <strong>აბუდელაურის თეთრ ტბაში</strong> დაემალა.
           </p>
         </div>
       </div>
 
       <div class="story-step climax reveal">
         <div class="story-card">
-          <span class="story-number">III აქტი · კულმინაცია</span>
+          <span class="story-number">დაპირისპირება</span>
           <h3 class="story-title">ბრძოლა ტბაში</h3>
           <p class="story-text">
-            <strong>იახსარი</strong> დევს ტბაშიც მიჰყვება. წყალი ვერ იხსნის გოროს.
-            იქ, სიღრმეში, მთავარი გმირი საბოლოოდ ამარცხებს დევს და ამით
-            ამთავრებს ამბავს: <strong>სამყარო კვლავ თავისუფალია ბოროტებისგან</strong>.
+            <strong>იახსარმა</strong> გოროს მიაგნო, ტბაში ჩაჰყვა და
+            <strong>ლახტის ერთი მოქნევით დაამარცხა ის</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-step climax reveal">
+        <div class="story-card">
+          <span class="story-number">დასასრული</span>
+          <h3 class="story-title">მტრედად ქცევა</h3>
+          <p class="story-text">
+            დამარცხებული დევის სისხლით ტბის ზედაპირი დაიფარა და
+            <strong>იახსარი იქიდან მტრედის სახით ამოფრინდა</strong>.
           </p>
         </div>
       </div>
@@ -997,7 +1011,6 @@
   </div>
 </section>
 
-<!-- გუნდი -->
 <section class="section" id="team">
   <div class="container">
     <div class="section-head reveal">
@@ -1037,7 +1050,6 @@
   </div>
 </section>
 
-<!-- პერსონაჟები -->
 <section class="section" id="characters">
   <div class="container">
     <div class="section-head reveal">
@@ -1111,7 +1123,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="fname">
     <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -1129,7 +1140,6 @@
   <p>ქართული მითოლოგიის ანიმაცია · 2026</p>
 </footer>
 
-<!-- MODAL: ანიმაცია -->
 <div class="modal" id="modal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -1143,7 +1153,6 @@
   </div>
 </div>
 
-<!-- MODAL: პერსონაჟის პროფილი -->
 <div class="modal" id="charModal" aria-hidden="true">
   <div class="modal-backdrop" data-char-close></div>
   <div class="modal-box char-modal-box" role="dialog" aria-modal="true" aria-labelledby="charModalName">
@@ -1296,10 +1305,10 @@
           title: 'ამბავში მისი როლი',
           html: `
             <div class="profile-quote">
-              გორო არის უკანასკნელი დევი, რომელიც ჯერ კიდევ ანადგურებს მოსახლეობას.
-              როდესაც იახსარი მას დაეწევა, დევი ტბაში ჩადის და ღვთის შვილს იქ ემალება.
-              მაგრამ წყალი ვერ იხსნის მას. ბრძოლა ტბის სიღრმეში მთავრდება,
-              სადაც გმირი საბოლოოდ ამარცხებს დევს.
+              გორო არის უკანასკნელი დევი, რომელიც თავს ესხმის სოფელ როშკას, იტაცებს
+              საქონელს და აშინებს მოსახლეობას. როდესაც იახსარი მას დაედევნება, დევი
+              აბუდელაურის თეთრ ტბაში იმალება. იახსარი ტბაში ჩაჰყვება და ლახტის ერთი
+              მოქნევით ამარცხებს მას. დამარცხებული დევის სისხლით ტბის ზედაპირი იფარება.
             </div>`
         }
       ]
