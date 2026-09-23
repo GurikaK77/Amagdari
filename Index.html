@@ -164,7 +164,6 @@
   }
   .auth-btn.primary:hover{box-shadow:0 18px 40px -14px rgba(212,162,76,1)}
 
-  /* Form styles shared */
   .form-group{text-align:left;margin-bottom:16px}
   .form-label{
     display:block;font-family:'JetBrains Mono',monospace;
@@ -185,20 +184,12 @@
     box-shadow:0 0 0 3px rgba(212,162,76,.15);
   }
   .form-input::placeholder{color:var(--muted);opacity:.55}
-  .form-hint{font-size:.72rem;color:var(--muted);margin-top:6px;opacity:.75}
   .form-error{
     font-size:.82rem;color:#ffb3b3;margin:8px 0;
     min-height:1.1em;font-weight:500;text-align:left;
   }
   .form-actions{display:flex;flex-direction:column;gap:10px;margin-top:22px}
   .form-actions .auth-btn{padding:14px 22px}
-  .link-btn{
-    background:none;border:none;color:var(--gold);
-    font-family:inherit;font-size:.85rem;cursor:pointer;
-    padding:8px;text-decoration:underline;
-    opacity:.85;transition:opacity .3s;
-  }
-  .link-btn:hover{opacity:1}
 
   .auth-back{
     position:absolute;top: calc(16px + var(--sat));left:16px;
@@ -212,7 +203,6 @@
   }
   .auth-back:hover{background:rgba(212,162,76,.1);border-color:var(--gold)}
 
-  /* ============ MEMBER PICKER ============ */
   .picker-intro{
     text-align:center;color:var(--muted);
     font-size:.94rem;font-weight:300;line-height:1.7;
@@ -266,7 +256,6 @@
   .picker-name{font-weight:600;font-size:.98rem;color:#e2dbf5}
   .picker-item:disabled .picker-name{color:var(--muted)}
 
-  /* ============ CONFIRM ============ */
   .confirm-box{
     background:rgba(255,255,255,.03);
     border:1px solid rgba(212,162,76,.3);
@@ -278,18 +267,13 @@
   .confirm-text{color:var(--muted);font-size:.9rem;margin-bottom:4px}
   .confirm-question{color:var(--gold-light);font-size:1rem;font-weight:600;margin-top:16px}
 
-  /* ============ MAIN SITE ============ */
-  .main-site{
-    opacity:0;visibility:hidden;transition:opacity .5s;
-  }
+  .main-site{opacity:0;visibility:hidden;transition:opacity .5s}
   .main-site.visible{opacity:1;visibility:visible}
 
-  /* Views */
   .view{display:none;animation:fadeUp .5s ease}
   .view.active{display:block}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-  /* HERO (existing, kept) */
   .hero{
     min-height:100svh;
     display:flex;align-items:center;justify-content:center;
@@ -364,7 +348,6 @@
   .section-title span{color:var(--gold)}
   .section-sub{color:var(--muted);margin-top:12px;font-size:.98rem;font-weight:300}
 
-  /* Story */
   .story-section{
     position:relative;padding:110px 0 120px;
     background:linear-gradient(180deg,transparent,rgba(212,162,76,.04),transparent);
@@ -462,19 +445,14 @@
   }
   .story-footer-text strong{color:var(--gold-light);font-weight:600;font-style:normal}
 
-  /* Grid + Team cards (existing) */
   .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
 
-  /* ============ MEMBER CARD WITH FRAMES ============ */
+  /* MEMBER CARDS */
   .card.member{
-    position:relative;
-    padding:0;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(212,162,76,.08), transparent 55%),
-      linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
+    position:relative;padding:0;
+    background:radial-gradient(circle at 50% 0%, rgba(212,162,76,.08), transparent 55%), linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
     border:1px solid rgba(212,162,76,.24);
-    border-radius:14px;
-    text-align:center;overflow:hidden;
+    border-radius:14px;text-align:center;overflow:hidden;
     backdrop-filter:blur(10px);isolation:isolate;
     transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .5s, box-shadow .5s;
   }
@@ -532,12 +510,14 @@
     content:"";position:absolute;inset:-6px;border-radius:50%;
     border:1px solid rgba(212,162,76,.2);
     transition:border-color .5s, inset .5s;
+    pointer-events:none;
   }
   .avatar::after{
     content:"";position:absolute;inset:-12px;border-radius:50%;
     border:1px dashed rgba(212,162,76,.25);
     animation:spin 40s linear infinite;
     transition:border-color .5s;
+    pointer-events:none;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
   .card.member:hover .avatar{
@@ -546,7 +526,7 @@
     box-shadow:inset 0 0 40px rgba(212,162,76,.25), 0 12px 32px -10px rgba(240,205,138,.75);
   }
 
-  /* Frame styles (12 options) */
+  /* Frame styles */
   .avatar.frame-gold{border-color:#d4a24c;box-shadow:0 0 0 3px rgba(212,162,76,.15), 0 8px 24px -8px rgba(212,162,76,.65)}
   .avatar.frame-silver{border-color:#c0c0d0;box-shadow:0 0 0 3px rgba(192,192,208,.15), 0 8px 24px -8px rgba(192,192,208,.6)}
   .avatar.frame-bronze{border-color:#b87333;box-shadow:0 0 0 3px rgba(184,115,51,.15), 0 8px 24px -8px rgba(184,115,51,.6)}
@@ -574,16 +554,12 @@
   @keyframes waveRipple{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
   .avatar.frame-rune{
     border-color:#b794f6;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(183,148,246,.2), transparent 60%),
-      linear-gradient(160deg, #1a1028, #0a0806);
+    background:radial-gradient(circle at 30% 30%, rgba(183,148,246,.2), transparent 60%), linear-gradient(160deg, #1a1028, #0a0806);
     box-shadow:0 0 0 3px rgba(183,148,246,.15), 0 0 28px -6px rgba(183,148,246,.8);
   }
   .avatar.frame-tribal{
     border-color:#d4a24c;
-    background:
-      repeating-conic-gradient(from 0deg at 50% 50%, rgba(212,162,76,.15) 0deg 4deg, transparent 4deg 8deg),
-      linear-gradient(160deg, #1a140f, #0a0806);
+    background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(212,162,76,.15) 0deg 4deg, transparent 4deg 8deg), linear-gradient(160deg, #1a140f, #0a0806);
     box-shadow:0 0 0 3px rgba(212,162,76,.2), 0 0 24px -6px rgba(212,162,76,.75);
   }
   .avatar.frame-void{
@@ -649,7 +625,7 @@
     box-shadow:0 26px 60px -28px rgba(212,162,76,.65), 0 0 0 1px rgba(212,162,76,.12);
   }
 
-  /* Character cards (existing) */
+  /* CHARACTER CARDS */
   .card.char{
     position:relative;background:var(--card-bg);
     border:1px solid rgba(255,255,255,.08);border-radius:22px;
@@ -777,7 +753,6 @@
   .villain-char .profile-btn{color:#ffb3b3;border-color:rgba(227,93,93,.55);background:rgba(227,93,93,.08)}
   .villain-char .profile-btn:hover{background:linear-gradient(135deg,#e35d5d,#ff9c9c);color:#2a0808;border-color:transparent;box-shadow:0 14px 30px -12px rgba(227,93,93,.95);transform:translateY(-2px)}
 
-  /* Progress section */
   .progress-section{
     position:relative;padding:110px 0 130px;
     background:linear-gradient(180deg,transparent,rgba(212,162,76,.04) 50%,transparent);
@@ -842,7 +817,7 @@
   .progress-card.queued .progress-desc{color:#a49ad0}
   .progress-card.queued .progress-status{color:#e0daff;background:rgba(154,143,212,.12);border-color:rgba(154,143,212,.5)}
 
-  /* ============ BOTTOM NAV ============ */
+  /* BOTTOM NAV */
   .bottom-nav{
     position:fixed;
     left:50%;transform:translateX(-50%);
@@ -880,10 +855,7 @@
   .nav-btn:hover{color:var(--gold-light)}
   .nav-btn.active{color:var(--gold)}
   .nav-btn.active svg{transform:scale(1.1);filter:drop-shadow(0 0 8px rgba(212,162,76,.7))}
-  .nav-btn.center{
-    flex:1.4;
-    color:var(--text);
-  }
+  .nav-btn.center{flex:1.4;color:var(--text)}
   .nav-btn.center svg{width:28px;height:28px}
   .nav-btn.center.active{color:var(--gold-light)}
   .nav-btn.center .nav-emblem{
@@ -900,7 +872,6 @@
     box-shadow:0 0 28px -4px rgba(212,162,76,.95);
   }
 
-  /* ============ PROFILE PAGE ============ */
   .page-header{
     padding: calc(50px + var(--sat)) 0 30px;
     text-align:center;
@@ -964,7 +935,19 @@
     width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2;
     stroke-linecap:round;stroke-linejoin:round;
   }
-  /* Frame ring around profile avatar - reuse avatar frame classes on profile-avatar-big */
+  .profile-avatar-big.frame-gold{border-color:#d4a24c;box-shadow:0 0 0 3px rgba(212,162,76,.15), 0 8px 24px -8px rgba(212,162,76,.65)}
+  .profile-avatar-big.frame-silver{border-color:#c0c0d0;box-shadow:0 0 0 3px rgba(192,192,208,.15), 0 8px 24px -8px rgba(192,192,208,.6)}
+  .profile-avatar-big.frame-bronze{border-color:#b87333;box-shadow:0 0 0 3px rgba(184,115,51,.15), 0 8px 24px -8px rgba(184,115,51,.6)}
+  .profile-avatar-big.frame-emerald{border-color:#4ec9b0;box-shadow:0 0 0 3px rgba(78,201,176,.15), 0 8px 24px -8px rgba(78,201,176,.7)}
+  .profile-avatar-big.frame-crimson{border-color:#e35d5d;box-shadow:0 0 0 3px rgba(227,93,93,.15), 0 8px 24px -8px rgba(227,93,93,.7)}
+  .profile-avatar-big.frame-purple{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.15), 0 8px 24px -8px rgba(167,139,250,.7)}
+  .profile-avatar-big.frame-diamond{border-color:#e0e8ff;box-shadow:0 0 0 3px rgba(224,232,255,.2), 0 0 24px -4px rgba(224,232,255,.7);animation:diamondShine 3s ease-in-out infinite}
+  .profile-avatar-big.frame-flame{border-color:#ff9a3c;background:linear-gradient(160deg,#1a1008,#0a0806);box-shadow:0 0 0 3px rgba(255,154,60,.2), 0 0 30px -4px rgba(255,100,0,.8);animation:flamePulse 2.4s ease-in-out infinite}
+  .profile-avatar-big.frame-wave{border-color:#4da6ff;box-shadow:0 0 0 3px rgba(77,166,255,.2), 0 0 26px -4px rgba(77,166,255,.75);animation:waveRipple 3s ease-in-out infinite}
+  .profile-avatar-big.frame-rune{border-color:#b794f6;background:radial-gradient(circle at 30% 30%, rgba(183,148,246,.2), transparent 60%), linear-gradient(160deg, #1a1028, #0a0806);box-shadow:0 0 0 3px rgba(183,148,246,.15), 0 0 28px -6px rgba(183,148,246,.8)}
+  .profile-avatar-big.frame-tribal{border-color:#d4a24c;background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(212,162,76,.15) 0deg 4deg, transparent 4deg 8deg), linear-gradient(160deg, #1a140f, #0a0806);box-shadow:0 0 0 3px rgba(212,162,76,.2), 0 0 24px -6px rgba(212,162,76,.75)}
+  .profile-avatar-big.frame-void{border-color:#2a2a3a;background:linear-gradient(160deg, #0a0a12, #000);box-shadow:inset 0 0 30px rgba(0,0,0,.9), 0 0 0 3px rgba(60,60,80,.3), 0 0 24px -6px rgba(100,100,180,.5)}
+  .profile-avatar-big.frame-void .initial{background:linear-gradient(180deg,#8888a8,#44445a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
   .profile-name-big{
     font-size:1.5rem;font-weight:800;
@@ -1040,7 +1023,6 @@
   .profile-action.danger .profile-action-icon{background:rgba(227,93,93,.1);border-color:rgba(227,93,93,.3);color:#ff9c9c}
   .profile-action.danger:hover{border-color:rgba(227,93,93,.5)}
 
-  /* Frame picker */
   .frame-grid{
     display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
     padding:8px 0;
@@ -1054,17 +1036,7 @@
   }
   .frame-option:hover{transform:scale(1.05)}
   .frame-option.selected{border-color:var(--gold-light);box-shadow:0 0 20px -4px rgba(240,205,138,.7)}
-  .frame-option .preview{
-    width:100%;height:100%;border-radius:50%;
-    display:grid;place-items:center;
-    background:linear-gradient(160deg, #1a140f, #0a0806);
-    border:1.5px solid rgba(212,162,76,.5);
-    font-family:'JetBrains Mono',monospace;
-    font-size:1rem;font-weight:700;
-    color:var(--gold-light);
-  }
 
-  /* ============ EDITOR PAGE ============ */
   .editor-wrap{
     max-width:720px;margin:0 auto;
     padding:0 22px 40px;
@@ -1121,7 +1093,6 @@
     margin-top:8px;
   }
 
-  /* Admin panel */
   .admin-panel{
     margin-top:44px;
     padding-top:32px;
@@ -1212,7 +1183,6 @@
     background:rgba(0,0,0,.15);
   }
 
-  /* ============ MODALS ============ */
   .modal{
     position:fixed;inset:0;z-index:200;
     display:grid;place-items:center;
@@ -1257,7 +1227,6 @@
   .modal-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
   .modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
-  /* Notifications */
   .notif-list{display:flex;flex-direction:column;gap:10px}
   .notif-item{
     display:flex;gap:12px;
@@ -1284,10 +1253,9 @@
   .notif-text{font-size:.8rem;color:var(--muted);line-height:1.5}
   .notif-time{
     font-family:'JetBrains Mono',monospace;
-    font-size:.6rem;color:var(--dim,#6a6280);margin-top:6px;letter-spacing:.06em;
+    font-size:.6rem;color:#6a6280;margin-top:6px;letter-spacing:.06em;
   }
 
-  /* Toast */
   .toast{
     position:fixed;bottom: calc(var(--navh) + 30px + var(--sab));
     left:50%;transform:translateX(-50%) translateY(20px);
@@ -1304,7 +1272,6 @@
   .toast.success{border-color:rgba(78,201,176,.5);color:#9dffe6}
   .toast.error{border-color:rgba(227,93,93,.5);color:#ffb3b3}
 
-  /* Reveal */
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
   .reveal.visible{opacity:1;transform:none}
 
@@ -1320,7 +1287,6 @@
   }
   footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
 
-  /* Mobile */
   @media (max-width:720px){
     .story-timeline::before{left:14px;transform:none}
     .story-step{grid-template-columns:1fr;gap:0;padding-left:42px;margin-bottom:34px}
@@ -1358,14 +1324,12 @@
     .member-role{font-size:.58rem;letter-spacing:.18em;padding:0 16px 24px}
     .dev-badge{top:10px;right:10px;padding:3px 6px 3px 5px;font-size:.48rem}
     .dev-badge svg{width:7px;height:7px}
-
     .card.char{padding:78px 14px 28px}
     .char-emblem{width:88px;height:88px;margin:4px 0 18px}
     .char-symbol{font-size:2.5rem}
     .char-name{font-size:1.02rem}
     .char-desc{font-size:.76rem}
     .char-frame span{width:16px;height:16px}
-
     .btn{padding:14px 26px;font-size:.92rem}
     .hero-actions{gap:10px}
     .role-label{top:14px;gap:4px}
@@ -1374,7 +1338,6 @@
     .role-alias{font-size:.5rem;letter-spacing:.18em}
     .profile-btn{font-size:.74rem;padding:9px 18px;margin-top:16px;gap:6px}
     .profile-btn svg{width:12px;height:12px}
-
     .progress-section{padding:70px 0 80px}
     .progress-grid{gap:12px}
     .progress-card{padding:18px 18px;gap:14px;flex-wrap:wrap}
@@ -1383,13 +1346,11 @@
     .progress-title{font-size:.92rem}
     .progress-desc{font-size:.76rem}
     .progress-status{font-size:.52rem;padding:4px 9px;letter-spacing:.12em}
-
     .bottom-nav{height:60px;border-radius:16px}
     .nav-btn{font-size:.55rem;letter-spacing:.1em}
     .nav-btn svg{width:20px;height:20px}
     .nav-btn.center .nav-emblem{width:38px;height:38px}
     .nav-btn.center svg{width:24px;height:24px}
-
     .frame-grid{grid-template-columns:repeat(3,1fr);gap:10px}
     .profile-avatar-big{width:116px;height:116px}
     .profile-avatar-big .initial{font-size:2.5rem}
@@ -1409,21 +1370,16 @@
   <div class="stars" id="stars"></div>
 </div>
 
-<!-- ============ AUTH GATE ============ -->
 <div class="auth-gate" id="authGate">
   <button class="auth-back hidden" id="authBack" aria-label="უკან">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     უკან
   </button>
-  <div class="auth-gate-inner" id="authContent">
-    <!-- JS fills -->
-  </div>
+  <div class="auth-gate-inner" id="authContent"></div>
 </div>
 
-<!-- ============ MAIN SITE ============ -->
 <div class="main-site" id="mainSite">
 
-  <!-- Top right: notifications + login -->
   <div class="topbar">
     <button class="icon-btn hidden" id="notifBtn" aria-label="შეტყობინებები">
       <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -1434,9 +1390,7 @@
     </button>
   </div>
 
-  <!-- ============ MAIN VIEW ============ -->
   <div class="view active" id="viewMain">
-
     <header class="hero" id="hero">
       <div class="container">
         <svg class="hero-emblem" viewBox="0 0 64 64" aria-hidden="true">
@@ -1484,76 +1438,53 @@
           ეს არის ჩვენი ანიმაციის ხერხემალი: <strong>იახსარის</strong> და ბოლო დევის,
           <strong>გოროს</strong>, შეხვედრის ისტორია. ყოველი კადრი ამ გზის ნაწილი იქნება.
         </p>
-
         <div class="story-timeline">
           <div class="story-step reveal">
             <div class="story-card">
               <span class="story-number">ექსპოზიცია</span>
               <h3 class="story-title">წყნარი სოფელი როშკა</h3>
-              <p class="story-text" data-editable="story1">
-                ხევსურეთის მთებში არის წყნარი სოფელი <strong>როშკა</strong>, რომელიც
-                მშვიდობიანად ცხოვრობს. მისი მოსახლეობა მშვიდად მისდევს ყოველდღიურ საქმეს.
-              </p>
+              <p class="story-text" data-editable="story1">ხევსურეთის მთებში არის წყნარი სოფელი <strong>როშკა</strong>, რომელიც მშვიდობიანად ცხოვრობს. მისი მოსახლეობა მშვიდად მისდევს ყოველდღიურ საქმეს.</p>
             </div>
           </div>
           <div class="story-step villain-step reveal">
             <div class="story-card">
               <span class="story-number">ინციდენტი</span>
               <h3 class="story-title">დევის თავდასხმა</h3>
-              <p class="story-text" data-editable="story2">
-                სოფელს თავს დაესხმება უკანასკნელი დევი, <strong>გორო</strong>, რომელიც
-                იტაცებს საქონელს და აშინებს მოსახლეობას.
-              </p>
+              <p class="story-text" data-editable="story2">სოფელს თავს დაესხმება უკანასკნელი დევი, <strong>გორო</strong>, რომელიც იტაცებს საქონელს და აშინებს მოსახლეობას.</p>
             </div>
           </div>
           <div class="story-step reveal">
             <div class="story-card">
               <span class="story-number">გადაწყვეტილება</span>
               <h3 class="story-title">იახსარი იცავს ხალხს</h3>
-              <p class="story-text" data-editable="story3">
-                <strong>იახსარი</strong> გადაწყვეტს მოსახლეობის დაცვას და დევის
-                წინააღმდეგ ბრძოლას.
-              </p>
+              <p class="story-text" data-editable="story3"><strong>იახსარი</strong> გადაწყვეტს მოსახლეობის დაცვას და დევის წინააღმდეგ ბრძოლას.</p>
             </div>
           </div>
           <div class="story-step reveal">
             <div class="story-card">
               <span class="story-number">დაბრკოლება</span>
               <h3 class="story-title">გორო ტბაში იმალება</h3>
-              <p class="story-text" data-editable="story4">
-                გორო გაიქცა სოფლიდან. <strong>იახსარი</strong> მას დაედევნა.
-                გორო იახსარს <strong>აბუდელაურის თეთრ ტბაში</strong> დაემალა.
-              </p>
+              <p class="story-text" data-editable="story4">გორო გაიქცა სოფლიდან. <strong>იახსარი</strong> მას დაედევნა. გორო იახსარს <strong>აბუდელაურის თეთრ ტბაში</strong> დაემალა.</p>
             </div>
           </div>
           <div class="story-step climax reveal">
             <div class="story-card">
               <span class="story-number">დაპირისპირება</span>
               <h3 class="story-title">ბრძოლა ტბაში</h3>
-              <p class="story-text" data-editable="story5">
-                <strong>იახსარმა</strong> გოროს მიაგნო, ტბაში ჩაჰყვა და
-                <strong>ლახტის ერთი მოქნევით დაამარცხა ის</strong>.
-              </p>
+              <p class="story-text" data-editable="story5"><strong>იახსარმა</strong> გოროს მიაგნო, ტბაში ჩაჰყვა და <strong>ლახტის ერთი მოქნევით დაამარცხა ის</strong>.</p>
             </div>
           </div>
           <div class="story-step climax reveal">
             <div class="story-card">
               <span class="story-number">დასასრული</span>
               <h3 class="story-title">მტრედად ქცევა</h3>
-              <p class="story-text" data-editable="story6">
-                დამარცხებული დევის სისხლით ტბის ზედაპირი დაიფარა და
-                <strong>იახსარი იქიდან მტრედის სახით ამოფრინდა</strong>.
-              </p>
+              <p class="story-text" data-editable="story6">დამარცხებული დევის სისხლით ტბის ზედაპირი დაიფარა და <strong>იახსარი იქიდან მტრედის სახით ამოფრინდა</strong>.</p>
             </div>
           </div>
         </div>
-
         <div class="story-footer reveal">
           <span class="story-footer-icon">📖</span>
-          <p class="story-footer-text">
-            ეს არის <strong>მთავარი ხაზი</strong>. დეტალები, დიალოგები, სცენები და
-            დამატებითი პერსონაჟები ჯერ კიდევ მუშავდება.
-          </p>
+          <p class="story-footer-text">ეს არის <strong>მთავარი ხაზი</strong>. დეტალები, დიალოგები, სცენები და დამატებითი პერსონაჟები ჯერ კიდევ მუშავდება.</p>
         </div>
       </div>
     </section>
@@ -1564,9 +1495,7 @@
           <h2 class="section-title">ჩვენი <span>გუნდი</span></h2>
           <p class="section-sub">ოთხი ადამიანი, ერთი მითოლოგიური სამყარო</p>
         </div>
-        <div class="grid" id="teamGrid">
-          <!-- JS fills -->
-        </div>
+        <div class="grid" id="teamGrid"></div>
       </div>
     </section>
 
@@ -1673,29 +1602,22 @@
     </footer>
   </div>
 
-  <!-- ============ PROFILE VIEW ============ -->
   <div class="view" id="viewProfile">
     <div class="page-header">
       <h1 class="page-header-title">ჩემი პროფილი</h1>
       <p class="page-header-sub">Profile</p>
     </div>
-    <div id="profileContent">
-      <!-- JS fills -->
-    </div>
+    <div id="profileContent"></div>
   </div>
 
-  <!-- ============ EDITOR VIEW ============ -->
   <div class="view" id="viewEditor">
     <div class="page-header">
       <h1 class="page-header-title">ედიტორი</h1>
       <p class="page-header-sub">Editor</p>
     </div>
-    <div class="editor-wrap" id="editorContent">
-      <!-- JS fills -->
-    </div>
+    <div class="editor-wrap" id="editorContent"></div>
   </div>
 
-  <!-- ============ BOTTOM NAV ============ -->
   <nav class="bottom-nav" id="bottomNav">
     <button class="nav-btn" data-view="profile" aria-label="პროფილი">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
@@ -1714,10 +1636,9 @@
   </nav>
 </div>
 
-<!-- ============ MODALS ============ -->
 <div class="modal" id="modal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-box">
+  <div class="modal-box" id="modalBox">
     <div class="modal-header">
       <h2 class="modal-title" id="modalTitle">ანიმაცია ჯერ არ დაწყებულა</h2>
       <button class="modal-close" data-close aria-label="დახურვა"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -1757,7 +1678,7 @@
       <button class="modal-close" data-photo-close aria-label="დახურვა"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <p style="color:var(--muted);font-size:.86rem;line-height:1.7;margin-bottom:20px">
-      ატვირთე ფოტო. რეკომენდებულია კვადრატული ფორმატი. ფოტო ავტომატურად შემცირდება.
+      ატვირთე ფოტო. რეკომენდებულია კვადრატული ფორმატი. ფოტო ავტომატურად შემცირდება 300×300px-მდე.
     </p>
     <input type="file" id="photoInput" accept="image/*" style="display:none" />
     <div style="display:flex;flex-direction:column;gap:10px">
@@ -1796,38 +1717,27 @@ const MEMBERS = {
   anastasia: { name: 'Anastasia Bairamovi',    initial: 'A' },
   neliko:    { name: 'Neliko Tchurtchelauri',  initial: 'N' }
 };
-
 const FRAMES = [
-  { id: 'gold',    label: 'ოქრო' },
-  { id: 'silver',  label: 'ვერცხლი' },
-  { id: 'bronze',  label: 'ბრინჯაო' },
-  { id: 'emerald', label: 'ზურმუხტი' },
-  { id: 'crimson', label: 'სისხლი' },
-  { id: 'purple',  label: 'ია' },
-  { id: 'diamond', label: 'ალმასი' },
-  { id: 'flame',   label: 'ალი' },
-  { id: 'wave',    label: 'ტალღა' },
-  { id: 'rune',    label: 'რუნა' },
-  { id: 'tribal',  label: 'ტომობრივი' },
-  { id: 'void',    label: 'სიცარიელე' }
+  { id: 'gold', label: 'ოქრო' }, { id: 'silver', label: 'ვერცხლი' },
+  { id: 'bronze', label: 'ბრინჯაო' }, { id: 'emerald', label: 'ზურმუხტი' },
+  { id: 'crimson', label: 'სისხლი' }, { id: 'purple', label: 'ია' },
+  { id: 'diamond', label: 'ალმასი' }, { id: 'flame', label: 'ალი' },
+  { id: 'wave', label: 'ტალღა' }, { id: 'rune', label: 'რუნა' },
+  { id: 'tribal', label: 'ტომობრივი' }, { id: 'void', label: 'სიცარიელე' }
 ];
-
 const DEFAULT_NICK = {
-  gurika:    'დეველოპერი',
-  barbare:   'გუნდის წევრი',
-  anastasia: 'გუნდის წევრი',
-  neliko:    'გუნდის წევრი'
+  gurika: 'დეველოპერი', barbare: 'გუნდის წევრი',
+  anastasia: 'გუნდის წევრი', neliko: 'გუნდის წევრი'
 };
-
 const EDITABLE_FIELDS = {
-  heroText:   'მთავარი გვერდის ტექსტი',
+  heroText: 'მთავარი გვერდის ტექსტი',
   storyIntro: 'ამბის შესავალი ტექსტი',
-  story1:     'I სცენა — როშკა',
-  story2:     'II სცენა — დევის თავდასხმა',
-  story3:     'III სცენა — გადაწყვეტილება',
-  story4:     'IV სცენა — დაბრკოლება',
-  story5:     'V სცენა — ბრძოლა ტბაში',
-  story6:     'VI სცენა — მტრედად ქცევა'
+  story1: 'I სცენა — როშკა',
+  story2: 'II სცენა — დევის თავდასხმა',
+  story3: 'III სცენა — გადაწყვეტილება',
+  story4: 'IV სცენა — დაბრკოლება',
+  story5: 'V სცენა — ბრძოლა ტბაში',
+  story6: 'VI სცენა — მტრედად ქცევა'
 };
 
 /* ============================================================
@@ -1891,7 +1801,7 @@ function resizePhoto(file, maxSize = 300) {
 }
 
 /* ============================================================
-   STARS BACKGROUND
+   STARS
    ============================================================ */
 (function () {
   const wrap = $('#stars');
@@ -1902,8 +1812,7 @@ function resizePhoto(file, maxSize = 300) {
     const s = document.createElement('span');
     s.className = 'star';
     const size = (Math.random() * 1.9 + 1).toFixed(1);
-    s.style.width = size + 'px';
-    s.style.height = size + 'px';
+    s.style.width = size + 'px'; s.style.height = size + 'px';
     s.style.left = (Math.random() * 100).toFixed(2) + '%';
     s.style.top = (Math.random() * 100).toFixed(2) + '%';
     s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
@@ -1914,7 +1823,7 @@ function resizePhoto(file, maxSize = 300) {
 })();
 
 /* ============================================================
-   MEMBERS LISTENER (guests + all users)
+   MEMBERS LISTENER
    ============================================================ */
 db.ref('members').on('value', snap => {
   membersSnapshot = snap.val() || {};
@@ -1931,9 +1840,6 @@ db.ref('siteContent').on('value', snap => {
   applySiteContent();
 });
 
-/* ============================================================
-   APPLY SITE CONTENT
-   ============================================================ */
 function applySiteContent() {
   Object.keys(EDITABLE_FIELDS).forEach(key => {
     const el = document.querySelector(`[data-editable="${key}"]`);
@@ -1942,7 +1848,8 @@ function applySiteContent() {
 }
 
 /* ============================================================
-   RENDER TEAM CARDS
+   RENDER TEAM CARDS — reads from members/{memberId}
+   Falls back: displayName -> meta.name, nickname -> DEFAULT_NICK
    ============================================================ */
 function renderTeam() {
   const grid = $('#teamGrid');
@@ -1988,7 +1895,6 @@ function renderTeam() {
     `;
   }).join('');
 
-  // Reveal animation
   const items = grid.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -2007,7 +1913,7 @@ function renderTeam() {
 }
 
 /* ============================================================
-   CHECK REGISTRATION STATE
+   CHECK ALL REGISTERED
    ============================================================ */
 function checkAllRegistered() {
   const allTaken = MEMBER_ORDER.every(id => membersSnapshot[id] && membersSnapshot[id].claimedBy);
@@ -2016,12 +1922,11 @@ function checkAllRegistered() {
   const nav = $('#bottomNav');
 
   if (allTaken && !fbUser && !isGuest) {
-    // All registered — hide gate, show small login btn
     gate.classList.add('hidden');
     $('#mainSite').classList.add('visible');
     document.body.classList.remove('no-nav');
     loginBtn.classList.remove('hidden');
-    nav.classList.add('hidden'); // guests don't see nav
+    nav.classList.add('hidden');
   }
 }
 
@@ -2033,17 +1938,14 @@ auth.onAuthStateChanged(async (user) => {
 
   if (user) {
     isGuest = false;
-    // Load profile
     const snap = await db.ref('users/' + user.uid).once('value');
     fbProfile = snap.val() || {};
 
-    // Listen live
     db.ref('users/' + user.uid).on('value', s => {
       fbProfile = s.val() || {};
       afterAuthReady();
     });
 
-    // Listen notifications
     db.ref('notifications/' + user.uid).on('value', s => {
       const val = s.val() || {};
       notifications = Object.keys(val).map(k => ({ id: k, ...val[k] }))
@@ -2060,7 +1962,6 @@ auth.onAuthStateChanged(async (user) => {
 
 function afterAuthReady() {
   if (fbUser && fbProfile && fbProfile.memberId) {
-    // Logged in with a member
     $('#authGate').classList.add('hidden');
     $('#mainSite').classList.add('visible');
     $('#loginBtn').classList.add('hidden');
@@ -2074,7 +1975,6 @@ function afterAuthReady() {
   }
 
   if (fbUser && (!fbProfile || !fbProfile.memberId)) {
-    // Logged in, but hasn't picked a member
     $('#authGate').classList.remove('hidden');
     $('#mainSite').classList.remove('visible');
     $('#bottomNav').classList.add('hidden');
@@ -2083,7 +1983,6 @@ function afterAuthReady() {
     return;
   }
 
-  // Not logged in
   const allTaken = MEMBER_ORDER.every(id => membersSnapshot[id] && membersSnapshot[id].claimedBy);
 
   if (allTaken && !isGuest) {
@@ -2106,7 +2005,6 @@ function afterAuthReady() {
     return;
   }
 
-  // Show auth gate
   $('#authGate').classList.remove('hidden');
   $('#mainSite').classList.remove('visible');
   $('#bottomNav').classList.add('hidden');
@@ -2115,7 +2013,7 @@ function afterAuthReady() {
 }
 
 /* ============================================================
-   AUTH GATE — VIEWS
+   AUTH GATE VIEWS
    ============================================================ */
 function setAuthView(view) {
   $('#authContent').dataset.view = view;
@@ -2365,11 +2263,15 @@ function confirmPick(memberId) {
         return;
       }
 
-      await db.ref('users/' + fbUser.uid).update({
-        memberId: memberId,
-        displayName: meta.name,
-        nickname: DEFAULT_NICK[memberId] || 'გუნდის წევრი'
-      });
+      // Write to BOTH users/ and members/
+      const updates = {};
+      updates['users/' + fbUser.uid + '/memberId'] = memberId;
+      updates['users/' + fbUser.uid + '/displayName'] = meta.name;
+      updates['users/' + fbUser.uid + '/nickname'] = DEFAULT_NICK[memberId] || 'გუნდის წევრი';
+      updates['members/' + memberId + '/displayName'] = meta.name;
+      updates['members/' + memberId + '/nickname'] = DEFAULT_NICK[memberId] || 'გუნდის წევრი';
+      updates['members/' + memberId + '/frame'] = 'gold';
+      await db.ref().update(updates);
 
       showToast('✓ წარმატებით შეხვედი', 'success');
       setAuthView('home');
@@ -2393,7 +2295,6 @@ $$('.nav-btn').forEach(btn => {
     $$('.nav-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     if (view === 'profile') renderProfile();
     if (view === 'editor') renderEditor();
   });
@@ -2473,7 +2374,6 @@ function renderProfile() {
     </div>
   `;
 
-  // Wire
   $('#profileAvatarBig').addEventListener('click', () => openPhotoModal());
   $('#btnEditName').addEventListener('click', editName);
   $('#btnEditNick').addEventListener('click', editNickname);
@@ -2482,6 +2382,9 @@ function renderProfile() {
   $('#btnLogout').addEventListener('click', doLogout);
 }
 
+/* ============================================================
+   ✅ FIXED: editName — sync to BOTH users/ and members/
+   ============================================================ */
 async function editName() {
   const current = fbProfile.displayName || MEMBERS[fbProfile.memberId].name;
   const val = prompt('ახალი სახელი:', current);
@@ -2490,13 +2393,19 @@ async function editName() {
   if (!name) { showToast('სახელი ცარიელია', 'error'); return; }
   if (name.length > 60) { showToast('სახელი ძალიან გრძელია', 'error'); return; }
   try {
-    await db.ref('users/' + fbUser.uid).update({ displayName: name });
+    const updates = {};
+    updates['users/' + fbUser.uid + '/displayName'] = name;
+    updates['members/' + fbProfile.memberId + '/displayName'] = name;
+    await db.ref().update(updates);
     showToast('✓ სახელი შეიცვალა', 'success');
   } catch (ex) {
     showToast('შეცდომა: ' + ex.message, 'error');
   }
 }
 
+/* ============================================================
+   ✅ FIXED: editNickname — sync to BOTH
+   ============================================================ */
 async function editNickname() {
   const current = fbProfile.nickname || DEFAULT_NICK[fbProfile.memberId];
   const val = prompt('ახალი ნიკნეიმი:', current);
@@ -2505,58 +2414,62 @@ async function editNickname() {
   if (!nick) { showToast('ნიკნეიმი ცარიელია', 'error'); return; }
   if (nick.length > 40) { showToast('ნიკნეიმი ძალიან გრძელია', 'error'); return; }
   try {
-    await db.ref('users/' + fbUser.uid).update({ nickname: nick });
+    const updates = {};
+    updates['users/' + fbUser.uid + '/nickname'] = nick;
+    updates['members/' + fbProfile.memberId + '/nickname'] = nick;
+    await db.ref().update(updates);
     showToast('✓ ნიკნეიმი შეიცვალა', 'success');
   } catch (ex) {
     showToast('შეცდომა: ' + ex.message, 'error');
   }
 }
 
+/* ============================================================
+   ✅ FIXED: Frame picker — sync to BOTH
+   ============================================================ */
 function openFramePicker() {
   const current = fbProfile.frame || 'gold';
   const html = `
     <div class="frame-grid">
       ${FRAMES.map(f => `
         <button class="frame-option${f.id === current ? ' selected' : ''}" data-frame="${f.id}" aria-label="${esc(f.label)}">
-          <span class="preview frame-${f.id}" style="width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#1a140f,#0a0806);border-width:2px;border-style:solid;font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#f0cd8a;position:relative;">
-            ${esc(MEMBERS[fbProfile.memberId].initial)}
-          </span>
+          <span class="preview frame-${f.id}">${esc(MEMBERS[fbProfile.memberId].initial)}</span>
         </button>
       `).join('')}
     </div>
-    <p style="text-align:center;color:var(--muted);font-size:.78rem;margin-top:16px" id="frameLabel">
+    <p style="text-align:center;color:var(--muted);font-size:.78rem;margin-top:16px">
       ${esc(FRAMES.find(f => f.id === current).label)}
     </p>
   `;
 
   openModal('აირჩიე ჩარჩო', html, (modal) => {
-    // Apply frame styles to previews
+    const styles = {
+      gold: 'border:2px solid #d4a24c;box-shadow:0 0 8px rgba(212,162,76,.7)',
+      silver: 'border:2px solid #c0c0d0;box-shadow:0 0 8px rgba(192,192,208,.7)',
+      bronze: 'border:2px solid #b87333;box-shadow:0 0 8px rgba(184,115,51,.7)',
+      emerald: 'border:2px solid #4ec9b0;box-shadow:0 0 8px rgba(78,201,176,.7)',
+      crimson: 'border:2px solid #e35d5d;box-shadow:0 0 8px rgba(227,93,93,.7)',
+      purple: 'border:2px solid #a78bfa;box-shadow:0 0 8px rgba(167,139,250,.7)',
+      diamond: 'border:2px solid #e0e8ff;box-shadow:0 0 10px rgba(224,232,255,.9)',
+      flame: 'border:2px solid #ff9a3c;box-shadow:0 0 12px rgba(255,100,0,.9)',
+      wave: 'border:2px solid #4da6ff;box-shadow:0 0 10px rgba(77,166,255,.85)',
+      rune: 'border:2px solid #b794f6;box-shadow:0 0 10px rgba(183,148,246,.9)',
+      tribal: 'border:2px solid #d4a24c;box-shadow:0 0 8px rgba(212,162,76,.8)',
+      void: 'border:2px solid #2a2a3a;box-shadow:inset 0 0 12px rgba(0,0,0,.9),0 0 8px rgba(100,100,180,.5)'
+    };
     modal.querySelectorAll('.frame-option .preview').forEach(el => {
       const id = el.parentElement.dataset.frame;
-      // These classes already applied via CSS - the preview will use frame-{id} class
-      // But we need the border colour rules. Let's inline them.
-      const styles = {
-        gold:    'border-color:#d4a24c;box-shadow:0 0 8px rgba(212,162,76,.7)',
-        silver:  'border-color:#c0c0d0;box-shadow:0 0 8px rgba(192,192,208,.7)',
-        bronze:  'border-color:#b87333;box-shadow:0 0 8px rgba(184,115,51,.7)',
-        emerald: 'border-color:#4ec9b0;box-shadow:0 0 8px rgba(78,201,176,.7)',
-        crimson: 'border-color:#e35d5d;box-shadow:0 0 8px rgba(227,93,93,.7)',
-        purple:  'border-color:#a78bfa;box-shadow:0 0 8px rgba(167,139,250,.7)',
-        diamond: 'border-color:#e0e8ff;box-shadow:0 0 10px rgba(224,232,255,.9)',
-        flame:   'border-color:#ff9a3c;box-shadow:0 0 12px rgba(255,100,0,.9)',
-        wave:    'border-color:#4da6ff;box-shadow:0 0 10px rgba(77,166,255,.85)',
-        rune:    'border-color:#b794f6;box-shadow:0 0 10px rgba(183,148,246,.9)',
-        tribal:  'border-color:#d4a24c;box-shadow:0 0 8px rgba(212,162,76,.8)',
-        void:    'border-color:#2a2a3a;box-shadow:inset 0 0 12px rgba(0,0,0,.9),0 0 8px rgba(100,100,180,.5)'
-      };
-      el.style.cssText += ';' + (styles[id] || '');
+      el.style.cssText = 'width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#1a140f,#0a0806);font-family:"JetBrains Mono",monospace;font-size:1.1rem;font-weight:700;color:#f0cd8a;' + (styles[id] || '');
     });
 
     modal.querySelectorAll('.frame-option').forEach(btn => {
       btn.addEventListener('click', async () => {
         const fid = btn.dataset.frame;
         try {
-          await db.ref('users/' + fbUser.uid).update({ frame: fid });
+          const updates = {};
+          updates['users/' + fbUser.uid + '/frame'] = fid;
+          updates['members/' + fbProfile.memberId + '/frame'] = fid;
+          await db.ref().update(updates);
           showToast('✓ ჩარჩო შეიცვალა', 'success');
           closeModal();
         } catch (ex) {
@@ -2572,22 +2485,35 @@ function openPhotoModal() {
   lastFocused = document.activeElement;
 }
 
+/* ============================================================
+   ✅ FIXED: Photo upload — sync to BOTH
+   ============================================================ */
 $('#photoChooseBtn').addEventListener('click', () => $('#photoInput').click());
 $('#photoInput').addEventListener('change', async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   try {
     const base64 = await resizePhoto(file, 300);
-    await db.ref('users/' + fbUser.uid).update({ photo: base64 });
+    const updates = {};
+    updates['users/' + fbUser.uid + '/photo'] = base64;
+    updates['members/' + fbProfile.memberId + '/photo'] = base64;
+    await db.ref().update(updates);
     showToast('✓ ფოტო განახლდა', 'success');
     closeAllModals();
   } catch (ex) {
     showToast('შეცდომა: ' + ex.message, 'error');
   }
 });
+
+/* ============================================================
+   ✅ FIXED: Photo remove — sync to BOTH
+   ============================================================ */
 $('#photoRemoveBtn').addEventListener('click', async () => {
   try {
-    await db.ref('users/' + fbUser.uid).update({ photo: null });
+    const updates = {};
+    updates['users/' + fbUser.uid + '/photo'] = null;
+    updates['members/' + fbProfile.memberId + '/photo'] = null;
+    await db.ref().update(updates);
     showToast('✓ ფოტო წაშლილია', 'success');
     closeAllModals();
   } catch (ex) {
@@ -2623,9 +2549,7 @@ function renderEditor() {
       შენ შეგიძლია შეცვალო მთავარი გვერდის ტექსტი. ცვლილება <strong>პირდაპირ არ აისახება</strong> —
       გაიგზავნება მოთხოვნა ადმინთან დასამტკიცებლად.
     </p>
-
     <div id="editorFields"></div>
-
     ${isAdmin ? `
       <div class="admin-panel">
         <h3 class="admin-title">⏳ მოლოდინში მოთხოვნები</h3>
@@ -2677,7 +2601,6 @@ function renderEditorFields() {
           createdAt: firebase.database.ServerValue.TIMESTAMP
         });
 
-        // Notify admin (gurika)
         const gurikaUid = membersSnapshot.gurika && membersSnapshot.gurika.claimedBy;
         if (gurikaUid && gurikaUid !== fbUser.uid) {
           await db.ref('notifications/' + gurikaUid).push({
@@ -2702,18 +2625,12 @@ function renderAdminRequests() {
   const wrap = $('#adminRequests');
   if (!wrap) return;
 
-  db.ref('requests').orderByChild('status').equalTo('pending').once('value').then(snap => {
-    const reqs = [];
-    snap.forEach(child => { reqs.push({ id: child.key, ...child.val() }); });
-
-    // Also live listen
-    db.ref('requests').on('value', s => {
-      const all = [];
-      s.forEach(child => { all.push({ id: child.key, ...child.val() }); });
-      const pending = all.filter(r => r.status === 'pending')
-        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-      renderReqs(pending);
-    });
+  db.ref('requests').on('value', s => {
+    const all = [];
+    s.forEach(child => { all.push({ id: child.key, ...child.val() }); });
+    const pending = all.filter(r => r.status === 'pending')
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    renderReqs(pending);
   });
 
   function renderReqs(reqs) {
@@ -2764,7 +2681,6 @@ function renderAdminRequests() {
         reviewedBy: fbUser.uid
       });
 
-      // Notify the requester
       if (req.from) {
         await db.ref('notifications/' + req.from).push({
           type: approve ? 'approved' : 'rejected',
@@ -2788,6 +2704,7 @@ function renderAdminRequests() {
 function renderNotifBadge() {
   const unread = notifications.filter(n => !n.read).length;
   const badge = $('#notifBadge');
+  if (!badge) return;
   if (unread > 0) {
     badge.textContent = unread > 9 ? '9+' : String(unread);
     badge.classList.remove('hidden');
@@ -2827,7 +2744,6 @@ function renderNotifList() {
 
 $('#notifBtn').addEventListener('click', async () => {
   $('#notifModal').classList.add('open');
-  // Mark all as read
   if (fbUser) {
     const updates = {};
     notifications.filter(n => !n.read).forEach(n => {
@@ -2851,10 +2767,7 @@ $('#loginBtn').addEventListener('click', () => {
    ============================================================ */
 function openModal(title, bodyHtml, afterOpen) {
   const modal = $('#modal');
-  $('#modalTitle').textContent = title;
-  // Replace body
-  const box = modal.querySelector('.modal-box');
-  // Save structure
+  const box = $('#modalBox');
   box.innerHTML = `
     <div class="modal-header">
       <h2 class="modal-title">${esc(title)}</h2>
@@ -2862,16 +2775,12 @@ function openModal(title, bodyHtml, afterOpen) {
     </div>
     <div>${bodyHtml}</div>
   `;
-  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+  box.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
   modal.classList.add('open');
-  if (afterOpen) afterOpen(modal);
+  if (afterOpen) afterOpen(box);
 }
-function closeModal() {
-  $('#modal').classList.remove('open');
-}
-function closeAllModals() {
-  $$('.modal').forEach(m => m.classList.remove('open'));
-}
+function closeModal() { $('#modal').classList.remove('open'); }
+function closeAllModals() { $$('.modal').forEach(m => m.classList.remove('open')); }
 
 /* Global modal wiring */
 $$('[data-close]').forEach(el => el.addEventListener('click', closeModal));
@@ -2884,7 +2793,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ============================================================
-   CHARACTER MODAL (existing)
+   CHARACTER MODAL
    ============================================================ */
 const CHAR_PROFILES = {
   hero: {
@@ -2896,12 +2805,12 @@ const CHAR_PROFILES = {
       { label: 'როლი', value: 'გმირი' }
     ],
     sections: [
-      { icon: '', title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, დაკუნთული მამაკაცია, გრძელი შავი თმითა და სქელი წვერით.</p>' },
-      { icon: '', title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი.</p>' },
-      { icon: '', title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🔥 ღვთაებრივი ძალა</p>' },
-      { icon: '', title: 'ჩაცმულობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ჩოხა, ქალავნები, ქამარ-ხანძალი, ხევსურული ქუდი, ხმალი, ლახტი.</p>' },
-      { icon: '', title: 'რისი სწამს', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">სწამს უზენაესი სამართლიანობის, ღმერთის ნებისა და ღვთისშვილის მოვალეობის.</p>' },
-      { icon: '', title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა.</p>' }
+      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, დაკუნთული მამაკაცია, გრძელი შავი თმითა და სქელი წვერით.</p>' },
+      { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი.</p>' },
+      { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🔥 ღვთაებრივი ძალა</p>' },
+      { title: 'ჩაცმულობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ჩოხა, ქალავნები, ქამარ-ხანძალი, ხევსურული ქუდი, ხმალი, ლახტი.</p>' },
+      { title: 'რისი სწამს', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">სწამს უზენაესი სამართლიანობის, ღმერთის ნებისა და ღვთისშვილის მოვალეობის.</p>' },
+      { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა.</p>' }
     ]
   },
   villain: {
@@ -2913,10 +2822,10 @@ const CHAR_PROFILES = {
       { label: 'როლი', value: 'მტერი' }
     ],
     sections: [
-      { icon: '', title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>.</p>' },
-      { icon: '', title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი.</p>' },
-      { icon: '', title: 'ჩაცმულობა და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი, ხის შუბი.</p>' },
-      { icon: '', title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. იახსარი მას აბუდელაურის თეთრ ტბაში დაეწევა და დაამარცხებს.</p>' }
+      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>.</p>' },
+      { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი.</p>' },
+      { title: 'ჩაცმულობა და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი, ხის შუბი.</p>' },
+      { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. იახსარი მას აბუდელაურის თეთრ ტბაში დაეწევა და დაამარცხებს.</p>' }
     ]
   }
 };
@@ -2943,8 +2852,8 @@ $$('.profile-btn').forEach(btn => {
     const sectionsHtml = p.sections ? p.sections.map(sec => `
       <div style="margin-bottom:22px">
         <h3 style="display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">
-          <span style="flex:1;height:1px;background:linear-gradient(90deg, currentColor, transparent);opacity:.3;order:2"></span>
           <span>${esc(sec.title)}</span>
+          <span style="flex:1;height:1px;background:linear-gradient(90deg, currentColor, transparent);opacity:.3"></span>
         </h3>
         ${sec.html}
       </div>
@@ -2964,9 +2873,6 @@ $$('.profile-btn').forEach(btn => {
   });
 });
 
-/* ============================================================
-   ANIMATION MODAL (watch button)
-   ============================================================ */
 $('#watchBtn').addEventListener('click', () => {
   openModal('ანიმაცია ჯერ არ დაწყებულა', `
     <p style="color:var(--muted);font-size:.94rem;line-height:1.7;margin-bottom:24px">
@@ -2998,17 +2904,9 @@ $('#watchBtn').addEventListener('click', () => {
 })();
 
 /* ============================================================
-   AUTH BACK BUTTON
+   AUTH BACK
    ============================================================ */
-$('#authBack').addEventListener('click', () => {
-  const v = $('#authContent').dataset.view;
-  if (v === 'picker' && fbUser) {
-    // allow: user can go back to home gate
-    renderAuthHome();
-    return;
-  }
-  renderAuthHome();
-});
+$('#authBack').addEventListener('click', renderAuthHome);
 
 /* ============================================================
    INIT
