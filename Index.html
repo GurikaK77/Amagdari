@@ -69,7 +69,7 @@
 
   .container{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
 
-  /* ============ TOP BAR ============ */
+  /* TOP BAR */
   .topbar{
     position:fixed;top: calc(10px + var(--sat));right: calc(12px + var(--sar));
     z-index:120;display:flex;align-items:center;gap:8px;
@@ -96,7 +96,7 @@
   }
   .icon-btn.hidden{display:none}
 
-  /* ============ AUTH GATE ============ */
+  /* AUTH GATE */
   .auth-gate{
     position:fixed;inset:0;z-index:300;
     display:flex;align-items:center;justify-content:center;
@@ -143,10 +143,7 @@
     color:var(--muted);font-size:.94rem;font-weight:300;
     margin-bottom:32px;line-height:1.7;
   }
-
-  .auth-actions{
-    display:flex;flex-direction:column;gap:12px;
-  }
+  .auth-actions{display:flex;flex-direction:column;gap:12px}
   .auth-btn{
     display:flex;align-items:center;justify-content:center;gap:10px;
     width:100%;padding:16px 24px;
@@ -526,52 +523,23 @@
     box-shadow:inset 0 0 40px rgba(212,162,76,.25), 0 12px 32px -10px rgba(240,205,138,.75);
   }
 
-  /* Frame styles */
+  /* Frames */
   .avatar.frame-gold{border-color:#d4a24c;box-shadow:0 0 0 3px rgba(212,162,76,.15), 0 8px 24px -8px rgba(212,162,76,.65)}
   .avatar.frame-silver{border-color:#c0c0d0;box-shadow:0 0 0 3px rgba(192,192,208,.15), 0 8px 24px -8px rgba(192,192,208,.6)}
   .avatar.frame-bronze{border-color:#b87333;box-shadow:0 0 0 3px rgba(184,115,51,.15), 0 8px 24px -8px rgba(184,115,51,.6)}
   .avatar.frame-emerald{border-color:#4ec9b0;box-shadow:0 0 0 3px rgba(78,201,176,.15), 0 8px 24px -8px rgba(78,201,176,.7)}
   .avatar.frame-crimson{border-color:#e35d5d;box-shadow:0 0 0 3px rgba(227,93,93,.15), 0 8px 24px -8px rgba(227,93,93,.7)}
   .avatar.frame-purple{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.15), 0 8px 24px -8px rgba(167,139,250,.7)}
-  .avatar.frame-diamond{
-    border-color:#e0e8ff;
-    box-shadow:0 0 0 3px rgba(224,232,255,.2), 0 0 24px -4px rgba(224,232,255,.7);
-    animation:diamondShine 3s ease-in-out infinite;
-  }
+  .avatar.frame-diamond{border-color:#e0e8ff;box-shadow:0 0 0 3px rgba(224,232,255,.2), 0 0 24px -4px rgba(224,232,255,.7);animation:diamondShine 3s ease-in-out infinite}
   @keyframes diamondShine{0%,100%{box-shadow:0 0 0 3px rgba(224,232,255,.2), 0 0 24px -4px rgba(224,232,255,.6)}50%{box-shadow:0 0 0 3px rgba(224,232,255,.4), 0 0 32px -2px rgba(224,232,255,.95)}}
-  .avatar.frame-flame{
-    border-color:#ff9a3c;
-    background:linear-gradient(160deg,#1a1008,#0a0806);
-    box-shadow:0 0 0 3px rgba(255,154,60,.2), 0 0 30px -4px rgba(255,100,0,.8);
-    animation:flamePulse 2.4s ease-in-out infinite;
-  }
+  .avatar.frame-flame{border-color:#ff9a3c;background:linear-gradient(160deg,#1a1008,#0a0806);box-shadow:0 0 0 3px rgba(255,154,60,.2), 0 0 30px -4px rgba(255,100,0,.8);animation:flamePulse 2.4s ease-in-out infinite}
   @keyframes flamePulse{0%,100%{box-shadow:0 0 0 3px rgba(255,154,60,.2), 0 0 24px -4px rgba(255,100,0,.7)}50%{box-shadow:0 0 0 3px rgba(255,154,60,.45), 0 0 36px -2px rgba(255,120,0,1)}}
-  .avatar.frame-wave{
-    border-color:#4da6ff;
-    box-shadow:0 0 0 3px rgba(77,166,255,.2), 0 0 26px -4px rgba(77,166,255,.75);
-    animation:waveRipple 3s ease-in-out infinite;
-  }
+  .avatar.frame-wave{border-color:#4da6ff;box-shadow:0 0 0 3px rgba(77,166,255,.2), 0 0 26px -4px rgba(77,166,255,.75);animation:waveRipple 3s ease-in-out infinite}
   @keyframes waveRipple{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-  .avatar.frame-rune{
-    border-color:#b794f6;
-    background:radial-gradient(circle at 30% 30%, rgba(183,148,246,.2), transparent 60%), linear-gradient(160deg, #1a1028, #0a0806);
-    box-shadow:0 0 0 3px rgba(183,148,246,.15), 0 0 28px -6px rgba(183,148,246,.8);
-  }
-  .avatar.frame-tribal{
-    border-color:#d4a24c;
-    background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(212,162,76,.15) 0deg 4deg, transparent 4deg 8deg), linear-gradient(160deg, #1a140f, #0a0806);
-    box-shadow:0 0 0 3px rgba(212,162,76,.2), 0 0 24px -6px rgba(212,162,76,.75);
-  }
-  .avatar.frame-void{
-    border-color:#2a2a3a;
-    background:linear-gradient(160deg, #0a0a12, #000);
-    box-shadow:inset 0 0 30px rgba(0,0,0,.9), 0 0 0 3px rgba(60,60,80,.3), 0 0 24px -6px rgba(100,100,180,.5);
-  }
-  .avatar.frame-void .initial{
-    background:linear-gradient(180deg,#8888a8,#44445a);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
+  .avatar.frame-rune{border-color:#b794f6;background:radial-gradient(circle at 30% 30%, rgba(183,148,246,.2), transparent 60%), linear-gradient(160deg, #1a1028, #0a0806);box-shadow:0 0 0 3px rgba(183,148,246,.15), 0 0 28px -6px rgba(183,148,246,.8)}
+  .avatar.frame-tribal{border-color:#d4a24c;background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(212,162,76,.15) 0deg 4deg, transparent 4deg 8deg), linear-gradient(160deg, #1a140f, #0a0806);box-shadow:0 0 0 3px rgba(212,162,76,.2), 0 0 24px -6px rgba(212,162,76,.75)}
+  .avatar.frame-void{border-color:#2a2a3a;background:linear-gradient(160deg, #0a0a12, #000);box-shadow:inset 0 0 30px rgba(0,0,0,.9), 0 0 0 3px rgba(60,60,80,.3), 0 0 24px -6px rgba(100,100,180,.5)}
+  .avatar.frame-void .initial{background:linear-gradient(180deg,#8888a8,#44445a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
   .member-name{
     position:relative;font-size:1.05rem;font-weight:700;
@@ -598,12 +566,55 @@
     position:relative;
     font-family:'JetBrains Mono',monospace;
     font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--gold);opacity:.78;padding:0 22px 32px;
+    color:var(--gold);opacity:.78;padding:0 22px 12px;
     z-index:2;
     transition:opacity .4s, letter-spacing .4s, color .4s;
     min-height:2.6em;
   }
   .card.member:hover .member-role{opacity:1;letter-spacing:.28em;color:var(--gold-light)}
+
+  /* NEW: Member card profile button */
+  .member-profile-btn{
+    position:relative;z-index:3;
+    font-family:inherit;font-size:.8rem;font-weight:600;
+    letter-spacing:.08em;
+    border-radius:999px;
+    border:1px solid rgba(212,162,76,.5);
+    cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+    gap:8px;
+    background:rgba(212,162,76,.08);
+    color:var(--gold-light);
+    padding:10px 22px;
+    margin:0 22px 26px;
+    transition:all .3s cubic-bezier(.2,.8,.2,1);
+    white-space:nowrap;
+  }
+  .member-profile-btn svg{
+    width:13px;height:13px;
+    stroke:currentColor;fill:none;
+    stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+    flex:none;transition:transform .3s;
+  }
+  .member-profile-btn:hover{
+    background:linear-gradient(135deg,#d4a24c,#f0cd8a);
+    color:#1a1206;
+    border-color:transparent;
+    box-shadow:0 12px 26px -10px rgba(240,205,138,.9);
+    transform:translateY(-2px);
+  }
+  .member-profile-btn:hover svg{transform:translateX(3px)}
+  .card.member.dev .member-profile-btn{
+    border-color:rgba(78,201,176,.5);
+    color:#9dffe6;
+    background:rgba(78,201,176,.08);
+  }
+  .card.member.dev .member-profile-btn:hover{
+    background:linear-gradient(135deg,#4ec9b0,#7ff0d6);
+    color:#0c1a16;
+    border-color:transparent;
+    box-shadow:0 12px 26px -10px rgba(78,201,176,.9);
+  }
 
   .dev-badge{
     position:absolute;top:14px;right:14px;
@@ -1227,6 +1238,255 @@
   .modal-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
   .modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
+  /* ============================================================
+     MEMBER PROFILE MODAL — NEW
+     ============================================================ */
+  .member-modal-box{
+    max-width:600px;padding:0;text-align:left;overflow:hidden;
+    max-height:90svh;display:flex;flex-direction:column;
+    background:linear-gradient(170deg,#15112a,#0a0812);
+    border:1px solid rgba(212,162,76,.4);
+    box-shadow:0 44px 90px -34px #000, 0 0 70px -30px rgba(212,162,76,.55);
+  }
+  .member-modal-header{
+    position:relative;
+    padding:50px 28px 30px;
+    text-align:center;
+    background:linear-gradient(160deg,rgba(212,162,76,.16),rgba(212,162,76,.03));
+    border-bottom:1px solid rgba(212,162,76,.22);
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .member-modal-header::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(212,162,76,.25), transparent 55%);
+    pointer-events:none;
+  }
+  .member-modal-header.dev-mode{
+    background:linear-gradient(160deg,rgba(78,201,176,.16),rgba(78,201,176,.03));
+    border-bottom-color:rgba(78,201,176,.22);
+  }
+  .member-modal-header.dev-mode::before{
+    background:radial-gradient(circle at 50% 0%, rgba(78,201,176,.25), transparent 55%);
+  }
+  .member-modal-close{
+    position:absolute;top:14px;right:14px;
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    color:var(--text);cursor:pointer;
+    display:grid;place-items:center;
+    transition:all .3s;
+    z-index:10;
+  }
+  .member-modal-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
+  .member-modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+  .member-modal-avatar{
+    position:relative;
+    width:130px;height:130px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    display:grid;place-items:center;
+    background:linear-gradient(160deg, #1a140f, #0a0806);
+    border:2px solid rgba(212,162,76,.55);
+    box-shadow:inset 0 0 30px rgba(212,162,76,.15), 0 10px 30px -10px rgba(212,162,76,.6);
+    overflow:hidden;
+    z-index:2;
+  }
+  .member-modal-avatar img{
+    position:absolute;inset:0;
+    width:100%;height:100%;object-fit:cover;border-radius:50%;
+    z-index:2;
+  }
+  .member-modal-avatar .initial{
+    font-family:'JetBrains Mono',monospace;
+    font-size:3rem;font-weight:700;
+    background:linear-gradient(180deg,#fff6e0,#d4a24c,#8a6a2e);
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 16px rgba(212,162,76,.6));
+    z-index:1;
+  }
+  .member-modal-avatar::before{
+    content:"";position:absolute;inset:-8px;border-radius:50%;
+    border:1px solid rgba(212,162,76,.25);
+    pointer-events:none;
+  }
+  .member-modal-avatar::after{
+    content:"";position:absolute;inset:-14px;border-radius:50%;
+    border:1px dashed rgba(212,162,76,.35);
+    animation:spin 45s linear infinite;
+    pointer-events:none;
+  }
+  /* Reuse frame classes */
+  .member-modal-avatar.frame-gold{border-color:#d4a24c;box-shadow:0 0 0 3px rgba(212,162,76,.2), 0 0 30px -6px rgba(212,162,76,.7)}
+  .member-modal-avatar.frame-silver{border-color:#c0c0d0;box-shadow:0 0 0 3px rgba(192,192,208,.2), 0 0 30px -6px rgba(192,192,208,.7)}
+  .member-modal-avatar.frame-bronze{border-color:#b87333;box-shadow:0 0 0 3px rgba(184,115,51,.2), 0 0 30px -6px rgba(184,115,51,.7)}
+  .member-modal-avatar.frame-emerald{border-color:#4ec9b0;box-shadow:0 0 0 3px rgba(78,201,176,.2), 0 0 30px -6px rgba(78,201,176,.8)}
+  .member-modal-avatar.frame-crimson{border-color:#e35d5d;box-shadow:0 0 0 3px rgba(227,93,93,.2), 0 0 30px -6px rgba(227,93,93,.8)}
+  .member-modal-avatar.frame-purple{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.2), 0 0 30px -6px rgba(167,139,250,.8)}
+  .member-modal-avatar.frame-diamond{border-color:#e0e8ff;box-shadow:0 0 0 3px rgba(224,232,255,.25), 0 0 36px -4px rgba(224,232,255,.85);animation:diamondShine 3s ease-in-out infinite}
+  .member-modal-avatar.frame-flame{border-color:#ff9a3c;background:linear-gradient(160deg,#1a1008,#0a0806);box-shadow:0 0 0 3px rgba(255,154,60,.25), 0 0 38px -4px rgba(255,100,0,.9);animation:flamePulse 2.4s ease-in-out infinite}
+  .member-modal-avatar.frame-wave{border-color:#4da6ff;box-shadow:0 0 0 3px rgba(77,166,255,.25), 0 0 34px -4px rgba(77,166,255,.85);animation:waveRipple 3s ease-in-out infinite}
+  .member-modal-avatar.frame-rune{border-color:#b794f6;background:radial-gradient(circle at 30% 30%, rgba(183,148,246,.25), transparent 60%), linear-gradient(160deg, #1a1028, #0a0806);box-shadow:0 0 0 3px rgba(183,148,246,.2), 0 0 34px -6px rgba(183,148,246,.9)}
+  .member-modal-avatar.frame-tribal{border-color:#d4a24c;background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(212,162,76,.18) 0deg 4deg, transparent 4deg 8deg), linear-gradient(160deg, #1a140f, #0a0806);box-shadow:0 0 0 3px rgba(212,162,76,.25), 0 0 30px -6px rgba(212,162,76,.85)}
+  .member-modal-avatar.frame-void{border-color:#2a2a3a;background:linear-gradient(160deg, #0a0a12, #000);box-shadow:inset 0 0 30px rgba(0,0,0,.9), 0 0 0 3px rgba(60,60,80,.4), 0 0 30px -6px rgba(100,100,180,.6)}
+  .member-modal-avatar.frame-void .initial{background:linear-gradient(180deg,#8888a8,#44445a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  .member-modal-name{
+    position:relative;z-index:2;
+    font-size:clamp(1.5rem,4.5vw,1.9rem);
+    font-weight:900;letter-spacing:.04em;
+    color:#fff2d4;line-height:1.2;
+    padding:.04em 0 .12em;
+  }
+  .member-modal-nick{
+    position:relative;z-index:2;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold);opacity:.9;margin-top:8px;
+  }
+  .member-modal-badges{
+    position:relative;z-index:2;
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+    margin-top:16px;
+  }
+  .member-modal-badge{
+    display:inline-flex;align-items:center;gap:5px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.58rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;
+    padding:5px 11px;border-radius:6px;
+    color:#1a1206;
+    background:linear-gradient(135deg,#d4a24c,#f0cd8a);
+    box-shadow:0 6px 16px -6px rgba(240,205,138,.8);
+  }
+  .member-modal-badge.dev{
+    background:linear-gradient(135deg,#4ec9b0,#7ff0d6);
+    color:#0c1a16;
+    box-shadow:0 6px 16px -6px rgba(78,201,176,.85);
+  }
+  .member-modal-badge svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+  .member-modal-body{
+    padding:26px 28px 30px;
+    overflow-y:auto;flex:1;min-height:0;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(212,162,76,.3) transparent;
+  }
+  .member-modal-body::-webkit-scrollbar{width:8px}
+  .member-modal-body::-webkit-scrollbar-track{background:transparent}
+  .member-modal-body::-webkit-scrollbar-thumb{
+    background:rgba(212,162,76,.25);border-radius:4px;
+  }
+
+  /* Stats grid inside modal */
+  .member-stats{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:10px;margin-bottom:24px;
+  }
+  .member-stat{
+    text-align:center;padding:14px 10px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(212,162,76,.2);
+    border-radius:14px;
+    transition:background .3s, border-color .3s;
+  }
+  .member-stat:hover{background:rgba(212,162,76,.06);border-color:rgba(212,162,76,.35)}
+  .member-stat-icon{
+    width:30px;height:30px;margin:0 auto 8px;
+    border-radius:50%;display:grid;place-items:center;
+    background:rgba(212,162,76,.1);
+    border:1px solid rgba(212,162,76,.3);
+    color:var(--gold);
+  }
+  .member-stat-icon svg{
+    width:14px;height:14px;stroke:currentColor;fill:none;
+    stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  }
+  .member-stat-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:5px;
+  }
+  .member-stat-value{
+    font-size:.95rem;font-weight:700;
+    color:var(--gold-light);line-height:1.3;
+    word-break:break-word;
+  }
+
+  /* Section */
+  .member-section{margin-bottom:22px}
+  .member-section:last-child{margin-bottom:0}
+  .member-section-title{
+    display:flex;align-items:center;gap:9px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.64rem;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:12px;
+  }
+  .member-section-title svg{
+    width:13px;height:13px;
+    stroke:currentColor;fill:none;
+    stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+    flex-shrink:0;
+  }
+  .member-section-title::after{
+    content:"";flex:1;height:1px;
+    background:linear-gradient(90deg, currentColor, transparent);
+    opacity:.3;
+  }
+  .member-bio{
+    font-size:.94rem;line-height:1.75;
+    color:#cfc7e6;font-weight:300;
+    padding:16px 20px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(212,162,76,.18);
+    border-radius:14px;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+  .member-bio.empty{
+    text-align:center;
+    font-style:italic;
+    color:var(--muted);
+    opacity:.7;
+  }
+  .member-info-list{
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .member-info-row{
+    display:flex;align-items:center;gap:12px;
+    padding:12px 16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:12px;
+  }
+  .member-info-icon{
+    width:32px;height:32px;flex-shrink:0;
+    border-radius:50%;display:grid;place-items:center;
+    background:rgba(212,162,76,.1);
+    border:1px solid rgba(212,162,76,.25);
+    color:var(--gold);
+  }
+  .member-info-icon svg{
+    width:15px;height:15px;stroke:currentColor;fill:none;
+    stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  }
+  .member-info-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .member-info-value{
+    font-size:.9rem;font-weight:600;
+    color:#e8e2d5;
+    margin-top:2px;
+  }
+
+  /* Notifications */
   .notif-list{display:flex;flex-direction:column;gap:10px}
   .notif-item{
     display:flex;gap:12px;
@@ -1321,7 +1581,9 @@
     .mem-divider{margin:10px auto 10px;max-width:96px}
     .card.member:hover .mem-divider{max-width:130px}
     .mem-divider .d-shape{width:8px;height:8px}
-    .member-role{font-size:.58rem;letter-spacing:.18em;padding:0 16px 24px}
+    .member-role{font-size:.58rem;letter-spacing:.18em;padding:0 16px 10px}
+    .member-profile-btn{font-size:.72rem;padding:8px 16px;margin:0 14px 20px;gap:6px}
+    .member-profile-btn svg{width:11px;height:11px}
     .dev-badge{top:10px;right:10px;padding:3px 6px 3px 5px;font-size:.48rem}
     .dev-badge svg{width:7px;height:7px}
     .card.char{padding:78px 14px 28px}
@@ -1354,6 +1616,32 @@
     .frame-grid{grid-template-columns:repeat(3,1fr);gap:10px}
     .profile-avatar-big{width:116px;height:116px}
     .profile-avatar-big .initial{font-size:2.5rem}
+
+    /* Member modal mobile */
+    .member-modal-box{max-height:92svh;border-radius:20px}
+    .member-modal-header{padding:40px 20px 24px}
+    .member-modal-avatar{width:100px;height:100px;margin-bottom:16px}
+    .member-modal-avatar .initial{font-size:2.3rem}
+    .member-modal-avatar::before{inset:-6px}
+    .member-modal-avatar::after{inset:-11px}
+    .member-modal-name{font-size:1.35rem}
+    .member-modal-nick{font-size:.62rem;letter-spacing:.24em}
+    .member-modal-body{padding:20px 18px 26px}
+    .member-stats{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:18px}
+    .member-stat{padding:11px 6px;border-radius:11px}
+    .member-stat-icon{width:26px;height:26px;margin-bottom:6px}
+    .member-stat-icon svg{width:12px;height:12px}
+    .member-stat-label{font-size:.5rem;letter-spacing:.13em}
+    .member-stat-value{font-size:.85rem}
+    .member-section{margin-bottom:18px}
+    .member-section-title{font-size:.58rem;letter-spacing:.16em;margin-bottom:10px}
+    .member-section-title svg{width:12px;height:12px}
+    .member-bio{font-size:.86rem;line-height:1.7;padding:14px 16px}
+    .member-info-row{padding:10px 14px;gap:10px}
+    .member-info-icon{width:28px;height:28px}
+    .member-info-icon svg{width:13px;height:13px}
+    .member-info-label{font-size:.52rem;letter-spacing:.14em}
+    .member-info-value{font-size:.84rem}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -1659,6 +1947,14 @@
   </div>
 </div>
 
+<!-- NEW: Member profile modal -->
+<div class="modal" id="memberModal" aria-hidden="true">
+  <div class="modal-backdrop" data-member-close></div>
+  <div class="modal-box member-modal-box" id="memberModalBox">
+    <!-- JS fills -->
+  </div>
+</div>
+
 <div class="modal" id="notifModal" aria-hidden="true">
   <div class="modal-backdrop" data-notif-close></div>
   <div class="modal-box">
@@ -1777,6 +2073,13 @@ function timeAgo(ts) {
   return Math.floor(diff / 86400) + ' დღ';
 }
 
+function formatDate(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  const months = ['იანვარი','თებერვალი','მარტი','აპრილი','მაისი','ივნისი','ივლისი','აგვისტო','სექტემბერი','ოქტომბერი','ნოემბერი','დეკემბერი'];
+  return `${d.getDate()} ${months[d.getMonth()]}, ${d.getFullYear()}`;
+}
+
 function resizePhoto(file, maxSize = 300) {
   return new Promise((resolve, reject) => {
     if (!file.type.startsWith('image/')) return reject(new Error('მხოლოდ სურათის ფაილი'));
@@ -1848,8 +2151,7 @@ function applySiteContent() {
 }
 
 /* ============================================================
-   RENDER TEAM CARDS — reads from members/{memberId}
-   Falls back: displayName -> meta.name, nickname -> DEFAULT_NICK
+   RENDER TEAM CARDS — with profile button
    ============================================================ */
 function renderTeam() {
   const grid = $('#teamGrid');
@@ -1891,9 +2193,18 @@ function renderTeam() {
           <span class="d-line"></span>
         </div>
         <p class="member-role">${esc(nickname)}</p>
+        <button class="member-profile-btn" data-member="${id}">
+          პროფილის ნახვა
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
       </article>
     `;
   }).join('');
+
+  // Wire profile buttons
+  grid.querySelectorAll('[data-member]').forEach(btn => {
+    btn.addEventListener('click', () => openMemberModal(btn.dataset.member));
+  });
 
   const items = grid.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -1910,6 +2221,140 @@ function renderTeam() {
   } else {
     items.forEach(el => el.classList.add('visible'));
   }
+}
+
+/* ============================================================
+   OPEN MEMBER MODAL — full profile
+   Anyone can view (guests, members)
+   ============================================================ */
+function openMemberModal(memberId) {
+  const meta = MEMBERS[memberId];
+  if (!meta) return;
+
+  const m = membersSnapshot[memberId] || {};
+  const displayName = m.displayName || meta.name;
+  const nickname = m.nickname || DEFAULT_NICK[memberId];
+  const frame = m.frame || 'gold';
+  const photo = m.photo;
+  const bio = m.bio || '';
+  const createdAt = m.claimedAt || m.createdAt || null;
+  const isDev = meta.isDev;
+
+  const photoHtml = photo
+    ? `<img src="${photo}" alt="" />`
+    : `<span class="initial">${esc(meta.initial)}</span>`;
+
+  const badgesHtml = `
+    ${isDev ? `<span class="member-modal-badge dev"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>DEVELOPER</span>` : ''}
+    <span class="member-modal-badge"><svg viewBox="0 0 24 24"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>გუნდის წევრი</span>
+  `;
+
+  const bioSection = bio
+    ? `<div class="member-section">
+         <h3 class="member-section-title">
+           <svg viewBox="0 0 24 24"><path d="M4 4 h12 a4 4 0 0 1 4 4 v12 h-12 a4 4 0 0 1 -4 -4 z"/><line x1="4" y1="4" x2="4" y2="20"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg>
+           ჩემ შესახებ
+         </h3>
+         <div class="member-bio">${esc(bio)}</div>
+       </div>`
+    : `<div class="member-section">
+         <h3 class="member-section-title">
+           <svg viewBox="0 0 24 24"><path d="M4 4 h12 a4 4 0 0 1 4 4 v12 h-12 a4 4 0 0 1 -4 -4 z"/><line x1="4" y1="4" x2="4" y2="20"/></svg>
+           ჩემ შესახებ
+         </h3>
+         <div class="member-bio empty">ჯერ არაფერი დაუწერია</div>
+       </div>`;
+
+  $('#memberModalBox').innerHTML = `
+    <div class="member-modal-header${isDev ? ' dev-mode' : ''}">
+      <button class="member-modal-close" data-member-close aria-label="დახურვა">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="member-modal-avatar frame-${frame}">${photoHtml}</div>
+
+      <h2 class="member-modal-name">${esc(displayName)}</h2>
+      <p class="member-modal-nick">${esc(nickname)}</p>
+      <div class="member-modal-badges">${badgesHtml}</div>
+    </div>
+
+    <div class="member-modal-body">
+      <div class="member-stats">
+        <div class="member-stat">
+          <div class="member-stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+          </div>
+          <div class="member-stat-label">გაწევრიანდა</div>
+          <div class="member-stat-value">${createdAt ? formatDate(createdAt) : '—'}</div>
+        </div>
+        <div class="member-stat">
+          <div class="member-stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>
+          </div>
+          <div class="member-stat-label">სტატუსი</div>
+          <div class="member-stat-value">${isDev ? 'დეველოპერი' : 'წევრი'}</div>
+        </div>
+      </div>
+
+      ${bioSection}
+
+      <div class="member-section">
+        <h3 class="member-section-title">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3 v18 M3 12 h18"/></svg>
+          ინფორმაცია
+        </h3>
+        <div class="member-info-list">
+          <div class="member-info-row">
+            <span class="member-info-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            </span>
+            <div>
+              <div class="member-info-label">სახელი</div>
+              <div class="member-info-value">${esc(displayName)}</div>
+            </div>
+          </div>
+          <div class="member-info-row">
+            <span class="member-info-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 15 Q10 12 12 12 Q14 12 16 15"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg>
+            </span>
+            <div>
+              <div class="member-info-label">ნიკნეიმი</div>
+              <div class="member-info-value">${esc(nickname)}</div>
+            </div>
+          </div>
+          <div class="member-info-row">
+            <span class="member-info-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+            </span>
+            <div>
+              <div class="member-info-label">ჩარჩო</div>
+              <div class="member-info-value">${esc(FRAMES.find(f => f.id === frame)?.label || 'ოქრო')}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Wire close buttons
+  $('#memberModalBox').querySelectorAll('[data-member-close]').forEach(el => {
+    el.addEventListener('click', closeMemberModal);
+  });
+
+  lastFocused = document.activeElement;
+  $('#memberModal').classList.add('open');
+  $('#memberModal').setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  const closeBtn = $('#memberModalBox').querySelector('.member-modal-close');
+  if (closeBtn) setTimeout(() => closeBtn.focus(), 150);
+}
+
+function closeMemberModal() {
+  $('#memberModal').classList.remove('open');
+  $('#memberModal').setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (lastFocused) lastFocused.focus();
 }
 
 /* ============================================================
@@ -2104,6 +2549,7 @@ function renderRegisterForm() {
         memberId: null,
         displayName: '',
         nickname: '',
+        bio: '',
         frame: 'gold',
         createdAt: firebase.database.ServerValue.TIMESTAMP
       });
@@ -2263,7 +2709,7 @@ function confirmPick(memberId) {
         return;
       }
 
-      // Write to BOTH users/ and members/
+      const now = Date.now();
       const updates = {};
       updates['users/' + fbUser.uid + '/memberId'] = memberId;
       updates['users/' + fbUser.uid + '/displayName'] = meta.name;
@@ -2271,6 +2717,7 @@ function confirmPick(memberId) {
       updates['members/' + memberId + '/displayName'] = meta.name;
       updates['members/' + memberId + '/nickname'] = DEFAULT_NICK[memberId] || 'გუნდის წევრი';
       updates['members/' + memberId + '/frame'] = 'gold';
+      updates['members/' + memberId + '/claimedAt'] = now;
       await db.ref().update(updates);
 
       showToast('✓ წარმატებით შეხვედი', 'success');
@@ -2315,6 +2762,7 @@ function renderProfile() {
   const nickname = fbProfile.nickname || DEFAULT_NICK[memberId];
   const frame = fbProfile.frame || 'gold';
   const photo = fbProfile.photo;
+  const bio = fbProfile.bio || '';
 
   $('#profileContent').innerHTML = `
     <div class="profile-hero">
@@ -2344,6 +2792,14 @@ function renderProfile() {
         <span class="profile-action-body">
           <span class="profile-action-label">ნიკნეიმის შეცვლა</span>
           <span class="profile-action-hint">${esc(nickname)}</span>
+        </span>
+        <svg class="profile-action-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <button class="profile-action" id="btnEditBio">
+        <span class="profile-action-icon"><svg viewBox="0 0 24 24"><path d="M4 4 h12 a4 4 0 0 1 4 4 v12 h-12 a4 4 0 0 1 -4 -4 z"/><line x1="4" y1="4" x2="4" y2="20"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg></span>
+        <span class="profile-action-body">
+          <span class="profile-action-label">ჩემ შესახებ</span>
+          <span class="profile-action-hint">${bio ? bio.slice(0, 40) + (bio.length > 40 ? '...' : '') : 'ჯერ არაფერი დაგიწერია'}</span>
         </span>
         <svg class="profile-action-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
@@ -2377,14 +2833,12 @@ function renderProfile() {
   $('#profileAvatarBig').addEventListener('click', () => openPhotoModal());
   $('#btnEditName').addEventListener('click', editName);
   $('#btnEditNick').addEventListener('click', editNickname);
+  $('#btnEditBio').addEventListener('click', editBio);
   $('#btnEditPhoto').addEventListener('click', openPhotoModal);
   $('#btnEditFrame').addEventListener('click', openFramePicker);
   $('#btnLogout').addEventListener('click', doLogout);
 }
 
-/* ============================================================
-   ✅ FIXED: editName — sync to BOTH users/ and members/
-   ============================================================ */
 async function editName() {
   const current = fbProfile.displayName || MEMBERS[fbProfile.memberId].name;
   const val = prompt('ახალი სახელი:', current);
@@ -2403,9 +2857,6 @@ async function editName() {
   }
 }
 
-/* ============================================================
-   ✅ FIXED: editNickname — sync to BOTH
-   ============================================================ */
 async function editNickname() {
   const current = fbProfile.nickname || DEFAULT_NICK[fbProfile.memberId];
   const val = prompt('ახალი ნიკნეიმი:', current);
@@ -2424,9 +2875,24 @@ async function editNickname() {
   }
 }
 
-/* ============================================================
-   ✅ FIXED: Frame picker — sync to BOTH
-   ============================================================ */
+/* NEW: Edit Bio */
+async function editBio() {
+  const current = fbProfile.bio || '';
+  const val = prompt('ჩემ შესახებ (მაქს. 300 სიმბოლო):', current);
+  if (val === null) return;
+  const bio = val.trim();
+  if (bio.length > 300) { showToast('ტექსტი ძალიან გრძელია (მაქს. 300)', 'error'); return; }
+  try {
+    const updates = {};
+    updates['users/' + fbUser.uid + '/bio'] = bio;
+    updates['members/' + fbProfile.memberId + '/bio'] = bio;
+    await db.ref().update(updates);
+    showToast('✓ განახლდა', 'success');
+  } catch (ex) {
+    showToast('შეცდომა: ' + ex.message, 'error');
+  }
+}
+
 function openFramePicker() {
   const current = fbProfile.frame || 'gold';
   const html = `
@@ -2485,9 +2951,6 @@ function openPhotoModal() {
   lastFocused = document.activeElement;
 }
 
-/* ============================================================
-   ✅ FIXED: Photo upload — sync to BOTH
-   ============================================================ */
 $('#photoChooseBtn').addEventListener('click', () => $('#photoInput').click());
 $('#photoInput').addEventListener('change', async (e) => {
   const file = e.target.files[0];
@@ -2505,9 +2968,6 @@ $('#photoInput').addEventListener('change', async (e) => {
   }
 });
 
-/* ============================================================
-   ✅ FIXED: Photo remove — sync to BOTH
-   ============================================================ */
 $('#photoRemoveBtn').addEventListener('click', async () => {
   try {
     const updates = {};
@@ -2787,9 +3247,13 @@ $$('[data-close]').forEach(el => el.addEventListener('click', closeModal));
 $$('[data-char-close]').forEach(el => el.addEventListener('click', () => $('#charModal').classList.remove('open')));
 $$('[data-notif-close]').forEach(el => el.addEventListener('click', () => $('#notifModal').classList.remove('open')));
 $$('[data-photo-close]').forEach(el => el.addEventListener('click', () => $('#photoModal').classList.remove('open')));
+$$('[data-member-close]').forEach(el => el.addEventListener('click', closeMemberModal));
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeAllModals();
+  if (e.key === 'Escape') {
+    closeAllModals();
+    closeMemberModal();
+  }
 });
 
 /* ============================================================
@@ -2830,7 +3294,7 @@ const CHAR_PROFILES = {
   }
 };
 
-$$('.profile-btn').forEach(btn => {
+$$('.profile-btn[data-char]').forEach(btn => {
   btn.addEventListener('click', () => {
     const key = btn.dataset.char;
     const p = CHAR_PROFILES[key];
