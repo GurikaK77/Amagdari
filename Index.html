@@ -15,8 +15,10 @@
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f0cd8a'/%3E%3Cstop offset='.5' stop-color='%23d4a24c'/%3E%3Cstop offset='1' stop-color='%23a97a2e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230d0a17'/%3E%3Cpath d='M32 7 L49 32 L32 57 L15 32 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6.5' fill='%230d0a17'/%3E%3C/svg%3E" />
 
-<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231b1436'/%3E%3Cstop offset='1' stop-color='%230a0812'/%3E%3C/linearGradient%3E%3ClinearGradient id='gold' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f0cd8a'/%3E%3Cstop offset='.5' stop-color='%23d4a24c'/%3E%3Cstop offset='1' stop-color='%23a97a2e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Ccircle cx='90' cy='90' r='74' fill='none' stroke='rgba(212,162,76,.35)' stroke-width='2'/%3E%3Ccircle cx='90' cy='90' r='60' fill='none' stroke='rgba(212,162,76,.2)' stroke-width='2' stroke-dasharray='5 8'/%3E%3Cpath d='M90 22 L134 90 L90 158 L46 90 Z' fill='url(%23gold)'/%3E%3Ccircle cx='90' cy='90' r='20' fill='%230d0a17'/%3E%3Ccircle cx='90' cy='90' r='20' fill='none' stroke='rgba(240,205,138,.85)' stroke-width='2'/%3E%3C/svg%3E" />
-<link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231b1436'/%3E%3Cstop offset='1' stop-color='%230a0812'/%3E%3C/linearGradient%3E%3ClinearGradient id='gold' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f0cd8a'/%3E%3Cstop offset='.5' stop-color='%23d4a24c'/%3E%3Cstop offset='1' stop-color='%23a97a2e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Ccircle cx='90' cy='90' r='74' fill='none' stroke='rgba(212,162,76,.35)' stroke-width='2'/%3E%3Ccircle cx='90' cy='90' r='60' fill='none' stroke='rgba(212,162,76,.2)' stroke-width='2' stroke-dasharray='5 8'/%3E%3Cpath d='M90 22 L134 90 L90 158 L46 90 Z' fill='url(%23gold)'/%3E%3Ccircle cx='90' cy='90' r='20' fill='%230d0a17'/%3E%3Ccircle cx='90' cy='90' r='20' fill='none' stroke='rgba(240,205,138,.85)' stroke-width='2'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" sizes="180x180" href="#" id="appleTouchIcon180" />
+<link rel="apple-touch-icon" sizes="152x152" href="#" id="appleTouchIcon152" />
+<link rel="apple-touch-icon" sizes="120x120" href="#" id="appleTouchIcon120" />
+<link rel="apple-touch-icon" href="#" id="appleTouchIconDefault" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,7 +48,6 @@
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-  /* ============ iOS / SAFARI FIXES ============ */
   html{
     scroll-behavior:smooth;
     background:#1b1436;
@@ -69,7 +70,6 @@
   }
   body.no-nav{padding-bottom:0}
 
-  /* ყველა ღილაკი — iOS-ისთვის უსაფრთხო */
   button, .btn, .auth-btn, .profile-btn, .nav-btn, .member-profile-btn, .icon-btn, .profile-action, .picker-item, .modal-close, .member-modal-close, .auth-back, .request-actions button{
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -77,7 +77,6 @@
     appearance: none;
   }
 
-  /* Input-ები — 16px რომ iOS auto-zoom არ გააკეთოს */
   input, textarea, select, .form-input, .editor-textarea{
     font-size: 16px;
     -webkit-appearance: none;
@@ -104,7 +103,6 @@
 
   .container{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
 
-  /* TOP BAR */
   .topbar{
     position:fixed;top: calc(10px + var(--sat));right: calc(12px + var(--sar));
     z-index:120;display:flex;align-items:center;gap:8px;
@@ -133,7 +131,6 @@
   }
   .icon-btn.hidden{display:none}
 
-  /* AUTH GATE */
   .auth-gate{
     position:fixed;inset:0;z-index:300;
     display:flex;align-items:center;justify-content:center;
@@ -488,15 +485,21 @@
 
   .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
 
-  /* MEMBER CARDS */
+  /* ============================================================
+     MEMBER CARDS — განახლებული
+     ============================================================ */
   .card.member{
     position:relative;padding:0;
     background:radial-gradient(circle at 50% 0%, rgba(212,162,76,.08), transparent 55%), linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
     border:1px solid rgba(212,162,76,.24);
-    border-radius:14px;text-align:center;overflow:hidden;
+    border-radius:14px;
+    text-align:center;
+    overflow:hidden;
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
     isolation:isolate;
+    display:flex;
+    flex-direction:column;
     transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .5s, box-shadow .5s;
   }
   .card.member::before{
@@ -532,6 +535,7 @@
     z-index:2;
     transition:transform .5s, box-shadow .5s, border-color .5s;
     overflow:hidden;
+    flex-shrink:0;
   }
   .avatar img{
     position:absolute;inset:0;
@@ -590,7 +594,7 @@
   .member-name{
     position:relative;font-size:1.05rem;font-weight:700;
     letter-spacing:.04em;color:#e8e2d5;line-height:1.4;
-    padding:.03em 0 .1em;margin-bottom:2px;z-index:2;
+    padding:.03em 16px .1em;margin-bottom:2px;z-index:2;
     transition:color .4s;
     word-break:break-word;
   }
@@ -613,47 +617,67 @@
     position:relative;
     font-family:'JetBrains Mono',monospace;
     font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--gold);opacity:.78;padding:0 22px 12px;
+    color:var(--gold);opacity:.78;
+    padding:0 16px;
     z-index:2;
     transition:opacity .4s, letter-spacing .4s, color .4s;
-    min-height:2.6em;
+    min-height:2.4em;
     word-break:break-word;
+    display:flex;align-items:center;justify-content:center;
   }
   .card.member:hover .member-role{opacity:1;letter-spacing:.28em;color:var(--gold-light)}
 
+  /* ============================================================
+     MEMBER ACTIONS — wrapper + button, სუფთა layout
+     ============================================================ */
+  .member-actions{
+    position:relative;
+    z-index:3;
+    padding: 22px 18px 22px;
+    margin-top:auto;
+    display:flex;
+    flex-direction:column;
+  }
   .member-profile-btn{
-    position:relative;z-index:3;
-    font-family:inherit;font-size:.84rem;font-weight:600;
-    letter-spacing:.08em;
+    font-family:inherit;
+    font-size:.84rem;
+    font-weight:600;
+    letter-spacing:.06em;
     border-radius:999px;
     border:1px solid rgba(212,162,76,.5);
     cursor:pointer;
-    display:inline-flex;align-items:center;justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     gap:8px;
     background:rgba(212,162,76,.08);
     color:var(--gold-light);
+    width:100%;
     min-height:46px;
-    padding:12px 24px;
-    margin:0 22px 26px;
+    padding:12px 20px;
     transition:all .3s cubic-bezier(.2,.8,.2,1);
     white-space:nowrap;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    line-height:1;
   }
   .member-profile-btn svg{
     width:13px;height:13px;
     stroke:currentColor;fill:none;
     stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-    flex:none;transition:transform .3s;
+    flex:none;
+    transition:transform .3s;
   }
   .member-profile-btn:hover{
     background:linear-gradient(135deg,#d4a24c,#f0cd8a);
     color:#1a1206;
     border-color:transparent;
     box-shadow:0 12px 26px -10px rgba(240,205,138,.9);
-    transform:translateY(-2px);
   }
-  .member-profile-btn:active{transform:translateY(0) scale(.97)}
+  .member-profile-btn:active{
+    transform:scale(.97);
+    box-shadow:0 6px 16px -8px rgba(240,205,138,.8);
+  }
   .member-profile-btn:hover svg{transform:translateX(3px)}
   .card.member.dev .member-profile-btn{
     border-color:rgba(78,201,176,.5);
@@ -888,7 +912,6 @@
   .progress-card.queued .progress-desc{color:#a49ad0}
   .progress-card.queued .progress-status{color:#e0daff;background:rgba(154,143,212,.12);border-color:rgba(154,143,212,.5)}
 
-  /* BOTTOM NAV */
   .bottom-nav{
     position:fixed;
     left:12px;right:12px;
@@ -1333,7 +1356,6 @@
   .modal-close:active{transform:rotate(90deg) scale(.9)}
   .modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
-  /* MEMBER PROFILE MODAL */
   .member-modal-box{
     max-width:600px;padding:0;text-align:left;overflow:hidden;
     max-height:90svh;display:flex;flex-direction:column;
@@ -1665,25 +1687,25 @@
     .section{padding:70px 0}
     .grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
 
-    /* MEMBER CARDS mobile */
+    /* MEMBER CARDS mobile — სუფთა */
     .card.member::after{inset:5px}
     .mem-top{height:36px;padding-top:10px}
     .mem-top svg{width:96px;height:12px}
-    .avatar{width:80px;height:80px;margin-bottom:14px}
+    .avatar{width:82px;height:82px;margin-bottom:14px}
     .avatar .initial{font-size:1.7rem}
     .avatar::before{inset:-5px}
     .avatar::after{inset:-10px}
-    .member-name{font-size:.94rem}
+    .member-name{font-size:.94rem;padding:0 12px}
     .mem-divider{margin:10px auto 10px;max-width:96px}
     .card.member:hover .mem-divider{max-width:130px}
     .mem-divider .d-shape{width:8px;height:8px}
-    .member-role{font-size:.58rem;letter-spacing:.18em;padding:0 16px 10px}
-    .member-profile-btn{font-size:.76rem;padding:11px 18px;margin:0 14px 22px;gap:6px;min-height:44px}
-    .member-profile-btn svg{width:11px;height:11px}
+    .member-role{font-size:.58rem;letter-spacing:.18em;padding:0 12px;min-height:2em}
+    .member-actions{padding:18px 14px 20px}
+    .member-profile-btn{font-size:.78rem;min-height:48px;padding:13px 16px;gap:6px}
+    .member-profile-btn svg{width:12px;height:12px}
     .dev-badge{top:10px;right:10px;padding:3px 6px 3px 5px;font-size:.48rem}
     .dev-badge svg{width:7px;height:7px}
 
-    /* CHAR CARDS mobile */
     .card.char{padding:78px 14px 28px}
     .char-emblem{width:88px;height:88px;margin:4px 0 18px}
     .char-symbol{font-size:2.5rem}
@@ -1691,7 +1713,6 @@
     .char-desc{font-size:.76rem}
     .char-frame span{width:16px;height:16px}
 
-    /* BUTTONS iOS-safe */
     .btn{min-height:52px;padding:15px 26px;font-size:.96rem}
     .hero-actions{gap:12px;padding:0 20px}
     .hero-actions .btn{flex:1 1 100%;justify-content:center}
@@ -1703,7 +1724,6 @@
     .profile-btn{font-size:.78rem;padding:11px 20px;margin-top:18px;gap:6px;min-height:46px}
     .profile-btn svg{width:12px;height:12px}
 
-    /* PROGRESS mobile */
     .progress-section{padding:70px 0 80px}
     .progress-grid{gap:14px}
     .progress-card{padding:20px 18px;gap:14px}
@@ -1713,14 +1733,12 @@
     .progress-desc{font-size:.78rem}
     .progress-status{font-size:.52rem;padding:4px 9px;letter-spacing:.12em}
 
-    /* BOTTOM NAV mobile */
     .bottom-nav{height:62px;border-radius:16px;left:8px;right:8px;bottom: calc(8px + var(--sab))}
     .nav-btn{font-size:.54rem;letter-spacing:.1em;gap:2px}
     .nav-btn svg{width:20px;height:20px}
     .nav-btn.center .nav-emblem{width:38px;height:38px}
     .nav-btn.center svg{width:24px;height:24px}
 
-    /* PROFILE page mobile */
     .frame-grid{grid-template-columns:repeat(3,1fr);gap:12px}
     .profile-avatar-big{width:118px;height:118px}
     .profile-avatar-big .initial{font-size:2.5rem}
@@ -1734,11 +1752,9 @@
     .profile-action-label{font-size:.94rem}
     .profile-action-hint{font-size:.72rem}
 
-    /* MODALS mobile */
     .modal{padding: calc(16px + var(--sat)) 14px calc(16px + var(--sab))}
     .modal-box{padding:30px 22px 34px;border-radius:20px}
 
-    /* Member modal mobile */
     .member-modal-box{max-height:92svh;border-radius:20px}
     .member-modal-header{padding:44px 20px 26px}
     .member-modal-avatar{width:100px;height:100px;margin-bottom:16px}
@@ -1764,19 +1780,16 @@
     .member-info-label{font-size:.52rem;letter-spacing:.14em}
     .member-info-value{font-size:.86rem}
 
-    /* AUTH mobile */
     .auth-gate{padding: calc(20px + var(--sat)) 18px calc(20px + var(--sab))}
     .auth-title{font-size:clamp(2rem,9vw,2.6rem)}
     .auth-sub{font-size:.6rem;letter-spacing:.28em}
     .auth-btn{min-height:56px;padding:16px 22px;font-size:.98rem}
 
-    /* EDITOR mobile */
     .editor-wrap{padding:0 18px 40px}
     .editor-field-label{font-size:.58rem;letter-spacing:.16em}
     .editor-current{font-size:.76rem;padding:11px 13px}
     .editor-textarea{min-height:130px;padding:14px 15px}
 
-    /* Request actions mobile */
     .request-actions{flex-direction:column}
     .request-actions button{width:100%}
   }
@@ -2122,6 +2135,103 @@
 
 <script>
 /* ============================================================
+   🎨 APPLE TOUCH ICON — Canvas → PNG (iOS მხოლოდ PNG-ს იღებს)
+   ============================================================ */
+(function generateAppleIcon(){
+  function drawIcon(size, cb) {
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    const s = size;
+
+    // Background — rounded rect dark
+    const bgGrad = ctx.createLinearGradient(0, 0, s, s);
+    bgGrad.addColorStop(0, '#1b1436');
+    bgGrad.addColorStop(1, '#0a0812');
+    ctx.fillStyle = bgGrad;
+
+    // Rounded rect (radius ~22%)
+    const r = s * 0.22;
+    ctx.beginPath();
+    ctx.moveTo(r, 0);
+    ctx.lineTo(s - r, 0);
+    ctx.quadraticCurveTo(s, 0, s, r);
+    ctx.lineTo(s, s - r);
+    ctx.quadraticCurveTo(s, s, s - r, s);
+    ctx.lineTo(r, s);
+    ctx.quadraticCurveTo(0, s, 0, s - r);
+    ctx.lineTo(0, r);
+    ctx.quadraticCurveTo(0, 0, r, 0);
+    ctx.closePath();
+    ctx.fill();
+
+    // Outer subtle ring
+    ctx.strokeStyle = 'rgba(212,162,76,0.35)';
+    ctx.lineWidth = s * 0.011;
+    ctx.beginPath();
+    ctx.arc(s/2, s/2, s * 0.41, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Dashed inner ring
+    ctx.strokeStyle = 'rgba(212,162,76,0.2)';
+    ctx.lineWidth = s * 0.008;
+    ctx.setLineDash([s * 0.028, s * 0.045]);
+    ctx.beginPath();
+    ctx.arc(s/2, s/2, s * 0.335, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Gold diamond
+    const goldGrad = ctx.createLinearGradient(s * 0.27, s * 0.12, s * 0.73, s * 0.88);
+    goldGrad.addColorStop(0, '#f0cd8a');
+    goldGrad.addColorStop(0.5, '#d4a24c');
+    goldGrad.addColorStop(1, '#a97a2e');
+    ctx.fillStyle = goldGrad;
+    ctx.beginPath();
+    ctx.moveTo(s/2, s * 0.12);
+    ctx.lineTo(s * 0.74, s/2);
+    ctx.lineTo(s/2, s * 0.88);
+    ctx.lineTo(s * 0.26, s/2);
+    ctx.closePath();
+    ctx.fill();
+
+    // Inner dark circle
+    ctx.fillStyle = '#0d0a17';
+    ctx.beginPath();
+    ctx.arc(s/2, s/2, s * 0.11, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Inner ring around circle
+    ctx.strokeStyle = 'rgba(240,205,138,0.85)';
+    ctx.lineWidth = s * 0.011;
+    ctx.beginPath();
+    ctx.arc(s/2, s/2, s * 0.11, 0, Math.PI * 2);
+    ctx.stroke();
+
+    cb(canvas.toDataURL('image/png'));
+  }
+
+  // Generate one PNG at highest res, then reuse
+  drawIcon(180, (png180) => {
+    const el180 = document.getElementById('appleTouchIcon180');
+    const el152 = document.getElementById('appleTouchIcon152');
+    const el120 = document.getElementById('appleTouchIcon120');
+    const elDef = document.getElementById('appleTouchIconDefault');
+    if (el180) el180.href = png180;
+    if (el152) el152.href = png180;
+    if (el120) el120.href = png180;
+    if (elDef) elDef.href = png180;
+
+    // Also inject into <head> as additional fallback
+    const link192 = document.createElement('link');
+    link192.rel = 'apple-touch-icon-precomposed';
+    link192.href = png180;
+    document.head.appendChild(link192);
+  });
+})();
+
+/* ============================================================
    iOS: prevent double-tap zoom & gesture zoom
    ============================================================ */
 (function(){
@@ -2188,9 +2298,6 @@ const EDITABLE_FIELDS = {
   story6: 'VI სცენა — მტრედად ქცევა'
 };
 
-/* ============================================================
-   STATE
-   ============================================================ */
 let fbUser = null;
 let fbProfile = null;
 let membersSnapshot = {};
@@ -2199,9 +2306,6 @@ let notifications = [];
 let isGuest = false;
 let lastFocused = null;
 
-/* ============================================================
-   HELPERS
-   ============================================================ */
 const $  = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
 const esc = (s) => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2255,9 +2359,7 @@ function resizePhoto(file, maxSize = 300) {
   });
 }
 
-/* ============================================================
-   STARS
-   ============================================================ */
+/* STARS */
 (function () {
   const wrap = $('#stars');
   if (!wrap) return;
@@ -2277,9 +2379,7 @@ function resizePhoto(file, maxSize = 300) {
   wrap.appendChild(frag);
 })();
 
-/* ============================================================
-   MEMBERS LISTENER
-   ============================================================ */
+/* MEMBERS LISTENER */
 db.ref('members').on('value', snap => {
   membersSnapshot = snap.val() || {};
   renderTeam();
@@ -2287,9 +2387,7 @@ db.ref('members').on('value', snap => {
   checkAllRegistered();
 });
 
-/* ============================================================
-   SITE CONTENT LISTENER
-   ============================================================ */
+/* SITE CONTENT */
 db.ref('siteContent').on('value', snap => {
   siteContent = snap.val() || {};
   applySiteContent();
@@ -2302,9 +2400,7 @@ function applySiteContent() {
   });
 }
 
-/* ============================================================
-   RENDER TEAM CARDS
-   ============================================================ */
+/* RENDER TEAM */
 function renderTeam() {
   const grid = $('#teamGrid');
   if (!grid) return;
@@ -2345,10 +2441,12 @@ function renderTeam() {
           <span class="d-line"></span>
         </div>
         <p class="member-role">${esc(nickname)}</p>
-        <button class="member-profile-btn" data-member="${id}">
-          პროფილის ნახვა
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+        <div class="member-actions">
+          <button class="member-profile-btn" data-member="${id}">
+            პროფილის ნახვა
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
       </article>
     `;
   }).join('');
@@ -2374,9 +2472,7 @@ function renderTeam() {
   }
 }
 
-/* ============================================================
-   OPEN MEMBER MODAL
-   ============================================================ */
+/* MEMBER MODAL */
 function openMemberModal(memberId) {
   const meta = MEMBERS[memberId];
   if (!meta) return;
@@ -2506,9 +2602,6 @@ function closeMemberModal() {
   if (lastFocused) lastFocused.focus();
 }
 
-/* ============================================================
-   CHECK ALL REGISTERED
-   ============================================================ */
 function checkAllRegistered() {
   const allTaken = MEMBER_ORDER.every(id => membersSnapshot[id] && membersSnapshot[id].claimedBy);
   const gate = $('#authGate');
@@ -2524,9 +2617,7 @@ function checkAllRegistered() {
   }
 }
 
-/* ============================================================
-   AUTH STATE
-   ============================================================ */
+/* AUTH STATE */
 auth.onAuthStateChanged(async (user) => {
   fbUser = user;
 
@@ -2606,9 +2697,6 @@ function afterAuthReady() {
   if (!$('#authContent').dataset.view) renderAuthHome();
 }
 
-/* ============================================================
-   AUTH GATE VIEWS
-   ============================================================ */
 function setAuthView(view) {
   $('#authContent').dataset.view = view;
   $('#authBack').classList.toggle('hidden', view === 'home');
@@ -2771,9 +2859,6 @@ function enterGuest() {
   showToast('👁 სტუმრის რეჟიმი', '');
 }
 
-/* ============================================================
-   MEMBER PICKER
-   ============================================================ */
 function renderMemberPicker() {
   setAuthView('picker');
 
@@ -2880,9 +2965,6 @@ function confirmPick(memberId) {
   });
 }
 
-/* ============================================================
-   NAV
-   ============================================================ */
 $$('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const view = btn.dataset.view;
@@ -2896,9 +2978,6 @@ $$('.nav-btn').forEach(btn => {
   });
 });
 
-/* ============================================================
-   PROFILE PAGE
-   ============================================================ */
 function renderProfile() {
   if (!fbUser || !fbProfile || !fbProfile.memberId) {
     $('#profileContent').innerHTML = '<div style="text-align:center;padding:60px 22px;color:var(--muted)">გთხოვ შეხვიდე ექაუნთში.</div>';
@@ -3141,9 +3220,6 @@ async function doLogout() {
   }
 }
 
-/* ============================================================
-   EDITOR PAGE
-   ============================================================ */
 function renderEditor() {
   if (!fbUser || !fbProfile || !fbProfile.memberId) {
     $('#editorContent').innerHTML = '<div style="text-align:center;padding:60px 22px;color:var(--muted)">გთხოვ შეხვიდე ექაუნთში.</div>';
@@ -3306,9 +3382,6 @@ function renderAdminRequests() {
   }
 }
 
-/* ============================================================
-   NOTIFICATIONS
-   ============================================================ */
 function renderNotifBadge() {
   const unread = notifications.filter(n => !n.read).length;
   const badge = $('#notifBadge');
@@ -3370,9 +3443,6 @@ $('#loginBtn').addEventListener('click', () => {
   renderAuthHome();
 });
 
-/* ============================================================
-   GENERIC MODAL
-   ============================================================ */
 function openModal(title, bodyHtml, afterOpen) {
   const modal = $('#modal');
   const box = $('#modalBox');
@@ -3403,9 +3473,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* ============================================================
-   CHARACTER MODAL
-   ============================================================ */
 const CHAR_PROFILES = {
   hero: {
     icon: '★', alias: 'პროტაგონისტი', name: 'იახსარი',
@@ -3494,9 +3561,6 @@ $('#watchBtn').addEventListener('click', () => {
   `);
 });
 
-/* ============================================================
-   REVEAL
-   ============================================================ */
 (function () {
   const items = document.querySelectorAll('.reveal:not(.card.member)');
   if (!('IntersectionObserver' in window)) {
@@ -3514,14 +3578,8 @@ $('#watchBtn').addEventListener('click', () => {
   items.forEach(el => io.observe(el));
 })();
 
-/* ============================================================
-   AUTH BACK
-   ============================================================ */
 $('#authBack').addEventListener('click', renderAuthHome);
 
-/* ============================================================
-   INIT
-   ============================================================ */
 renderAuthHome();
 </script>
 
