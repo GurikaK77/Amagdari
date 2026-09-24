@@ -70,14 +70,14 @@
   }
   body.no-nav{padding-bottom:0}
 
-  button, .btn, .auth-btn, .profile-btn, .nav-btn, .member-profile-btn, .icon-btn, .profile-action, .picker-item, .modal-close, .member-modal-close, .auth-back, .request-actions button{
+  button, .btn, .auth-btn, .profile-btn, .nav-btn, .member-profile-btn, .icon-btn, .profile-action, .picker-item, .modal-close, .member-modal-close, .auth-back, .request-actions button, .comment-submit-btn{
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     -webkit-appearance: none;
     appearance: none;
   }
 
-  input, textarea, select, .form-input, .editor-textarea{
+  input, textarea, select, .form-input, .editor-textarea, .comment-input, .comment-textarea{
     font-size: 16px;
     -webkit-appearance: none;
     appearance: none;
@@ -485,9 +485,6 @@
 
   .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
 
-  /* ============================================================
-     MEMBER CARDS — განახლებული
-     ============================================================ */
   .card.member{
     position:relative;padding:0;
     background:radial-gradient(circle at 50% 0%, rgba(212,162,76,.08), transparent 55%), linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
@@ -573,7 +570,6 @@
     box-shadow:inset 0 0 40px rgba(212,162,76,.25), 0 12px 32px -10px rgba(240,205,138,.75);
   }
 
-  /* Frames */
   .avatar.frame-gold{border-color:#d4a24c;box-shadow:0 0 0 3px rgba(212,162,76,.15), 0 8px 24px -8px rgba(212,162,76,.65)}
   .avatar.frame-silver{border-color:#c0c0d0;box-shadow:0 0 0 3px rgba(192,192,208,.15), 0 8px 24px -8px rgba(192,192,208,.6)}
   .avatar.frame-bronze{border-color:#b87333;box-shadow:0 0 0 3px rgba(184,115,51,.15), 0 8px 24px -8px rgba(184,115,51,.6)}
@@ -627,9 +623,6 @@
   }
   .card.member:hover .member-role{opacity:1;letter-spacing:.28em;color:var(--gold-light)}
 
-  /* ============================================================
-     MEMBER ACTIONS — wrapper + button, სუფთა layout
-     ============================================================ */
   .member-actions{
     position:relative;
     z-index:3;
@@ -711,7 +704,6 @@
     box-shadow:0 26px 60px -28px rgba(212,162,76,.65), 0 0 0 1px rgba(212,162,76,.12);
   }
 
-  /* CHARACTER CARDS */
   .card.char{
     position:relative;background:var(--card-bg);
     border:1px solid rgba(255,255,255,.08);border-radius:22px;
@@ -911,6 +903,167 @@
   .progress-card.queued .progress-title{color:#e0daff}
   .progress-card.queued .progress-desc{color:#a49ad0}
   .progress-card.queued .progress-status{color:#e0daff;background:rgba(154,143,212,.12);border-color:rgba(154,143,212,.5)}
+
+  /* ============================================================
+     COMMENT SECTION — ახალი
+     ============================================================ */
+  .comment-section{
+    position:relative;
+    padding:110px 0 120px;
+    background:linear-gradient(180deg,transparent,rgba(212,162,76,.03) 50%,transparent);
+  }
+  .comment-wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 22px;
+  }
+  .comment-card{
+    background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+    border:1px solid rgba(212,162,76,.24);
+    border-radius:22px;
+    padding:34px 30px 30px;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    position:relative;
+    overflow:hidden;
+  }
+  .comment-card::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:80px;height:2px;
+    background:linear-gradient(90deg,transparent,#f0cd8a,transparent);
+    border-radius:2px;
+    opacity:.8;
+  }
+  .comment-field{
+    margin-bottom:18px;
+    position:relative;
+    z-index:2;
+  }
+  .comment-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.62rem;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .comment-label .optional-tag{
+    font-size:.52rem;
+    letter-spacing:.14em;
+    padding:2px 7px;
+    border-radius:4px;
+    background:rgba(255,255,255,.05);
+    color:var(--muted);
+    border:1px solid rgba(255,255,255,.1);
+    font-weight:600;
+    text-transform:none;
+    letter-spacing:.06em;
+  }
+  .comment-input,
+  .comment-textarea{
+    width:100%;
+    padding:14px 16px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+    color:var(--text);
+    font-family:inherit;
+    font-size:16px;
+    outline:none;
+    transition:all .3s;
+    line-height:1.6;
+  }
+  .comment-input{min-height:52px}
+  .comment-textarea{
+    min-height:130px;
+    resize:vertical;
+    line-height:1.7;
+    -webkit-overflow-scrolling:touch;
+  }
+  .comment-input:focus,
+  .comment-textarea:focus{
+    border-color:rgba(212,162,76,.7);
+    background:rgba(212,162,76,.06);
+    box-shadow:0 0 0 3px rgba(212,162,76,.15);
+  }
+  .comment-input::placeholder,
+  .comment-textarea::placeholder{color:var(--muted);opacity:.55}
+  .comment-submit-btn{
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    background:linear-gradient(135deg,#d4a24c,#f0cd8a);
+    color:#1a1206;
+    width:100%;
+    min-height:54px;
+    padding:16px 28px;
+    box-shadow:0 12px 34px -14px rgba(212,162,76,.85);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, opacity .3s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .comment-submit-btn:hover:not(:disabled){
+    transform:translateY(-2px);
+    box-shadow:0 20px 46px -16px rgba(212,162,76,1);
+  }
+  .comment-submit-btn:active:not(:disabled){transform:scale(.98)}
+  .comment-submit-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+  }
+  .comment-submit-btn svg{
+    width:16px;height:16px;
+    stroke:currentColor;fill:none;
+    stroke-width:2.2;
+    stroke-linecap:round;stroke-linejoin:round;
+    flex:none;
+    transition:transform .3s;
+  }
+  .comment-submit-btn:hover:not(:disabled) svg{transform:translateX(3px)}
+
+  .comment-status{
+    margin-top:16px;
+    padding:14px 18px;
+    border-radius:12px;
+    font-size:.9rem;
+    font-weight:500;
+    display:none;
+    align-items:center;
+    gap:10px;
+    line-height:1.5;
+    animation:fadeUp .4s ease;
+  }
+  .comment-status.show{display:flex}
+  .comment-status.success{
+    background:rgba(78,201,176,.1);
+    border:1px solid rgba(78,201,176,.4);
+    color:#9dffe6;
+  }
+  .comment-status.error{
+    background:rgba(227,93,93,.1);
+    border:1px solid rgba(227,93,93,.4);
+    color:#ffb3b3;
+  }
+  .comment-status svg{
+    width:20px;height:20px;
+    stroke:currentColor;fill:none;
+    stroke-width:2.5;
+    stroke-linecap:round;stroke-linejoin:round;
+    flex-shrink:0;
+  }
 
   .bottom-nav{
     position:fixed;
@@ -1687,7 +1840,6 @@
     .section{padding:70px 0}
     .grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
 
-    /* MEMBER CARDS mobile — სუფთა */
     .card.member::after{inset:5px}
     .mem-top{height:36px;padding-top:10px}
     .mem-top svg{width:96px;height:12px}
@@ -1732,6 +1884,18 @@
     .progress-title{font-size:.94rem}
     .progress-desc{font-size:.78rem}
     .progress-status{font-size:.52rem;padding:4px 9px;letter-spacing:.12em}
+
+    /* COMMENT mobile */
+    .comment-section{padding:70px 0 80px}
+    .comment-wrap{padding:0 18px}
+    .comment-card{padding:26px 20px 24px;border-radius:18px}
+    .comment-label{font-size:.58rem;letter-spacing:.16em}
+    .comment-label .optional-tag{font-size:.48rem;padding:2px 6px}
+    .comment-input{min-height:52px;padding:14px 15px}
+    .comment-textarea{min-height:120px;padding:14px 15px}
+    .comment-submit-btn{min-height:54px;padding:16px 22px;font-size:.96rem}
+    .comment-status{padding:12px 14px;font-size:.86rem}
+    .comment-status svg{width:18px;height:18px}
 
     .bottom-nav{height:62px;border-radius:16px;left:8px;right:8px;bottom: calc(8px + var(--sab))}
     .nav-btn{font-size:.54rem;letter-spacing:.1em;gap:2px}
@@ -2027,6 +2191,55 @@
       </div>
     </section>
 
+    <!-- ============ COMMENT SECTION ============ -->
+    <section class="comment-section" id="comments">
+      <div class="comment-wrap">
+        <div class="section-head reveal">
+          <h2 class="section-title">დატოვე <span>კომენტარი</span></h2>
+          <p class="section-sub">მოგვწერე შენი აზრი, შეფასება ან იდეა</p>
+        </div>
+
+        <form class="comment-card reveal" id="commentForm" novalidate>
+          <div class="comment-field">
+            <label class="comment-label" for="commentName">
+              სახელი
+              <span class="optional-tag">არასავალდებულო</span>
+            </label>
+            <input
+              class="comment-input"
+              type="text"
+              id="commentName"
+              name="name"
+              placeholder="შენი სახელი"
+              autocomplete="name"
+              maxlength="80"
+            />
+          </div>
+
+          <div class="comment-field">
+            <label class="comment-label" for="commentMessage">
+              კომენტარი
+            </label>
+            <textarea
+              class="comment-textarea"
+              id="commentMessage"
+              name="message"
+              placeholder="დაწერე კომენტარი..."
+              maxlength="1000"
+              required
+            ></textarea>
+          </div>
+
+          <button class="comment-submit-btn" type="submit" id="commentSubmit">
+            <span id="commentSubmitText">გაგზავნა</span>
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+
+          <div class="comment-status" id="commentStatus"></div>
+        </form>
+      </div>
+    </section>
+
     <footer>
       <div class="fname">
         <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -2135,7 +2348,7 @@
 
 <script>
 /* ============================================================
-   🎨 APPLE TOUCH ICON — Canvas → PNG (iOS მხოლოდ PNG-ს იღებს)
+   🎨 APPLE TOUCH ICON — Canvas → PNG
    ============================================================ */
 (function generateAppleIcon(){
   function drawIcon(size, cb) {
@@ -2145,13 +2358,11 @@
     const ctx = canvas.getContext('2d');
     const s = size;
 
-    // Background — rounded rect dark
     const bgGrad = ctx.createLinearGradient(0, 0, s, s);
     bgGrad.addColorStop(0, '#1b1436');
     bgGrad.addColorStop(1, '#0a0812');
     ctx.fillStyle = bgGrad;
 
-    // Rounded rect (radius ~22%)
     const r = s * 0.22;
     ctx.beginPath();
     ctx.moveTo(r, 0);
@@ -2166,14 +2377,12 @@
     ctx.closePath();
     ctx.fill();
 
-    // Outer subtle ring
     ctx.strokeStyle = 'rgba(212,162,76,0.35)';
     ctx.lineWidth = s * 0.011;
     ctx.beginPath();
     ctx.arc(s/2, s/2, s * 0.41, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Dashed inner ring
     ctx.strokeStyle = 'rgba(212,162,76,0.2)';
     ctx.lineWidth = s * 0.008;
     ctx.setLineDash([s * 0.028, s * 0.045]);
@@ -2182,7 +2391,6 @@
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Gold diamond
     const goldGrad = ctx.createLinearGradient(s * 0.27, s * 0.12, s * 0.73, s * 0.88);
     goldGrad.addColorStop(0, '#f0cd8a');
     goldGrad.addColorStop(0.5, '#d4a24c');
@@ -2196,13 +2404,11 @@
     ctx.closePath();
     ctx.fill();
 
-    // Inner dark circle
     ctx.fillStyle = '#0d0a17';
     ctx.beginPath();
     ctx.arc(s/2, s/2, s * 0.11, 0, Math.PI * 2);
     ctx.fill();
 
-    // Inner ring around circle
     ctx.strokeStyle = 'rgba(240,205,138,0.85)';
     ctx.lineWidth = s * 0.011;
     ctx.beginPath();
@@ -2212,7 +2418,6 @@
     cb(canvas.toDataURL('image/png'));
   }
 
-  // Generate one PNG at highest res, then reuse
   drawIcon(180, (png180) => {
     const el180 = document.getElementById('appleTouchIcon180');
     const el152 = document.getElementById('appleTouchIcon152');
@@ -2223,7 +2428,6 @@
     if (el120) el120.href = png180;
     if (elDef) elDef.href = png180;
 
-    // Also inject into <head> as additional fallback
     const link192 = document.createElement('link');
     link192.rel = 'apple-touch-icon-precomposed';
     link192.href = png180;
@@ -2297,6 +2501,8 @@ const EDITABLE_FIELDS = {
   story5: 'V სცენა — ბრძოლა ტბაში',
   story6: 'VI სცენა — მტრედად ქცევა'
 };
+
+const COMMENT_FORMSPREE_URL = 'https://formspree.io/f/xkjgzrpv';
 
 let fbUser = null;
 let fbProfile = null;
@@ -2377,6 +2583,95 @@ function resizePhoto(file, maxSize = 300) {
     frag.appendChild(s);
   }
   wrap.appendChild(frag);
+})();
+
+/* ============================================================
+   COMMENT FORM — Formspree AJAX
+   ============================================================ */
+(function initCommentForm(){
+  const form = $('#commentForm');
+  if (!form) return;
+
+  const status = $('#commentStatus');
+  const submitBtn = $('#commentSubmit');
+  const submitText = $('#commentSubmitText');
+  const nameInput = $('#commentName');
+  const messageInput = $('#commentMessage');
+
+  function showStatus(type, msg) {
+    status.className = 'comment-status show ' + type;
+    const iconSvg = type === 'success'
+      ? '<polyline points="20 6 9 17 4 12"/>'
+      : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>';
+    status.innerHTML = `<svg viewBox="0 0 24 24">${iconSvg}</svg><span>${esc(msg)}</span>`;
+  }
+
+  function clearStatus() {
+    status.className = 'comment-status';
+    status.innerHTML = '';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearStatus();
+
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!message) {
+      showStatus('error', 'კომენტარი ცარიელია — გთხოვ დაწერე რამე.');
+      messageInput.focus();
+      return;
+    }
+
+    if (message.length < 2) {
+      showStatus('error', 'კომენტარი ძალიან მოკლეა.');
+      messageInput.focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitText.textContent = '⏳ იგზავნება...';
+
+    try {
+      const res = await fetch(COMMENT_FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name || '(ანონიმური)',
+          message: message,
+          _subject: 'ახალი კომენტარი — ამაგდარი',
+          source: 'amagdari-site',
+          sentAt: new Date().toISOString()
+        })
+      });
+
+      if (res.ok) {
+        showStatus('success', '✓ გმადლობთ! კომენტარი წარმატებით გაიგზავნა.');
+        form.reset();
+        submitText.textContent = 'გაგზავნა';
+        submitBtn.disabled = false;
+
+        setTimeout(() => {
+          clearStatus();
+        }, 6000);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const errMsg = (data && data.errors && data.errors[0] && data.errors[0].message) || 'ვერ გაიგზავნა.';
+        showStatus('error', 'შეცდომა: ' + errMsg);
+        submitText.textContent = 'გაგზავნა';
+        submitBtn.disabled = false;
+      }
+    } catch (ex) {
+      console.error(ex);
+      showStatus('error', 'კავშირის შეცდომა — სცადე თავიდან.');
+      submitText.textContent = 'გაგზავნა';
+      submitBtn.disabled = false;
+    }
+  });
 })();
 
 /* MEMBERS LISTENER */
