@@ -1,3 +1,4 @@
+const REGISTRATION_OPEN = false;
 /* ============================================================
    AMAGDARI · SCRIPT
    ============================================================ */
@@ -220,9 +221,7 @@ function resizePhoto(file, maxSize = 300) {
   });
 }
 
-/* ============================================================
-   STARS BACKGROUND
-   ============================================================ */
+/* STARS */
 (function () {
   const wrap = $('#stars');
   if (!wrap) return;
@@ -242,9 +241,7 @@ function resizePhoto(file, maxSize = 300) {
   wrap.appendChild(frag);
 })();
 
-/* ============================================================
-   STORY TABS TOGGLE
-   ============================================================ */
+/* STORY TABS */
 (function initStoryTabs(){
   const tabs = document.querySelectorAll('.story-tab');
   const panels = document.querySelectorAll('.story-panel');
@@ -262,7 +259,6 @@ function resizePhoto(file, maxSize = 300) {
         p.classList.toggle('active', p.id === 'panel-' + target);
       });
 
-      // Re-trigger reveal animations for newly visible elements
       const activePanel = document.getElementById('panel-' + target);
       if (activePanel) {
         const hiddenItems = activePanel.querySelectorAll('.reveal:not(.visible)');
@@ -276,9 +272,7 @@ function resizePhoto(file, maxSize = 300) {
   });
 })();
 
-/* ============================================================
-   COMMENT FORM — Formspree
-   ============================================================ */
+/* COMMENT FORM */
 (function initCommentForm(){
   const form = $('#commentForm');
   if (!form) return;
@@ -361,9 +355,7 @@ function resizePhoto(file, maxSize = 300) {
   });
 })();
 
-/* ============================================================
-   MEMBERS LISTENER
-   ============================================================ */
+/* MEMBERS LISTENER */
 db.ref('members').on('value', snap => {
   membersSnapshot = snap.val() || {};
   renderTeam();
@@ -371,9 +363,7 @@ db.ref('members').on('value', snap => {
   checkAllRegistered();
 });
 
-/* ============================================================
-   SITE CONTENT
-   ============================================================ */
+/* SITE CONTENT */
 db.ref('siteContent').on('value', snap => {
   siteContent = snap.val() || {};
   applySiteContent();
@@ -386,9 +376,7 @@ function applySiteContent() {
   });
 }
 
-/* ============================================================
-   RENDER TEAM
-   ============================================================ */
+/* RENDER TEAM */
 function renderTeam() {
   const grid = $('#teamGrid');
   if (!grid) return;
@@ -460,9 +448,7 @@ function renderTeam() {
   }
 }
 
-/* ============================================================
-   MEMBER MODAL
-   ============================================================ */
+/* MEMBER MODAL */
 function openMemberModal(memberId) {
   const meta = MEMBERS[memberId];
   if (!meta) return;
@@ -607,9 +593,7 @@ function checkAllRegistered() {
   }
 }
 
-/* ============================================================
-   AUTH STATE
-   ============================================================ */
+/* AUTH STATE */
 auth.onAuthStateChanged(async (user) => {
   fbUser = user;
 
@@ -694,6 +678,9 @@ function setAuthView(view) {
   $('#authBack').classList.toggle('hidden', view === 'home');
 }
 
+/* ============================================================
+   ✅ UPDATED: renderAuthHome — big viewer btn + small member/account
+   ============================================================ */
 function renderAuthHome() {
   setAuthView('home');
   const allTaken = MEMBER_ORDER.every(id => membersSnapshot[id] && membersSnapshot[id].claimedBy);
@@ -710,13 +697,27 @@ function renderAuthHome() {
     <p class="auth-sub">ქართული მითოლოგია · ანიმაცია</p>
     <p class="auth-lead">
       ${allTaken
-        ? 'გუნდის ყველა წევრი დარეგისტრირებულია. საიტი ღიაა ყველასთვის.'
-        : 'კეთილი იყოს შენი მობრძანება. გახსენი საიტი სტუმრის სახით, ან შედი შენს ექაუნთში.'}
+        ? 'გუნდის ყველა წევრი დარეგისტრირებულია. შემოდი მნახველის სახით ან შედი შენს ექაუნთში.'
+        : 'კეთილი იყოს შენი მობრძანება. შემოდი მნახველის სახით საიტის სანახავად, ან დარეგისტრირდი როგორც გუნდის წევრი.'}
     </p>
     <div class="auth-actions">
-      ${!allTaken ? `<button class="auth-btn primary" data-action="register">📝 რეგისტრაცია</button>` : ''}
-      <button class="auth-btn" data-action="login">🔐 შესვლა</button>
-      <button class="auth-btn" data-action="guest">👁 სტუმრის სახით შესვლა</button>
+      <button class="auth-btn primary auth-btn-big" data-action="guest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        მნახველის სტატუსით შესვლა
+      </button>
+
+      ${!allTaken ? `
+  <button class="auth-btn auth-btn-small" data-action="register" ${!REGISTRATION_OPEN ? 'disabled' : ''}>
+    რეგისტრაცია გუნდის წევრად${!REGISTRATION_OPEN ? ' (დახურულია)' : ''}
+  </button>
+` : ''}
+
+      <button class="auth-btn auth-btn-small" data-action="login">
+        შესვლა ექაუნთში
+      </button>
     </div>
   `;
 
@@ -848,7 +849,7 @@ function enterGuest() {
   $('#bottomNav').classList.add('hidden');
   document.body.classList.add('no-nav');
   checkAllRegistered();
-  showToast('👁 სტუმრის რეჟიმი', '');
+  showToast('👁 მნახველის რეჟიმი', '');
 }
 
 function renderMemberPicker() {
@@ -957,9 +958,7 @@ function confirmPick(memberId) {
   });
 }
 
-/* ============================================================
-   NAV
-   ============================================================ */
+/* NAV */
 $$('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const view = btn.dataset.view;
@@ -973,9 +972,7 @@ $$('.nav-btn').forEach(btn => {
   });
 });
 
-/* ============================================================
-   PROFILE PAGE
-   ============================================================ */
+/* PROFILE PAGE */
 function renderProfile() {
   if (!fbUser || !fbProfile || !fbProfile.memberId) {
     $('#profileContent').innerHTML = '<div style="text-align:center;padding:60px 22px;color:var(--muted)">გთხოვ შეხვიდე ექაუნთში.</div>';
@@ -1218,9 +1215,7 @@ async function doLogout() {
   }
 }
 
-/* ============================================================
-   EDITOR PAGE
-   ============================================================ */
+/* EDITOR PAGE */
 function renderEditor() {
   if (!fbUser || !fbProfile || !fbProfile.memberId) {
     $('#editorContent').innerHTML = '<div style="text-align:center;padding:60px 22px;color:var(--muted)">გთხოვ შეხვიდე ექაუნთში.</div>';
@@ -1383,9 +1378,7 @@ function renderAdminRequests() {
   }
 }
 
-/* ============================================================
-   NOTIFICATIONS
-   ============================================================ */
+/* NOTIFICATIONS */
 function renderNotifBadge() {
   const unread = notifications.filter(n => !n.read).length;
   const badge = $('#notifBadge');
@@ -1447,9 +1440,7 @@ $('#loginBtn').addEventListener('click', () => {
   renderAuthHome();
 });
 
-/* ============================================================
-   MODAL SYSTEM
-   ============================================================ */
+/* MODAL SYSTEM */
 function openModal(title, bodyHtml, afterOpen) {
   const modal = $('#modal');
   const box = $('#modalBox');
@@ -1480,9 +1471,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* ============================================================
-   CHARACTER MODAL
-   ============================================================ */
+/* CHARACTER MODAL */
 const CHAR_PROFILES = {
   hero: {
     icon: '★', alias: 'პროტაგონისტი', name: 'იახსარი',
@@ -1571,9 +1560,7 @@ $('#watchBtn').addEventListener('click', () => {
   `);
 });
 
-/* ============================================================
-   REVEAL ANIMATIONS
-   ============================================================ */
+/* REVEAL ANIMATIONS */
 (function () {
   const items = document.querySelectorAll('.reveal:not(.card.member)');
   if (!('IntersectionObserver' in window)) {
