@@ -678,7 +678,7 @@ function setAuthView(view) {
 }
 
 /* ============================================================
-   ✅ UPDATED: renderAuthHome — big viewer btn + small member/account
+   ✅ renderAuthHome — რეგისტრაცია დახურულია
    ============================================================ */
 function renderAuthHome() {
   setAuthView('home');
@@ -697,7 +697,7 @@ function renderAuthHome() {
     <p class="auth-lead">
       ${allTaken
         ? 'გუნდის ყველა წევრი დარეგისტრირებულია. შემოდი მნახველის სახით ან შედი შენს ექაუნთში.'
-        : 'კეთილი იყოს შენი მობრძანება. შემოდი მნახველის სახით საიტის სანახავად, ან დარეგისტრირდი როგორც გუნდის წევრი.'}
+        : 'კეთილი იყოს შენი მობრძანება. შემოდი მნახველის სახით საიტის სანახავად.'}
     </p>
     <div class="auth-actions">
       <button class="auth-btn primary auth-btn-big" data-action="guest">
@@ -708,11 +708,9 @@ function renderAuthHome() {
         მნახველის სტატუსით შესვლა
       </button>
 
-      ${!allTaken ? `
-        <button class="auth-btn auth-btn-small" data-action="register">
-          რეგისტრაცია გუნდის წევრად
-        </button>
-      ` : ''}
+      <button class="auth-btn auth-btn-small" disabled aria-disabled="true" title="რეგისტრაცია დახურულია">
+        რეგისტრაცია გუნდის წევრად <span class="closed-tag">(დახურულია)</span>
+      </button>
 
       <button class="auth-btn auth-btn-small" data-action="login">
         შესვლა ექაუნთში
