@@ -3,13 +3,6 @@
    ============================================================ */
 
 /* ============================================================
-   ⚙️ რეგისტრაციის ჩართვა/გამორთვა
-   false = ღილაკი გამორთულია (ვერ დააჭერენ)
-   true  = ღილაკი აქტიურია
-   ============================================================ */
-const REGISTRATION_OPEN = false;
-
-/* ============================================================
    🎨 APPLE TOUCH ICON — Canvas → PNG
    ============================================================ */
 (function generateAppleIcon(){
@@ -685,7 +678,7 @@ function setAuthView(view) {
 }
 
 /* ============================================================
-   AUTH HOME — big viewer btn + small register (disabled) / login
+   ✅ UPDATED: renderAuthHome — big viewer btn + small member/account
    ============================================================ */
 function renderAuthHome() {
   setAuthView('home');
@@ -704,7 +697,7 @@ function renderAuthHome() {
     <p class="auth-lead">
       ${allTaken
         ? 'გუნდის ყველა წევრი დარეგისტრირებულია. შემოდი მნახველის სახით ან შედი შენს ექაუნთში.'
-        : 'კეთილი იყოს შენი მობრძანება. შემოდი მნახველის სახით საიტის სანახავად.'}
+        : 'კეთილი იყოს შენი მობრძანება. შემოდი მნახველის სახით საიტის სანახავად, ან დარეგისტრირდი როგორც გუნდის წევრი.'}
     </p>
     <div class="auth-actions">
       <button class="auth-btn primary auth-btn-big" data-action="guest">
@@ -716,8 +709,8 @@ function renderAuthHome() {
       </button>
 
       ${!allTaken ? `
-        <button class="auth-btn auth-btn-small" data-action="register" ${!REGISTRATION_OPEN ? 'disabled' : ''}>
-          რეგისტრაცია გუნდის წევრად${!REGISTRATION_OPEN ? ' (დახურულია)' : ''}
+        <button class="auth-btn auth-btn-small" data-action="register">
+          რეგისტრაცია გუნდის წევრად
         </button>
       ` : ''}
 
@@ -738,13 +731,6 @@ function renderAuthHome() {
 }
 
 function renderRegisterForm() {
-  // 🔒 თუ რეგისტრაცია დახურულია — დაბლოკე
-  if (!REGISTRATION_OPEN) {
-    showToast('რეგისტრაცია დროებით დახურულია', 'error');
-    renderAuthHome();
-    return;
-  }
-
   setAuthView('register');
   $('#authContent').innerHTML = `
     <h1 class="auth-title" style="font-size:2rem">რეგისტრაცია</h1>
@@ -1076,4 +1062,521 @@ function renderProfile() {
 }
 
 async function editName() {
-  const current = fbProfile.displayName ||
+  const current = fbProfile.displayName || MEMBERS[fbProfile.memberId].name;
+  const val = prompt('ახალი სახელი:', current);
+  if (val === null) return;
+  const name = val.trim();
+  if (!name) { showToast('სახელი ცარიელია', 'error'); return; }
+  if (name.length > 60) { showToast('სახელი ძალიან გრძელია', 'error'); return; }
+  try {
+    const updates = {};
+    updates['users/' + fbUser.uid + '/displayName'] = name;
+    updates['members/' + fbProfile.memberId + '/displayName'] = name;
+    await db.ref().update(updates);
+    showToast('✓ სახელი შეიცვალა', 'success');
+  } catch (ex) {
+    showToast('შეცდომა: ' + ex.message, 'error');
+  }
+}
+
+async function editNickname() {
+  const current = fbProfile.nickname || DEFAULT_NICK[fbProfile.memberId];
+  const val = prompt('ახალი ნიკნეიმი:', current);
+  if (val === null) return;
+  const nick = val.trim();
+  if (!nick) { showToast('ნიკნეიმი ცარიელია', 'error'); return; }
+  if (nick.length > 40) { showToast('ნიკნეიმი ძალიან გრძელია', 'error'); return; }
+  try {
+    const updates = {};
+    updates['users/' + fbUser.uid + '/nickname'] = nick;
+    updates['members/' + fbProfile.memberId + '/nickname'] = nick;
+    await db.ref().update(updates);
+    showToast('✓ ნიკნეიმი შეიცვალა', 'success');
+  } catch (ex) {
+    showToast('შეცდომა: ' + ex.message, 'error');
+  }
+}
+
+async function editBio() {
+  const current = fbProfile.bio || '';
+  const val = prompt('ჩემ შესახებ (მაქს. 300 სიმბოლო):', current);
+  if (val === null) return;
+  const bio = val.trim();
+  if (bio.length > 300) { showToast('ტექსტი ძალიან გრძელია (მაქს. 300)', 'error'); return; }
+  try {
+    const updates = {};
+    updates['users/' + fbUser.uid + '/bio'] = bio;
+    updates['members/' + fbProfile.memberId + '/bio'] = bio;
+    await db.ref().update(updates);
+    showToast('✓ განახლდა', 'success');
+  } catch (ex) {
+    showToast('შეცდომა: ' + ex.message, 'error');
+  }
+}
+
+function openFramePicker() {
+  const current = fbProfile.frame || 'gold';
+  const html = `
+    <div class="frame-grid">
+      ${FRAMES.map(f => `
+        <button class="frame-option${f.id === current ? ' selected' : ''}" data-frame="${f.id}" aria-label="${esc(f.label)}">
+          <span class="preview frame-${f.id}">${esc(MEMBERS[fbProfile.memberId].initial)}</span>
+        </button>
+      `).join('')}
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:.78rem;margin-top:16px">
+      ${esc(FRAMES.find(f => f.id === current).label)}
+    </p>
+  `;
+
+  openModal('აირჩიე ჩარჩო', html, (modal) => {
+    const styles = {
+      gold: 'border:2px solid #d4a24c;box-shadow:0 0 8px rgba(212,162,76,.7)',
+      silver: 'border:2px solid #c0c0d0;box-shadow:0 0 8px rgba(192,192,208,.7)',
+      bronze: 'border:2px solid #b87333;box-shadow:0 0 8px rgba(184,115,51,.7)',
+      emerald: 'border:2px solid #4ec9b0;box-shadow:0 0 8px rgba(78,201,176,.7)',
+      crimson: 'border:2px solid #e35d5d;box-shadow:0 0 8px rgba(227,93,93,.7)',
+      purple: 'border:2px solid #a78bfa;box-shadow:0 0 8px rgba(167,139,250,.7)',
+      diamond: 'border:2px solid #e0e8ff;box-shadow:0 0 10px rgba(224,232,255,.9)',
+      flame: 'border:2px solid #ff9a3c;box-shadow:0 0 12px rgba(255,100,0,.9)',
+      wave: 'border:2px solid #4da6ff;box-shadow:0 0 10px rgba(77,166,255,.85)',
+      rune: 'border:2px solid #b794f6;box-shadow:0 0 10px rgba(183,148,246,.9)',
+      tribal: 'border:2px solid #d4a24c;box-shadow:0 0 8px rgba(212,162,76,.8)',
+      void: 'border:2px solid #2a2a3a;box-shadow:inset 0 0 12px rgba(0,0,0,.9),0 0 8px rgba(100,100,180,.5)'
+    };
+    modal.querySelectorAll('.frame-option .preview').forEach(el => {
+      const id = el.parentElement.dataset.frame;
+      el.style.cssText = 'width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#1a140f,#0a0806);font-family:"JetBrains Mono",monospace;font-size:1.1rem;font-weight:700;color:#f0cd8a;' + (styles[id] || '');
+    });
+
+    modal.querySelectorAll('.frame-option').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const fid = btn.dataset.frame;
+        try {
+          const updates = {};
+          updates['users/' + fbUser.uid + '/frame'] = fid;
+          updates['members/' + fbProfile.memberId + '/frame'] = fid;
+          await db.ref().update(updates);
+          showToast('✓ ჩარჩო შეიცვალა', 'success');
+          closeModal();
+        } catch (ex) {
+          showToast('შეცდომა: ' + ex.message, 'error');
+        }
+      });
+    });
+  });
+}
+
+function openPhotoModal() {
+  $('#photoModal').classList.add('open');
+  lastFocused = document.activeElement;
+}
+
+$('#photoChooseBtn').addEventListener('click', () => $('#photoInput').click());
+$('#photoInput').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const base64 = await resizePhoto(file, 300);
+    const updates = {};
+    updates['users/' + fbUser.uid + '/photo'] = base64;
+    updates['members/' + fbProfile.memberId + '/photo'] = base64;
+    await db.ref().update(updates);
+    showToast('✓ ფოტო განახლდა', 'success');
+    closeAllModals();
+  } catch (ex) {
+    showToast('შეცდომა: ' + ex.message, 'error');
+  }
+});
+
+$('#photoRemoveBtn').addEventListener('click', async () => {
+  try {
+    const updates = {};
+    updates['users/' + fbUser.uid + '/photo'] = null;
+    updates['members/' + fbProfile.memberId + '/photo'] = null;
+    await db.ref().update(updates);
+    showToast('✓ ფოტო წაშლილია', 'success');
+    closeAllModals();
+  } catch (ex) {
+    showToast('შეცდომა: ' + ex.message, 'error');
+  }
+});
+
+async function doLogout() {
+  if (!confirm('ნამდვილად გინდა გასვლა?')) return;
+  try {
+    await auth.signOut();
+    isGuest = false;
+    showToast('✓ გამოხვედი', 'success');
+    location.reload();
+  } catch (ex) {
+    showToast('შეცდომა', 'error');
+  }
+}
+
+/* EDITOR PAGE */
+function renderEditor() {
+  if (!fbUser || !fbProfile || !fbProfile.memberId) {
+    $('#editorContent').innerHTML = '<div style="text-align:center;padding:60px 22px;color:var(--muted)">გთხოვ შეხვიდე ექაუნთში.</div>';
+    return;
+  }
+
+  const isAdmin = fbProfile.memberId === 'gurika';
+
+  $('#editorContent').innerHTML = `
+    <p class="editor-intro">
+      შენ შეგიძლია შეცვალო მთავარი გვერდის ტექსტი. ცვლილება <strong>პირდაპირ არ აისახება</strong> —
+      გაიგზავნება მოთხოვნა ადმინთან დასამტკიცებლად.
+    </p>
+    <div id="editorFields"></div>
+    ${isAdmin ? `
+      <div class="admin-panel">
+        <h3 class="admin-title">⏳ მოლოდინში მოთხოვნები</h3>
+        <div id="adminRequests"></div>
+      </div>
+    ` : ''}
+  `;
+
+  renderEditorFields();
+  if (isAdmin) renderAdminRequests();
+}
+
+function renderEditorFields() {
+  const wrap = $('#editorFields');
+  if (!wrap) return;
+
+  wrap.innerHTML = Object.keys(EDITABLE_FIELDS).map(key => {
+    const current = siteContent[key] || '';
+    const label = EDITABLE_FIELDS[key];
+    return `
+      <div class="editor-field">
+        <div class="editor-field-label">${esc(label)} <span class="tag">${esc(key)}</span></div>
+        <div class="editor-current">${current || '<em style="color:var(--muted)">ჯერ ცარიელია</em>'}</div>
+        <textarea class="editor-textarea" data-field="${key}" placeholder="შეიყვანე ახალი ტექსტი..."></textarea>
+        <button class="btn btn-primary editor-submit" data-submit="${key}">→ მოთხოვნის გაგზავნა</button>
+      </div>
+    `;
+  }).join('');
+
+  $$('[data-submit]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const key = btn.dataset.submit;
+      const ta = document.querySelector(`[data-field="${key}"]`);
+      const newVal = ta.value.trim();
+      if (!newVal) { showToast('ცარიელია', 'error'); return; }
+
+      const oldVal = siteContent[key] || '';
+
+      try {
+        await db.ref('requests').push({
+          from: fbUser.uid,
+          fromMemberId: fbProfile.memberId,
+          fromName: fbProfile.displayName || MEMBERS[fbProfile.memberId].name,
+          field: key,
+          fieldLabel: EDITABLE_FIELDS[key],
+          oldValue: oldVal,
+          newValue: newVal,
+          status: 'pending',
+          createdAt: firebase.database.ServerValue.TIMESTAMP
+        });
+
+        const gurikaUid = membersSnapshot.gurika && membersSnapshot.gurika.claimedBy;
+        if (gurikaUid && gurikaUid !== fbUser.uid) {
+          await db.ref('notifications/' + gurikaUid).push({
+            type: 'request',
+            title: 'ახალი მოთხოვნა',
+            text: `${fbProfile.displayName || fbProfile.memberId}-მ გამოგზავნა მოთხოვნა: ${EDITABLE_FIELDS[key]}`,
+            read: false,
+            createdAt: firebase.database.ServerValue.TIMESTAMP
+          });
+        }
+
+        showToast('✓ მოთხოვნა გაიგზავნა', 'success');
+        ta.value = '';
+      } catch (ex) {
+        showToast('შეცდომა: ' + ex.message, 'error');
+      }
+    });
+  });
+}
+
+function renderAdminRequests() {
+  const wrap = $('#adminRequests');
+  if (!wrap) return;
+
+  db.ref('requests').on('value', s => {
+    const all = [];
+    s.forEach(child => { all.push({ id: child.key, ...child.val() }); });
+    const pending = all.filter(r => r.status === 'pending')
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    renderReqs(pending);
+  });
+
+  function renderReqs(reqs) {
+    if (!reqs.length) {
+      wrap.innerHTML = '<div class="admin-empty">ჯერ არავის გამოუგზავნია მოთხოვნა.</div>';
+      return;
+    }
+
+    wrap.innerHTML = reqs.map(r => `
+      <div class="request-card" data-req="${r.id}">
+        <div class="request-header">
+          <span class="request-from">${esc(r.fromName || 'უცნობი')}</span>
+          <span class="request-time">${timeAgo(r.createdAt)}</span>
+        </div>
+        <div class="request-field">${esc(r.fieldLabel || r.field)}</div>
+        <div class="request-diff">
+          <div class="old">${esc(r.oldValue || '(ცარიელი)')}</div>
+          <div class="new">${esc(r.newValue || '')}</div>
+        </div>
+        <div class="request-actions">
+          <button class="approve" data-approve="${r.id}">✓ დამტკიცება</button>
+          <button class="reject" data-reject="${r.id}">✕ უარყოფა</button>
+        </div>
+      </div>
+    `).join('');
+
+    wrap.querySelectorAll('[data-approve]').forEach(btn => {
+      btn.addEventListener('click', () => handleRequest(btn.dataset.approve, true));
+    });
+    wrap.querySelectorAll('[data-reject]').forEach(btn => {
+      btn.addEventListener('click', () => handleRequest(btn.dataset.reject, false));
+    });
+  }
+
+  async function handleRequest(reqId, approve) {
+    try {
+      const reqSnap = await db.ref('requests/' + reqId).once('value');
+      const req = reqSnap.val();
+      if (!req) return;
+
+      if (approve) {
+        await db.ref('siteContent/' + req.field).set(req.newValue);
+      }
+
+      await db.ref('requests/' + reqId).update({
+        status: approve ? 'approved' : 'rejected',
+        reviewedAt: firebase.database.ServerValue.TIMESTAMP,
+        reviewedBy: fbUser.uid
+      });
+
+      if (req.from) {
+        await db.ref('notifications/' + req.from).push({
+          type: approve ? 'approved' : 'rejected',
+          title: approve ? '✓ დამტკიცდა' : '✕ უარყოფილია',
+          text: `${req.fieldLabel}: შენი მოთხოვნა ${approve ? 'დამტკიცდა' : 'უარყოფილია'}`,
+          read: false,
+          createdAt: firebase.database.ServerValue.TIMESTAMP
+        });
+      }
+
+      showToast(approve ? '✓ დამტკიცდა' : '✕ უარყოფილია', approve ? 'success' : 'error');
+    } catch (ex) {
+      showToast('შეცდომა: ' + ex.message, 'error');
+    }
+  }
+}
+
+/* NOTIFICATIONS */
+function renderNotifBadge() {
+  const unread = notifications.filter(n => !n.read).length;
+  const badge = $('#notifBadge');
+  if (!badge) return;
+  if (unread > 0) {
+    badge.textContent = unread > 9 ? '9+' : String(unread);
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function renderNotifList() {
+  const wrap = $('#notifList');
+  if (!wrap) return;
+
+  if (!notifications.length) {
+    wrap.innerHTML = '<div class="admin-empty">შეტყობინებები არ არის.</div>';
+    return;
+  }
+
+  wrap.innerHTML = notifications.map(n => {
+    const iconSvg = n.type === 'approved'
+      ? '<polyline points="20 6 9 17 4 12"/>'
+      : n.type === 'rejected'
+        ? '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
+        : '<circle cx="12" cy="12" r="10"/><path d="M12 8 L12 12 L14 14"/>';
+    const cls = n.type === 'approved' ? 'approved' : n.type === 'rejected' ? 'rejected' : '';
+    return `
+      <div class="notif-item ${n.read ? 'read' : 'unread'} ${cls}">
+        <span class="notif-icon"><svg viewBox="0 0 24 24">${iconSvg}</svg></span>
+        <div class="notif-body">
+          <div class="notif-title">${esc(n.title || 'შეტყობინება')}</div>
+          <div class="notif-text">${esc(n.text || '')}</div>
+          <div class="notif-time">${timeAgo(n.createdAt)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+$('#notifBtn').addEventListener('click', async () => {
+  $('#notifModal').classList.add('open');
+  if (fbUser) {
+    const updates = {};
+    notifications.filter(n => !n.read).forEach(n => {
+      updates[n.id + '/read'] = true;
+    });
+    if (Object.keys(updates).length) {
+      await db.ref('notifications/' + fbUser.uid).update(updates);
+    }
+  }
+});
+
+$('#loginBtn').addEventListener('click', () => {
+  isGuest = false;
+  $('#authGate').classList.remove('hidden');
+  setAuthView('home');
+  renderAuthHome();
+});
+
+/* MODAL SYSTEM */
+function openModal(title, bodyHtml, afterOpen) {
+  const modal = $('#modal');
+  const box = $('#modalBox');
+  box.innerHTML = `
+    <div class="modal-header">
+      <h2 class="modal-title">${esc(title)}</h2>
+      <button class="modal-close" data-close aria-label="დახურვა"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div>${bodyHtml}</div>
+  `;
+  box.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+  modal.classList.add('open');
+  if (afterOpen) afterOpen(box);
+}
+function closeModal() { $('#modal').classList.remove('open'); }
+function closeAllModals() { $$('.modal').forEach(m => m.classList.remove('open')); }
+
+$$('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+$$('[data-char-close]').forEach(el => el.addEventListener('click', () => $('#charModal').classList.remove('open')));
+$$('[data-notif-close]').forEach(el => el.addEventListener('click', () => $('#notifModal').classList.remove('open')));
+$$('[data-photo-close]').forEach(el => el.addEventListener('click', () => $('#photoModal').classList.remove('open')));
+$$('[data-member-close]').forEach(el => el.addEventListener('click', closeMemberModal));
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeAllModals();
+    closeMemberModal();
+  }
+});
+
+/* CHARACTER MODAL */
+const CHAR_PROFILES = {
+  hero: {
+    icon: '★', alias: 'პროტაგონისტი', name: 'იახსარი',
+    subtitle: 'ქართული მითოლოგიის მთავარი გმირი',
+    stats: [
+      { label: 'ასაკი', value: '25' },
+      { label: 'ეპოქა', value: 'XIII' },
+      { label: 'როლი', value: 'გმირი' }
+    ],
+    sections: [
+      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, დაკუნთული მამაკაცია, გრძელი შავი თმითა და სქელი წვერით.</p>' },
+      { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი.</p>' },
+      { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🔥 ღვთაებრივი ძალა</p>' },
+      { title: 'ჩაცმულობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ჩოხა, ქალავნები, ქამარ-ხანძალი, ხევსურული ქუდი, ხმალი, ლახტი.</p>' },
+      { title: 'რისი სწამს', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">სწამს უზენაესი სამართლიანობის, ღმერთის ნებისა და ღვთისშვილის მოვალეობის.</p>' },
+      { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა.</p>' }
+    ]
+  },
+  villain: {
+    icon: '👹', alias: 'ანტაგონისტი', name: 'გორო',
+    subtitle: 'დევი, უკანასკნელი ბნელი ძალა',
+    stats: [
+      { label: 'ასაკი', value: '404' },
+      { label: 'რასა', value: 'დევი' },
+      { label: 'როლი', value: 'მტერი' }
+    ],
+    sections: [
+      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>.</p>' },
+      { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი.</p>' },
+      { title: 'ჩაცმულობა და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი, ხის შუბი.</p>' },
+      { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. იახსარი მას აბუდელაურის თეთრ ტბაში დაეწევა და დაამარცხებს.</p>' }
+    ]
+  }
+};
+
+$$('.profile-btn[data-char]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.char;
+    const p = CHAR_PROFILES[key];
+    if (!p) return;
+
+    $('#charModalTitle').textContent = p.name;
+
+    const statsHtml = p.stats ? `
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px">
+        ${p.stats.map(s => `
+          <div style="text-align:center;padding:14px 8px;background:rgba(255,255,255,.03);border:1px solid rgba(212,162,76,.2);border-radius:14px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">${esc(s.label)}</div>
+            <div style="font-size:1.05rem;font-weight:700;color:var(--gold-light)">${esc(s.value)}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    const sectionsHtml = p.sections ? p.sections.map(sec => `
+      <div style="margin-bottom:22px">
+        <h3 style="display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">
+          <span>${esc(sec.title)}</span>
+          <span style="flex:1;height:1px;background:linear-gradient(90deg, currentColor, transparent);opacity:.3"></span>
+        </h3>
+        ${sec.html}
+      </div>
+    `).join('') : '';
+
+    $('#charModalBody').innerHTML = `
+      <div style="text-align:center;margin-bottom:20px">
+        <span style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:12px;color:#1a1206;background:linear-gradient(135deg,#d4a24c,#f0cd8a)">${esc(p.alias)}</span>
+        <div style="font-size:1.5rem;font-weight:800;color:#fff2d4;letter-spacing:.04em">${esc(p.name)}</div>
+        <div style="font-size:.84rem;color:var(--muted);margin-top:6px;font-style:italic">${esc(p.subtitle)}</div>
+      </div>
+      ${statsHtml}
+      ${sectionsHtml}
+    `;
+
+    $('#charModal').classList.add('open');
+  });
+});
+
+$('#watchBtn').addEventListener('click', () => {
+  openModal('ანიმაცია ჯერ არ დაწყებულა', `
+    <p style="color:var(--muted);font-size:.94rem;line-height:1.7;margin-bottom:24px">
+      ჩვენ ჯერ კიდევ მუშაობის პროცესში ვართ. სცენარი, პერსონაჟები და ვიზუალი მზადდება.
+      მალე გაჩვენებთ პირველ კადრებს.
+    </p>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" data-close>კარგი, დაველოდები</button>
+  `);
+});
+
+/* REVEAL ANIMATIONS */
+(function () {
+  const items = document.querySelectorAll('.reveal:not(.card.member)');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  items.forEach(el => io.observe(el));
+})();
+
+$('#authBack').addEventListener('click', renderAuthHome);
+
+renderAuthHome();
