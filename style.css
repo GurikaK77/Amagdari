@@ -814,7 +814,6 @@ input, textarea, select, .form-input, .editor-textarea, .comment-input, .comment
 .villain-char .profile-btn{color:#ffb3b3;border-color:rgba(227,93,93,.55);background:rgba(227,93,93,.08)}
 .villain-char .profile-btn:hover{background:linear-gradient(135deg,#e35d5d,#ff9c9c);color:#2a0808;border-color:transparent;box-shadow:0 14px 30px -12px rgba(227,93,93,.95);transform:translateY(-2px)}
 
-<<<<<<< HEAD
 /* ============================================================
    VISUAL DIRECTION / CONCEPT SECTION
    ============================================================ */
@@ -1090,8 +1089,6 @@ input, textarea, select, .form-input, .editor-textarea, .comment-input, .comment
   stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
 }
 
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
 /* PROGRESS */
 .progress-section{position:relative;padding:110px 0 130px;background:linear-gradient(180deg,transparent,rgba(212,162,76,.04) 50%,transparent)}
 .progress-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:920px;margin:0 auto}
@@ -1272,7 +1269,6 @@ input, textarea, select, .form-input, .editor-textarea, .comment-input, .comment
 .modal-close:active{transform:rotate(90deg) scale(.9)}
 .modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
-<<<<<<< HEAD
 .char-modal-image{
   position:relative;
   aspect-ratio:16/10;
@@ -1302,8 +1298,6 @@ input, textarea, select, .form-input, .editor-textarea, .comment-input, .comment
   font-size:.68rem;letter-spacing:.06em;
 }
 
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
 .member-modal-box{max-width:600px;padding:0;text-align:left;overflow:hidden;max-height:90svh;display:flex;flex-direction:column;background:linear-gradient(170deg,#15112a,#0a0812);border:1px solid rgba(212,162,76,.4);box-shadow:0 44px 90px -34px #000, 0 0 70px -30px rgba(212,162,76,.55)}
 .member-modal-header{position:relative;padding:50px 28px 30px;text-align:center;background:linear-gradient(160deg,rgba(212,162,76,.16),rgba(212,162,76,.03));border-bottom:1px solid rgba(212,162,76,.22);flex-shrink:0;overflow:hidden}
 .member-modal-header::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%, rgba(212,162,76,.25), transparent 55%);pointer-events:none}
@@ -1414,12 +1408,9 @@ footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
   .scene-num-label{font-size:.46rem;letter-spacing:.14em}
   .scene-title{font-size:1rem}
   .scene-text{padding-left:0;font-size:.88rem;line-height:1.75}
-<<<<<<< HEAD
 
   .concept-chars{grid-template-columns:1fr}
   .concept-images-3{grid-template-columns:1fr 1fr}
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
 }
 
 @media (max-width:560px){
@@ -1485,7 +1476,6 @@ footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
   .profile-btn{font-size:.78rem;padding:11px 20px;margin-top:18px;gap:6px;min-height:46px}
   .profile-btn svg{width:12px;height:12px}
 
-<<<<<<< HEAD
   .concept-section{padding:80px 0 90px}
   .concept-block{padding:22px 20px 24px;border-radius:16px;margin-bottom:20px}
   .concept-block-head{gap:12px;margin-bottom:16px;padding-bottom:14px}
@@ -1499,8 +1489,6 @@ footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
   .concept-rules li{font-size:.86rem;padding:12px 14px}
   .style-badge{font-size:.62rem;padding:8px 14px}
 
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
   .progress-section{padding:70px 0 80px}
   .progress-grid{gap:14px}
   .progress-card{padding:20px 18px;gap:14px}

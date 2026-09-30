@@ -1473,58 +1473,36 @@ const CHAR_PROFILES = {
   hero: {
     icon: '★', alias: 'პროტაგონისტი', name: 'იახსარი',
     subtitle: 'ქართული მითოლოგიის მთავარი გმირი',
-<<<<<<< HEAD
     image: 'images/iakhsari.jpg',
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
     stats: [
       { label: 'ასაკი', value: '25' },
       { label: 'ეპოქა', value: 'XIII' },
       { label: 'როლი', value: 'გმირი' }
     ],
     sections: [
-<<<<<<< HEAD
       { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, შავწვერიანი და გრძელთმიანი მამაკაცი. ღვთისშვილი, რომელიც სამართლიანობისთვის იბრძვის.</p>' },
       { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ტანსაცმელი, ხევსურული ქუდი, ქამარი. ხელში — <strong style="color:#f0cd8a">ლახტი</strong>.</p>' },
       { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი.</p>' },
       { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🔥 ღვთაებრივი ძალა</p>' },
       { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა.</p>' },
       { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ლახტს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე სამოსი</li></ul>' }
-=======
-      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, დაკუნთული მამაკაცია, გრძელი შავი თმითა და სქელი წვერით.</p>' },
-      { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი.</p>' },
-      { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🔥 ღვთაებრივი ძალა</p>' },
-      { title: 'ჩაცმულობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ჩოხა, ქალავნები, ქამარ-ხანძალი, ხევსურული ქუდი, ხმალი, ლახტი.</p>' },
-      { title: 'რისი სწამს', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">სწამს უზენაესი სამართლიანობის, ღმერთის ნებისა და ღვთისშვილის მოვალეობის.</p>' },
-      { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა.</p>' }
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
     ]
   },
   villain: {
     icon: '👹', alias: 'ანტაგონისტი', name: 'გორო',
     subtitle: 'დევი, უკანასკნელი ბნელი ძალა',
-<<<<<<< HEAD
     image: 'images/goro.jpg',
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
     stats: [
       { label: 'ასაკი', value: '404' },
       { label: 'რასა', value: 'დევი' },
       { label: 'როლი', value: 'მტერი' }
     ],
     sections: [
-<<<<<<< HEAD
       { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>. საშიში შესახედაობის, გოლიათური აღნაგობის.</p>' },
       { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი. ხელში — <strong style="color:#ffb3b3">ხის კომბალი / შუბი</strong>.</p>' },
       { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი.</p>' },
       { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. იახსარი მას აბუდელაურის თეთრ ტბაში დაეწევა და დაამარცხებს.</p>' },
       { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს იარაღს (კომბალი / შუბი)</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ტყავის მოსასხამი</li></ul>' }
-=======
-      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>.</p>' },
-      { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი.</p>' },
-      { title: 'ჩაცმულობა და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი, ხის შუბი.</p>' },
-      { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. იახსარი მას აბუდელაურის თეთრ ტბაში დაეწევა და დაამარცხებს.</p>' }
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
     ]
   }
 };
@@ -1548,7 +1526,6 @@ $$('.profile-btn[data-char]').forEach(btn => {
       </div>
     ` : '';
 
-<<<<<<< HEAD
     const imageHtml = p.image ? `
       <div class="char-modal-image">
         <img src="${p.image}" alt="${esc(p.name)}" onerror="this.parentElement.classList.add('img-missing')" />
@@ -1559,8 +1536,6 @@ $$('.profile-btn[data-char]').forEach(btn => {
       </div>
     ` : '';
 
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
     const sectionsHtml = p.sections ? p.sections.map(sec => `
       <div style="margin-bottom:22px">
         <h3 style="display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">
@@ -1577,10 +1552,7 @@ $$('.profile-btn[data-char]').forEach(btn => {
         <div style="font-size:1.5rem;font-weight:800;color:#fff2d4;letter-spacing:.04em">${esc(p.name)}</div>
         <div style="font-size:.84rem;color:var(--muted);margin-top:6px;font-style:italic">${esc(p.subtitle)}</div>
       </div>
-<<<<<<< HEAD
       ${imageHtml}
-=======
->>>>>>> 02561f6dd90132349c04bb473ca364a5beeb0597
       ${statsHtml}
       ${sectionsHtml}
     `;
