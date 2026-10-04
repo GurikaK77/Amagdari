@@ -151,8 +151,8 @@ const EDITABLE_FIELDS = {
   storyIntro: 'ამბის შესავალი ტექსტი',
   story1: 'I სცენა — როშკა',
   story2: 'II სცენა — დევის თავდასხმა',
-  story3: 'III სცენა — გადაწყვეტილება',
-  story4: 'IV სცენა — დაბრკოლება',
+  story3: 'III სცენა — იახსარი ევლინება',
+  story4: 'IV სცენა — ტბაში მიჰყვება',
   story5: 'V სცენა — ბრძოლა ტბაში',
   story6: 'VI სცენა — მტრედად ქცევა'
 };
@@ -678,7 +678,7 @@ function setAuthView(view) {
 }
 
 /* ============================================================
-   ✅ renderAuthHome — რეგისტრაცია დახურულია
+   renderAuthHome — რეგისტრაცია დახურულია
    ============================================================ */
 function renderAuthHome() {
   setAuthView('home');
@@ -1481,11 +1481,11 @@ const CHAR_PROFILES = {
     ],
     sections: [
       { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, შავწვერიანი და გრძელთმიანი მამაკაცი. ღვთისშვილი, რომელიც სამართლიანობისთვის იბრძვის.</p>' },
-      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ტანსაცმელი, ხევსურული ქუდი, ქამარი. ხელში — <strong style="color:#f0cd8a">ლახტი</strong>.</p>' },
-      { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი.</p>' },
-      { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🔥 ღვთაებრივი ძალა</p>' },
-      { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა.</p>' },
-      { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ლახტს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე სამოსი</li></ul>' }
+      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ტანსაცმელი, ხევსურული ქუდი, ქამარი. ხელში — <strong style="color:#f0cd8a">ლახტი</strong> და ხმალი.</p>' },
+      { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი, თავგანწირული.</p>' },
+      { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🕊️ მტრედად ქცევა</p>' },
+      { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა — თუნდაც საკუთარი სიცოცხლის ფასად.</p>' },
+      { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ლახტს და ხმალს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში (გარდა მტრედად ქცევისა)</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ხევსურული სამოსი</li></ul>' }
     ]
   },
   villain: {
@@ -1498,11 +1498,11 @@ const CHAR_PROFILES = {
       { label: 'როლი', value: 'მტერი' }
     ],
     sections: [
-      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>. საშიში შესახედაობის, გოლიათური აღნაგობის.</p>' },
-      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი. ხელში — <strong style="color:#ffb3b3">ხის კომბალი / შუბი</strong>.</p>' },
-      { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი.</p>' },
-      { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. იახსარი მას აბუდელაურის თეთრ ტბაში დაეწევა და დაამარცხებს.</p>' },
-      { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს იარაღს (კომბალი / შუბი)</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ტყავის მოსასხამი</li></ul>' }
+      { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>. საშიში შესახედაობის, გოლიათური აღნაგობის. იახსართან ბრძოლის დროს კარგავს ერთ თვალს.</p>' },
+      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი. ხელში — <strong style="color:#ffb3b3">უზარმაზარი ხის შუბი</strong>.</p>' },
+      { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი, მშიშარა (ღვთისშვილის დანახვაზე გარბის).</p>' },
+      { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. აბუდელაურის თეთრ ტბაში იმალება, სადაც იახსარი მას ხმლით გულს უგმირავს და ამარცხებს.</p>' },
+      { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ხის შუბს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ტყავის მოსასხამი</li></ul>' }
     ]
   }
 };
