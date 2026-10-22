@@ -2,6 +2,14 @@
    AMAGDARI · SCRIPT
    ============================================================ */
 
+/* Detect touch devices for hover fallback */
+(function(){
+  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches 
+    || 'ontouchstart' in window 
+    || navigator.maxTouchPoints > 0;
+  if (isTouch) document.documentElement.classList.add('is-touch');
+})();
+
 /* ============================================================
    🎨 APPLE TOUCH ICON — Canvas → PNG
    ============================================================ */
@@ -164,7 +172,6 @@ let fbProfile = null;
 let membersSnapshot = {};
 let siteContent = {};
 let notifications = [];
-let isGuest = false;
 let lastFocused = null;
 
 const $  = (s) => document.querySelector(s);
@@ -359,7 +366,6 @@ db.ref('members').on('value', snap => {
   membersSnapshot = snap.val() || {};
   renderTeam();
   renderProfile();
-  checkAllRegistered();
 });
 
 /* SITE CONTENT */
@@ -417,7 +423,7 @@ function renderTeam() {
         </div>
         <p class="member-role">${esc(nickname)}</p>
         <div class="member-actions">
-          <button class="member-profile-btn" data-member="${id}">
+          <button class="member-profile-btn" data-member="${id}" type="button">
             პროფილის ნახვა
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
@@ -427,7 +433,17 @@ function renderTeam() {
   }).join('');
 
   grid.querySelectorAll('[data-member]').forEach(btn => {
-    btn.addEventListener('click', () => openMemberModal(btn.dataset.member));
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openMemberModal(btn.dataset.member);
+    });
+    // Extra iOS safety — handle touchend too
+    btn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openMemberModal(btn.dataset.member);
+    }, { passive: false });
   });
 
   const items = grid.querySelectorAll('.reveal');
@@ -577,27 +593,13 @@ function closeMemberModal() {
   if (lastFocused) lastFocused.focus();
 }
 
-function checkAllRegistered() {
-  const allTaken = MEMBER_ORDER.every(id => membersSnapshot[id] && membersSnapshot[id].claimedBy);
-  const gate = $('#authGate');
-  const loginBtn = $('#loginBtn');
-  const nav = $('#bottomNav');
-
-  if (allTaken && !fbUser && !isGuest) {
-    gate.classList.add('hidden');
-    $('#mainSite').classList.add('visible');
-    document.body.classList.remove('no-nav');
-    loginBtn.classList.remove('hidden');
-    nav.classList.add('hidden');
-  }
-}
-
-/* AUTH STATE */
+/* ============================================================
+   AUTH STATE
+   ============================================================ */
 auth.onAuthStateChanged(async (user) => {
   fbUser = user;
 
   if (user) {
-    isGuest = false;
     const snap = await db.ref('users/' + user.uid).once('value');
     fbProfile = snap.val() || {};
 
@@ -622,63 +624,35 @@ auth.onAuthStateChanged(async (user) => {
 
 function afterAuthReady() {
   if (fbUser && fbProfile && fbProfile.memberId) {
-    $('#authGate').classList.add('hidden');
-    $('#mainSite').classList.add('visible');
+    // Logged in as member
     $('#loginBtn').classList.add('hidden');
     $('#notifBtn').classList.remove('hidden');
     $('#bottomNav').classList.remove('hidden');
     document.body.classList.remove('no-nav');
+    $('#authGate').classList.add('hidden');
     renderProfile();
     renderEditor();
     renderNotifBadge();
     return;
   }
 
-  if (fbUser && (!fbProfile || !fbProfile.memberId)) {
-    $('#authGate').classList.remove('hidden');
-    $('#mainSite').classList.remove('visible');
-    $('#bottomNav').classList.add('hidden');
-    document.body.classList.add('no-nav');
-    renderMemberPicker();
-    return;
-  }
-
-  const allTaken = MEMBER_ORDER.every(id => membersSnapshot[id] && membersSnapshot[id].claimedBy);
-
-  if (allTaken && !isGuest) {
-    $('#authGate').classList.add('hidden');
-    $('#mainSite').classList.add('visible');
-    $('#loginBtn').classList.remove('hidden');
-    $('#notifBtn').classList.add('hidden');
-    $('#bottomNav').classList.add('hidden');
-    document.body.classList.add('no-nav');
-    return;
-  }
-
-  if (isGuest) {
-    $('#authGate').classList.add('hidden');
-    $('#mainSite').classList.add('visible');
-    $('#loginBtn').classList.remove('hidden');
-    $('#notifBtn').classList.add('hidden');
-    $('#bottomNav').classList.add('hidden');
-    document.body.classList.add('no-nav');
-    return;
-  }
-
-  $('#authGate').classList.remove('hidden');
-  $('#mainSite').classList.remove('visible');
+  // Not a member — show login button, keep site open
+  $('#loginBtn').classList.remove('hidden');
+  $('#notifBtn').classList.add('hidden');
   $('#bottomNav').classList.add('hidden');
   document.body.classList.add('no-nav');
-  if (!$('#authContent').dataset.view) renderAuthHome();
+  // Don't auto-show auth gate
+  $('#authGate').classList.add('hidden');
 }
 
 function setAuthView(view) {
   $('#authContent').dataset.view = view;
-  $('#authBack').classList.toggle('hidden', view === 'home');
+  const showBack = view === 'login' || view === 'register';
+  $('#authBack').classList.toggle('hidden', !showBack);
 }
 
 /* ============================================================
-   renderAuthHome — რეგისტრაცია დახურულია
+   AUTH HOME
    ============================================================ */
 function renderAuthHome() {
   setAuthView('home');
@@ -696,24 +670,21 @@ function renderAuthHome() {
     <p class="auth-sub">ქართული მითოლოგია · ანიმაცია</p>
     <p class="auth-lead">
       ${allTaken
-        ? 'გუნდის ყველა წევრი დარეგისტრირებულია. შემოდი მნახველის სახით ან შედი შენს ექაუნთში.'
-        : 'კეთილი იყოს შენი მობრძანება. შემოდი მნახველის სახით საიტის სანახავად.'}
+        ? 'გუნდის ყველა წევრი დარეგისტრირებულია. შესვლა შესაძლებელია მხოლოდ ექაუნთით.'
+        : 'შესვლა შენს ექაუნთზე.'}
     </p>
     <div class="auth-actions">
-      <button class="auth-btn primary auth-btn-big" data-action="guest">
+      <button class="auth-btn primary auth-btn-big" data-action="login">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-          <circle cx="12" cy="12" r="3"/>
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <polyline points="10 17 15 12 10 7"/>
+          <line x1="15" y1="12" x2="3" y2="12"/>
         </svg>
-        მნახველის სტატუსით შესვლა
+        შესვლა ექაუნთში
       </button>
 
       <button class="auth-btn auth-btn-small" disabled aria-disabled="true" title="რეგისტრაცია დახურულია">
-        რეგისტრაცია გუნდის წევრად <span class="closed-tag">(დახურულია)</span>
-      </button>
-
-      <button class="auth-btn auth-btn-small" data-action="login">
-        შესვლა ექაუნთში
+        რეგისტრაცია <span class="closed-tag">(დახურულია)</span>
       </button>
     </div>
   `;
@@ -723,7 +694,6 @@ function renderAuthHome() {
       const a = b.dataset.action;
       if (a === 'register') renderRegisterForm();
       if (a === 'login') renderLoginForm();
-      if (a === 'guest') enterGuest();
     });
   });
 }
@@ -837,18 +807,6 @@ function renderLoginForm() {
   });
 }
 
-function enterGuest() {
-  isGuest = true;
-  $('#authGate').classList.add('hidden');
-  $('#mainSite').classList.add('visible');
-  $('#loginBtn').classList.remove('hidden');
-  $('#notifBtn').classList.add('hidden');
-  $('#bottomNav').classList.add('hidden');
-  document.body.classList.add('no-nav');
-  checkAllRegistered();
-  showToast('👁 მნახველის რეჟიმი', '');
-}
-
 function renderMemberPicker() {
   setAuthView('picker');
 
@@ -857,7 +815,7 @@ function renderMemberPicker() {
     const m = membersSnapshot[id] || {};
     const taken = m.claimedBy && m.claimedBy !== (fbUser && fbUser.uid);
     return `
-      <button class="picker-item" data-pick="${id}" ${taken ? 'disabled' : ''}>
+      <button class="picker-item" data-pick="${id}" ${taken ? 'disabled' : ''} type="button">
         <span class="picker-avatar">${meta.initial}</span>
         <span class="picker-name">${esc(meta.name)}</span>
       </button>
@@ -867,7 +825,7 @@ function renderMemberPicker() {
   $('#authContent').innerHTML = `
     <h1 class="auth-title" style="font-size:1.7rem">ვინ ხარ?</h1>
     <p class="auth-sub">აირჩიე შენი სახელი</p>
-    <p class="picker-intro">აირჩიე <strong>შენი სახელი</strong> გუნდიდან, რომ შეხვიდე შენს ექაუნთზე.</p>
+    <p class="picker-intro">აირჩიე <strong>შენი სახელი</strong> გუნდიდან, რომ დაასრულო რეგისტრაცია.</p>
     <div class="picker-list">${items}</div>
   `;
 
@@ -945,7 +903,7 @@ function confirmPick(memberId) {
       await db.ref().update(updates);
 
       showToast('✓ წარმატებით შეხვედი', 'success');
-      setAuthView('home');
+      $('#authGate').classList.add('hidden');
     } catch (ex) {
       console.error(ex);
       err.textContent = 'შეცდომა: ' + (ex.message || ex);
@@ -954,6 +912,25 @@ function confirmPick(memberId) {
     }
   });
 }
+
+/* ============================================================
+   AUTH UI EVENTS
+   ============================================================ */
+$('#loginBtn').addEventListener('click', () => {
+  $('#authGate').classList.remove('hidden');
+  if (fbUser && (!fbProfile || !fbProfile.memberId)) {
+    renderMemberPicker();
+  } else {
+    setAuthView('home');
+    renderAuthHome();
+  }
+});
+
+$('#authClose').addEventListener('click', () => {
+  $('#authGate').classList.add('hidden');
+});
+
+$('#authBack').addEventListener('click', renderAuthHome);
 
 /* NAV */
 $$('.nav-btn').forEach(btn => {
@@ -1204,7 +1181,6 @@ async function doLogout() {
   if (!confirm('ნამდვილად გინდა გასვლა?')) return;
   try {
     await auth.signOut();
-    isGuest = false;
     showToast('✓ გამოხვედი', 'success');
     location.reload();
   } catch (ex) {
@@ -1430,13 +1406,6 @@ $('#notifBtn').addEventListener('click', async () => {
   }
 });
 
-$('#loginBtn').addEventListener('click', () => {
-  isGuest = false;
-  $('#authGate').classList.remove('hidden');
-  setAuthView('home');
-  renderAuthHome();
-});
-
 /* MODAL SYSTEM */
 function openModal(title, bodyHtml, afterOpen) {
   const modal = $('#modal');
@@ -1465,6 +1434,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeAllModals();
     closeMemberModal();
+    $('#authGate').classList.add('hidden');
   }
 });
 
@@ -1473,7 +1443,7 @@ const CHAR_PROFILES = {
   hero: {
     icon: '★', alias: 'პროტაგონისტი', name: 'იახსარი',
     subtitle: 'ქართული მითოლოგიის მთავარი გმირი',
-    image: 'images/iakhsari.jpg',
+    image: 'images/iakhsari-sheet.jpg',
     stats: [
       { label: 'ასაკი', value: '25' },
       { label: 'ეპოქა', value: 'XIII' },
@@ -1481,17 +1451,17 @@ const CHAR_PROFILES = {
     ],
     sections: [
       { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მაღალი, შავწვერიანი და გრძელთმიანი მამაკაცი. ღვთისშვილი, რომელიც სამართლიანობისთვის იბრძვის.</p>' },
-      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ტანსაცმელი, ხევსურული ქუდი, ქამარი. ხელში — <strong style="color:#f0cd8a">ლახტი</strong> და ხმალი.</p>' },
+      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ხევსურული ტანსაცმელი, ქუდი, ქამარი, <strong style="color:#f0cd8a">ლახტი</strong> და ხმალი. ტანსაცმელზე დატანილია <strong>ხევსურული ორნამენტები</strong> — წითელი აქცენტებით ნაცრისფერ ფონზე.</p>' },
       { title: 'პიროვნული მახასიათებლები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">მამაცი, ძლიერი, სამართლიანი, დამცველი, ღვთის ერთგული, გამბედავი და უშიშარი, გამჭრიახი, თავგანწირული.</p>' },
       { title: 'განსაკუთრებული უნარები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">⚔️ ზებუნებრივი ძალა · 🛡️ ბოროტ ძალებთან ბრძოლა · ⚡ მტრის დამარცხება · 🗡️ მეომრული ოსტატობა · 🏔️ მფარველობა · 🕊️ მტრედად ქცევა</p>' },
       { title: 'მიზანი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">🎯 დევების სრული აღმოფხვრა, ადამიანთა განთავისუფლება, მშვიდობის აღდგენა — თუნდაც საკუთარი სიცოცხლის ფასად.</p>' },
-      { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ლახტს და ხმალს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში (გარდა მტრედად ქცევისა)</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ხევსურული სამოსი</li></ul>' }
+      { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ლახტს და ხმალს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება (გარდა მტრედად ქცევისა)</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ხევსურული სამოსი</li></ul>' }
     ]
   },
   villain: {
     icon: '👹', alias: 'ანტაგონისტი', name: 'გორო',
     subtitle: 'დევი, უკანასკნელი ბნელი ძალა',
-    image: 'images/goro.jpg',
+    image: 'images/goro-sheet.jpg',
     stats: [
       { label: 'ასაკი', value: '404' },
       { label: 'რასა', value: 'დევი' },
@@ -1499,7 +1469,7 @@ const CHAR_PROFILES = {
     ],
     sections: [
       { title: 'გარეგნობა', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">გოლიათური ტანის დევი, <strong style="color:#ffb3b3">ორი რქით</strong>. საშიში შესახედაობის, გოლიათური აღნაგობის. იახსართან ბრძოლის დროს კარგავს ერთ თვალს.</p>' },
-      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ტყავის მოსასხამი. ხელში — <strong style="color:#ffb3b3">უზარმაზარი ხის შუბი</strong>.</p>' },
+      { title: 'სამოსი და იარაღი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">ყავისფერი ტყავის მოსასხამი. ხელში — <strong style="color:#ffb3b3">უზარმაზარი ხის შუბი</strong>.</p>' },
       { title: 'პიროვნული თვისებები', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7">სასტიკი, ველური, ხარბი, ბოროტი, მშიშარა (ღვთისშვილის დანახვაზე გარბის).</p>' },
       { title: 'ამბავში მისი როლი', html: '<p style="color:#cfc7e6;font-weight:300;line-height:1.7;font-style:italic">უკანასკნელი დევი, თავს ესხმის სოფელ როშკას, იტაცებს საქონელს და აშინებს მოსახლეობას. აბუდელაურის თეთრ ტბაში იმალება, სადაც იახსარი მას ხმლით გულს უგმირავს და ამარცხებს.</p>' },
       { title: 'ვიზუალური წესები', html: '<ul style="list-style:none;padding:0;color:#cfc7e6;font-weight:300;line-height:1.8;font-size:.9rem"><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ატარებს ხის შუბს</li><li style="padding-left:18px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ფორმა არ იცვლება ანიმაციის განმავლობაში</li><li style="padding-left:18px;position:relative"><span style="position:absolute;left:0;color:#4ec9b0">✓</span>ყოველთვის ერთი და იმავე ტყავის მოსასხამი</li></ul>' }
@@ -1589,6 +1559,5 @@ $('#watchBtn').addEventListener('click', () => {
   items.forEach(el => io.observe(el));
 })();
 
-$('#authBack').addEventListener('click', renderAuthHome);
-
+/* INIT */
 renderAuthHome();
