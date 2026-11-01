@@ -941,8 +941,8 @@ html.is-touch .villain-char .profile-btn:hover{transform:none}
 .concept-sheet-card{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .concept-sheet-card:hover{transform:translateY(-4px);border-color:rgba(212,162,76,.5);box-shadow:0 22px 50px -25px rgba(212,162,76,.7)}
 .concept-sheet-card.villain-sheet:hover{border-color:rgba(227,93,93,.5);box-shadow:0 22px 50px -25px rgba(227,93,93,.7)}
-.concept-sheet-frame{position:relative;aspect-ratio:16/11;background:linear-gradient(160deg,#1a140f,#0a0806);overflow:hidden}
-.concept-sheet-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.concept-sheet-frame{position:relative;aspect-ratio:5/3;background:linear-gradient(160deg,#1a140f,#0a0806);overflow:hidden}
+.concept-sheet-frame img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .5s}
 .concept-sheet-card:hover .concept-sheet-frame img{transform:scale(1.04)}
 .concept-sheet-card figcaption{display:flex;flex-direction:column;gap:3px;padding:14px 18px 16px;background:rgba(0,0,0,.3);border-top:1px solid rgba(212,162,76,.15)}
 .sheet-name{font-size:.98rem;font-weight:700;color:#fff2d4;letter-spacing:.03em}
@@ -1128,8 +1128,8 @@ html.is-touch .villain-char .profile-btn:hover{transform:none}
 .modal-close:active{transform:rotate(90deg) scale(.9)}
 .modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
-.char-modal-image{position:relative;aspect-ratio:16/10;margin-bottom:22px;background:linear-gradient(160deg,#1a140f,#0a0806);border:1px solid rgba(212,162,76,.25);border-radius:16px;overflow:hidden}
-.char-modal-image img{width:100%;height:100%;object-fit:cover;display:block}
+.char-modal-image{position:relative;aspect-ratio:5/3;margin-bottom:22px;background:linear-gradient(160deg,#1a140f,#0a0806);border:1px solid rgba(212,162,76,.25);border-radius:16px;overflow:hidden}
+.char-modal-image img{width:100%;height:100%;object-fit:contain;display:block}
 .char-modal-image.img-missing img{display:none}
 .char-modal-image.img-missing .img-placeholder{display:flex}
 .char-modal-image .img-placeholder{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);opacity:.6}
@@ -1415,4 +1415,49 @@ footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+/* ============ ANIMATION VIDEO MODAL ============ */
+.modal-box.modal-wide{max-width:860px}
+.video-frame{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;border:1px solid rgba(212,162,76,.25)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-link{display:inline-block;margin-top:16px;font-size:.86rem;font-weight:600;color:var(--gold-light);text-decoration:none;letter-spacing:.02em;border-bottom:1px solid rgba(240,205,138,.4);padding-bottom:2px;transition:color .3s,border-color .3s}
+.video-link:hover{color:#fff2d4;border-color:#fff2d4}
+
+/* ============ SKETCHES / ჩანახატები ============ */
+.sketches-section{position:relative}
+.sketch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.sketch-item{position:relative;display:block;width:100%;padding:0;margin:0;border:1px solid rgba(212,162,76,.22);border-radius:16px;overflow:hidden;background:#f4f1ea;cursor:zoom-in;color:inherit;font:inherit;-webkit-tap-highlight-color:transparent;transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s}
+.sketch-frame{display:block;aspect-ratio:5/3}
+.sketch-frame img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;transition:transform .5s}
+.sketch-num{position:absolute;top:10px;left:10px;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:999px;color:var(--gold-light);background:rgba(13,10,23,.82);border:1px solid rgba(212,162,76,.4)}
+.sketch-item:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+  .sketch-item:hover{transform:translateY(-4px);border-color:rgba(212,162,76,.6);box-shadow:0 22px 50px -25px rgba(212,162,76,.7)}
+  .sketch-item:hover .sketch-frame img{transform:scale(1.03)}
+}
+
+/* ============ SKETCH LIGHTBOX ============ */
+.lightbox{position:fixed;inset:0;z-index:210;display:grid;place-items:center;padding:calc(60px + var(--sat)) calc(70px + var(--sar)) calc(56px + var(--sab)) calc(70px + var(--sal));opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox-backdrop{position:absolute;inset:0;background:rgba(5,4,10,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.lightbox-figure{position:relative;margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;gap:14px}
+.lightbox-figure img{display:block;max-width:100%;max-height:calc(100vh - 170px);max-height:calc(100svh - 170px);width:auto;height:auto;background:#fff;border-radius:10px;box-shadow:0 30px 80px -20px #000}
+.lightbox-figure figcaption{font-family:'JetBrains Mono',monospace;font-size:.74rem;font-weight:700;letter-spacing:.2em;color:var(--gold-light)}
+.lightbox-close,.lightbox-nav{position:absolute;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:var(--text);cursor:pointer;display:grid;place-items:center;padding:0;transition:background .3s,border-color .3s;-webkit-tap-highlight-color:transparent}
+.lightbox-close:hover,.lightbox-nav:hover{background:rgba(255,255,255,.18);border-color:rgba(240,205,138,.5)}
+.lightbox-close{top:calc(14px + var(--sat));right:calc(14px + var(--sar))}
+.lightbox-nav{top:50%;margin-top:-22px}
+.lightbox-nav.prev{left:calc(14px + var(--sal))}
+.lightbox-nav.next{right:calc(14px + var(--sar))}
+.lightbox svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:720px){
+  .sketch-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .lightbox{padding:calc(64px + var(--sat)) 12px calc(72px + var(--sab)) 12px}
+  .lightbox-figure img{max-height:calc(100vh - 200px);max-height:calc(100svh - 200px)}
+  .lightbox-nav{top:auto;bottom:calc(14px + var(--sab));margin-top:0}
+  .lightbox-nav.prev{left:calc(22px + var(--sal))}
+  .lightbox-nav.next{right:calc(22px + var(--sar))}
+}
+@media (prefers-reduced-motion:reduce){
+  .sketch-item,.sketch-frame img{transition:none}
 }

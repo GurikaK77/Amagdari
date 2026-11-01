@@ -1410,6 +1410,7 @@ $('#notifBtn').addEventListener('click', async () => {
 function openModal(title, bodyHtml, afterOpen) {
   const modal = $('#modal');
   const box = $('#modalBox');
+  box.classList.remove('modal-wide');
   box.innerHTML = `
     <div class="modal-header">
       <h2 class="modal-title">${esc(title)}</h2>
@@ -1421,8 +1422,10 @@ function openModal(title, bodyHtml, afterOpen) {
   modal.classList.add('open');
   if (afterOpen) afterOpen(box);
 }
-function closeModal() { $('#modal').classList.remove('open'); }
-function closeAllModals() { $$('.modal').forEach(m => m.classList.remove('open')); }
+/* ვიდეოს ჩართვის შემდეგ iframe იშლება, რომ ხმა არ გაგრძელდეს მოდალის დახურვისას */
+function stopModalMedia() { $$('#modalBox iframe').forEach(f => f.remove()); }
+function closeModal() { $('#modal').classList.remove('open'); stopModalMedia(); }
+function closeAllModals() { $$('.modal').forEach(m => m.classList.remove('open')); stopModalMedia(); }
 
 $$('[data-close]').forEach(el => el.addEventListener('click', closeModal));
 $$('[data-char-close]').forEach(el => el.addEventListener('click', () => $('#charModal').classList.remove('open')));
@@ -1533,15 +1536,77 @@ $$('.profile-btn[data-char]').forEach(btn => {
   });
 });
 
+/* ANIMATION VIDEO — სხვა ვიდეოს დასაყენებლად მხოლოდ ეს ID შეცვალე */
+const ANIMATION_VIDEO_ID = '3sbD5wERtl4';
+
 $('#watchBtn').addEventListener('click', () => {
-  openModal('ანიმაცია ჯერ არ დაწყებულა', `
-    <p style="color:var(--muted);font-size:.94rem;line-height:1.7;margin-bottom:24px">
-      ჩვენ ჯერ კიდევ მუშაობის პროცესში ვართ. სცენარი, პერსონაჟები და ვიზუალი მზადდება.
-      მალე გაჩვენებთ პირველ კადრებს.
-    </p>
-    <button class="btn btn-primary" style="width:100%;justify-content:center" data-close>კარგი, დაველოდები</button>
-  `);
+  openModal('ამაგდარი · ანიმაცია', `
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/${ANIMATION_VIDEO_ID}?rel=0&autoplay=1&playsinline=1"
+        title="ამაგდარი — ანიმაცია"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <a class="video-link" href="https://youtu.be/${ANIMATION_VIDEO_ID}" target="_blank" rel="noopener">YouTube-ზე ნახვა ↗</a>
+  `, (box) => box.classList.add('modal-wide'));
 });
+
+/* SKETCHES LIGHTBOX */
+(function () {
+  const items = Array.from(document.querySelectorAll('.sketch-item'));
+  const lb = $('#lightbox');
+  if (!lb || !items.length) return;
+  const img = $('#lbImg');
+  const count = $('#lbCount');
+  let cur = 0;
+
+  function show(i) {
+    cur = (i + items.length) % items.length;
+    const src = items[cur].querySelector('img').getAttribute('src');
+    img.src = src;
+    img.alt = 'ჩანახატი ' + (cur + 1);
+    count.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(items.length).padStart(2, '0');
+    // მეზობელი სურათები წინასწარ იტვირთება
+    [cur - 1, cur + 1].forEach((n) => {
+      const k = (n + items.length) % items.length;
+      new Image().src = items[k].querySelector('img').getAttribute('src');
+    });
+  }
+  function open(i) {
+    show(i);
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+  lb.querySelectorAll('[data-lb-close]').forEach((el) => el.addEventListener('click', close));
+  $('#lbPrev').addEventListener('click', () => show(cur - 1));
+  $('#lbNext').addEventListener('click', () => show(cur + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(cur - 1);
+    else if (e.key === 'ArrowRight') show(cur + 1);
+  });
+
+  // სვაიპი ტელეფონზე
+  let startX = null;
+  lb.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 50) show(dx < 0 ? cur + 1 : cur - 1);
+  }, { passive: true });
+})();
 
 /* REVEAL ANIMATIONS */
 (function () {
