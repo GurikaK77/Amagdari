@@ -1537,7 +1537,7 @@ $$('.profile-btn[data-char]').forEach(btn => {
 });
 
 /* ANIMATION VIDEO — სხვა ვიდეოს დასაყენებლად მხოლოდ ეს ID შეცვალე */
-const ANIMATION_VIDEO_ID = '3sbD5wERtl4';
+const ANIMATION_VIDEO_ID = '1bIXUuJSY6k';
 
 $('#watchBtn').addEventListener('click', () => {
   openModal('ამაგდარი · ანიმაცია', `
