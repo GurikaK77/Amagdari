@@ -883,7 +883,7 @@ html.is-touch .villain-char .profile-btn:hover{transform:none}
 .concept-char-card{display:flex;flex-direction:column;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:all .4s cubic-bezier(.2,.8,.2,1)}
 .concept-char-card:hover{transform:translateY(-4px);border-color:rgba(212,162,76,.4);box-shadow:0 20px 44px -22px rgba(212,162,76,.6)}
 .concept-char-card.villain:hover{border-color:rgba(227,93,93,.5);box-shadow:0 20px 44px -22px rgba(227,93,93,.6)}
-.concept-char-img{position:relative;aspect-ratio:16/10;background:linear-gradient(160deg,#1a140f,#0a0806);display:grid;place-items:center;overflow:hidden}
+.concept-char-img{position:relative;aspect-ratio:5/3;background:linear-gradient(160deg,#1a140f,#0a0806);display:grid;place-items:center;overflow:hidden}
 .concept-char-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .concept-char-card:hover .concept-char-img img{transform:scale(1.05)}
 .img-placeholder{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);opacity:.55;padding:20px;text-align:center}
@@ -1460,4 +1460,34 @@ footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
 }
 @media (prefers-reduced-motion:reduce){
   .sketch-item,.sketch-frame img{transition:none}
+}
+
+/* ============ SOUNDS / ხმები ============ */
+.sounds-section{position:relative}
+.sound-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;align-items:stretch}
+.sound-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid rgba(212,162,76,.22);
+  border-radius:18px;padding:22px 22px 24px;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), border-color .45s, box-shadow .45s;
+}
+.sound-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, transparent 0%, rgba(212,162,76,.4) 15%, rgba(240,205,138,.9) 50%, rgba(212,162,76,.4) 85%, transparent 100%);
+  opacity:.7;transition:opacity .5s;
+}
+.sound-card:hover{transform:translateY(-4px);border-color:rgba(212,162,76,.5);box-shadow:0 22px 50px -26px rgba(212,162,76,.6)}
+.sound-card:hover::before{opacity:1}
+.sound-card .scene-head{align-items:center;margin-bottom:16px}
+.sound-card .scene-title{margin-top:0}
+.sound-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sound-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(212,162,76,.07);border:1px solid rgba(212,162,76,.18);font-size:.9rem;font-weight:300;line-height:1.5;color:#d9d3ec}
+.sound-item svg{flex-shrink:0;width:16px;height:16px;margin-top:3px;stroke:var(--gold-light);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:720px){
+  .sound-grid{grid-template-columns:1fr;gap:14px}
+  .sound-card{padding:20px 18px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  .sound-card{transition:none}
 }
