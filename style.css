@@ -1491,3 +1491,111 @@ footer .fname svg{width:18px;height:18px;flex:none;opacity:.9}
 @media (prefers-reduced-motion:reduce){
   .sound-card{transition:none}
 }
+
+
+/* ============ COMPACT, MORE BALANCED PAGE RHYTHM ============ */
+/* Keep every section and all of its content; reduce only excess vertical whitespace. */
+.hero {
+  min-height: 88svh;
+  padding-top: calc(44px + var(--sat));
+  padding-bottom: calc(50px + var(--sab));
+}
+.section { padding-block: 72px; }
+.section-head { margin-bottom: 42px; }
+.team-section { padding-top: 54px !important; padding-bottom: 76px !important; }
+.story-section,
+.concept-section,
+.progress-section,
+.comment-section { padding-top: 78px; padding-bottom: 86px; }
+.story-intro { margin-bottom: 38px; }
+.story-tabs { margin-bottom: 28px; }
+.story-step { gap: 38px; margin-bottom: 36px; }
+.story-card { padding: 22px 22px 20px; }
+.story-footer { margin-top: 42px; padding: 20px 22px; }
+.script-scenes { gap: 18px; }
+.script-scene { padding: 24px 26px 26px; }
+.scene-text { line-height: 1.7; }
+.concept-block { margin-bottom: 20px; padding: 22px 24px 24px; }
+.concept-block-head { margin-bottom: 15px; padding-bottom: 13px; }
+.sketch-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.sound-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+.sound-card { padding: 18px 18px 20px; }
+.sound-card .scene-head { margin-bottom: 12px; }
+.progress-grid { gap: 14px; }
+.progress-card { gap: 16px; padding: 20px 22px; }
+.comment-card { padding: 28px 26px 26px; }
+.comment-field { margin-bottom: 14px; }
+footer { padding-top: 42px; }
+
+.progress-card.draft {
+  color: #d4a24c;
+  border-color: rgba(212,162,76,.42);
+  background: linear-gradient(160deg, rgba(212,162,76,.10), rgba(255,255,255,.015));
+}
+.progress-card.draft::before {
+  background: linear-gradient(135deg, #d4a24c 0%, transparent 45%);
+}
+.progress-card.draft .progress-title { color: #fff2d4; }
+.progress-card.draft .progress-desc { color: #c8b28f; }
+.progress-card.draft .progress-status {
+  color: #1a1206;
+  background: linear-gradient(135deg, #d4a24c, #f0cd8a);
+  border-color: transparent;
+  box-shadow: 0 6px 16px -6px rgba(212,162,76,.75);
+  letter-spacing: .08em;
+}
+.progress-watch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  color: #f0cd8a;
+  font-size: .78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s ease, gap .2s ease;
+}
+.progress-watch-link svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+.progress-watch-link span { font-size: .9rem; }
+.progress-watch-link:hover { color: #fff6e0; gap: 10px; }
+.progress-watch-link:focus-visible {
+  outline: 2px solid #f0cd8a;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+@media (max-width: 720px) {
+  .hero { min-height: 84svh; }
+  .section { padding-block: 58px; }
+  .section-head { margin-bottom: 32px; }
+  .team-section { padding-top: 42px !important; padding-bottom: 58px !important; }
+  .story-section,
+  .concept-section,
+  .progress-section,
+  .comment-section { padding-top: 60px; padding-bottom: 66px; }
+  .story-intro { margin-bottom: 28px; }
+  .story-step { margin-bottom: 26px; }
+  .story-card { padding: 18px 18px 17px; }
+  .story-footer { margin-top: 30px; padding: 18px; }
+  .script-scenes { gap: 14px; }
+  .script-scene { padding: 19px 18px 21px; }
+  .concept-block { margin-bottom: 16px; padding: 18px 18px 20px; }
+  .concept-block-head { margin-bottom: 12px; padding-bottom: 11px; }
+  .progress-grid { gap: 12px; }
+  .progress-card { padding: 16px 16px; gap: 12px; }
+  .comment-card { padding: 24px 20px; }
+  footer { padding-top: 34px; }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: 82svh; }
+  .section { padding-block: 54px; }
+  .section-head { margin-bottom: 28px; }
+  .progress-status { letter-spacing: .07em; }
+  .progress-watch-link { font-size: .74rem; }
+}
