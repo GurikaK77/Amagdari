@@ -1537,7 +1537,8 @@ $$('.profile-btn[data-char]').forEach(btn => {
 });
 
 /* ANIMATION VIDEO — სხვა ვიდეოს დასაყენებლად მხოლოდ ეს ID შეცვალე */
-const ANIMATION_VIDEO_ID = '1bIXUuJSY6k';
+const ANIMATION_VIDEO_ID = 'bDudyB3Yyu0';
+const ANIMATION_VIDEO_URL = 'https://youtu.be/bDudyB3Yyu0?si=QPGd-vKlol6jSnWk';
 
 $('#watchBtn').addEventListener('click', () => {
   openModal('ამაგდარი · ანიმაცია', `
@@ -1548,7 +1549,7 @@ $('#watchBtn').addEventListener('click', () => {
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
         referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
-    <a class="video-link" href="https://youtu.be/${ANIMATION_VIDEO_ID}" target="_blank" rel="noopener">YouTube-ზე ნახვა ↗</a>
+    <a class="video-link" href="${ANIMATION_VIDEO_URL}" target="_blank" rel="noopener">YouTube-ზე ნახვა ↗</a>
   `, (box) => box.classList.add('modal-wide'));
 });
 
